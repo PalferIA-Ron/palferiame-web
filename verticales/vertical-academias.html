@@ -176,6 +176,12 @@ footer{background:#010C11;padding:4rem 4rem 2.5rem;border-top:1px solid var(--bo
 /* ── LP HEADER ── */
 .lp-header{padding:1.25rem 4rem;display:flex;align-items:center;border-bottom:1px solid var(--border);background:var(--deep)}
 @media(max-width:900px){.lp-header{padding:1rem 1.5rem}}
+/* ── HERO IMG ── */
+.hero-img{position:absolute;right:0;top:0;bottom:0;width:40%;overflow:hidden;pointer-events:none}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 0%,rgba(1,45,56,.5) 50%,transparent 100%);z-index:1}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 18%,transparent 82%,var(--deep) 100%);z-index:1}
+@media(max-width:900px){.hero-img{display:none}}
   </style>
 </head>
 <body>
@@ -201,6 +207,9 @@ footer{background:#010C11;padding:4rem 4rem 2.5rem;border-top:1px solid var(--bo
   <div class="hero-actions">
     <a href="#registro" class="btn-p">Reservar reunión &rarr;</a>
     <a href="#automatizaciones" class="btn-g">Cómo funciona</a>
+  </div>
+  <div class="hero-img">
+    <img src="/assets/img/hero-academias.jpg" alt="Academia deportiva con agente IA" loading="eager">
   </div>
 </section>
 

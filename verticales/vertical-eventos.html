@@ -132,6 +132,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 @keyframes wapulse{0%{transform:scale(1);opacity:.8}70%{transform:scale(1.8);opacity:0}100%{transform:scale(1.8);opacity:0}}
 @media(max-width:900px){.lp-header{padding:1rem 1.5rem}.hero,.sec{padding:5rem 1.5rem}.hero-h1{font-size:clamp(3.5rem,12vw,7rem);max-width:100%}.pain-grid,.auto-grid,.process-row,.price-grid{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.cta-sec{padding:5rem 1.5rem}}
 @media(max-width:600px){.wa-float{padding:.9rem 1rem}.wa-float span.wa-label{display:none}}
+/* ── HERO IMG ── */
+.hero-img{position:absolute;right:0;top:0;bottom:0;width:40%;overflow:hidden;pointer-events:none}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 0%,rgba(1,45,56,.5) 50%,transparent 100%);z-index:1}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 18%,transparent 82%,var(--deep) 100%);z-index:1}
+@media(max-width:900px){.hero-img{display:none}}
 </style>
 </head>
 <body>
@@ -157,6 +163,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="hero-actions">
     <a href="#registro" class="btn-p">Reservar reunión &rarr;</a>
     <a href="#precios" class="btn-g">Ver planes</a>
+  </div>
+  <div class="hero-img">
+    <img src="/assets/img/hero-eventos.jpg" alt="Evento deportivo con agente IA" loading="eager">
   </div>
 </section>
 
