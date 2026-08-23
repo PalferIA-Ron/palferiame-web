@@ -1,0 +1,521 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --deep:    #012D38;
+    --surface: #01404F;
+    --raised:  #025265;
+    --accent:  #B1F727;
+    --accentd: #8BC920;
+    --text:    #EFF8FF;
+    --muted:   #7BB5C4;
+    --faint:   #3D6B78;
+    --border:  #0A4A5C;
+    --f-display: 'Bebas Neue', sans-serif;
+    --f-head:    'Barlow Condensed', sans-serif;
+    --f-body:    'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: var(--f-body);
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--accent);
+    overflow: hidden;
+    padding: 0.55rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: tick 30s linear infinite;
+  }
+  .ticker-item {
+    font-family: var(--f-head);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--deep);
+    white-space: nowrap;
+    padding: 0 1.5rem;
+  }
+  .ticker-sep { opacity: 0.35; }
+  @keyframes tick {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 32px;
+    z-index: 100;
+    padding: 1.1rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(1,45,56,0.88);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 var(--border);
+  }
+  .logo {
+    font-family: var(--f-display);
+    font-size: 1.7rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo-dot { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 2.75rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--f-head);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-family: var(--f-head);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--deep);
+    background: var(--accent);
+    padding: 0.65rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--accentd); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 52vh;
+    padding: 6rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .hero-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 46%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+    transform: skewX(-4deg);
+    pointer-events: none;
+  }
+  .hero-breadcrumb {
+    font-family: var(--f-head);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .hero-breadcrumb a {
+    color: var(--faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-breadcrumb a:hover { color: var(--accent); }
+  .hero-h1 {
+    font-family: var(--f-display);
+    font-size: clamp(4rem, 8vw, 9rem);
+    line-height: 0.93;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    position: relative;
+    opacity: 0;
+    animation: up 0.8s ease 0.2s forwards;
+  }
+  .hero-h1 .hl { color: var(--accent); }
+  .hero-sub {
+    font-family: var(--f-body);
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-top: 1.75rem;
+    opacity: 0;
+    animation: up 0.8s ease 0.4s forwards;
+  }
+  @keyframes up {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTIONS ─── */
+  .sec {
+    padding: 7rem 4rem;
+    position: relative;
+  }
+
+  /* ─── LEGAL CONTENT ─── */
+  .legal-content { max-width: 760px; }
+  .legal-section { margin-bottom: 3rem; }
+  .legal-h3 {
+    font-family: var(--f-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .legal-p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+  .legal-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-ul li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .legal-ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .legal-a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .legal-a:hover { text-decoration: underline; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #010C11;
+    padding: 4rem 4rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    flex-wrap: wrap;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .footer-brand-logo {
+    font-family: var(--f-display);
+    font-size: 2rem;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand-logo span { color: var(--accent); }
+  .footer-brand-tagline { font-size: 0.85rem; color: var(--muted); }
+  .footer-cols { display: flex; gap: 4.5rem; }
+  .footer-col h5 {
+    font-family: var(--f-head);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1.25rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a {
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy { font-size: 0.78rem; color: var(--faint); }
+  .footer-eco { display: flex; gap: 2rem; }
+  .footer-eco a {
+    font-family: var(--f-head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-eco a:hover { color: var(--accent); }
+
+  /* ─── REVEAL ─── */
+  .r {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .r.on { opacity: 1; transform: translateY(0); }
+  .r.d1 { transition-delay: 0.1s; }
+  .r.d2 { transition-delay: 0.2s; }
+  .r.d3 { transition-delay: 0.3s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 4rem 1.5rem 3.5rem; min-height: auto; }
+    .hero-h1 { font-size: clamp(3.5rem, 14vw, 7rem); }
+    .sec { padding: 5rem 1.5rem; }
+    .footer-top { flex-direction: column; gap: 2.5rem; }
+    .footer-cols { flex-wrap: wrap; gap: 2.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .legal-content { max-width: 100%; }
+  }
+</style>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">RGPD <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Privacidad <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Datos personales <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Palferia.me <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Valencia, España <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">RGPD <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Privacidad <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Datos personales <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Palferia.me <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Valencia, España <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">RGPD <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Privacidad <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Datos personales <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Palferia.me <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Valencia, España <span class="ticker-sep">·</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="home.html" class="logo">PALFERIA<span class="logo-dot">.</span>ME</a>
+  <ul class="nav-links">
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="home.html#para-quien">Verticales</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="nav-cta">Sesión estratégica</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-line" aria-hidden="true"></div>
+  <div class="hero-breadcrumb"><a href="home.html">Inicio</a> / Legal</div>
+  <h1 class="hero-h1">POLÍTICA DE<br><span class="hl">PRIVACIDAD</span></h1>
+  <p class="hero-sub">Cómo tratamos tus datos personales conforme al RGPD (UE) 2016/679.</p>
+</section>
+
+<!-- CONTENT -->
+<section class="sec">
+  <div class="legal-content">
+
+    <div class="legal-section r">
+      <h3 class="legal-h3">1. Responsable del tratamiento</h3>
+      <p class="legal-p">
+        <strong style="color:var(--text)">Titular:</strong> Ronald Palma Fernández<br>
+        <strong style="color:var(--text)">Denominación comercial:</strong> PalferIA Studio<br>
+        <strong style="color:var(--text)">Web:</strong> palferia.me<br>
+        <strong style="color:var(--text)">Email de contacto:</strong> <a href="mailto:ri@palferia.com" class="legal-a">ri@palferia.com</a><br>
+        <strong style="color:var(--text)">Actividad:</strong> Agencia de marketing digital e inteligencia artificial especializada en sport business.
+      </p>
+    </div>
+
+    <div class="legal-section r d1">
+      <h3 class="legal-h3">2. Datos que recopilamos</h3>
+      <p class="legal-p">Solo recopilamos los datos que tú nos proporcionas voluntariamente a través del formulario de contacto:</p>
+      <ul class="legal-ul">
+        <li>Nombre</li>
+        <li>Dirección de correo electrónico</li>
+        <li>Nombre de la organización o club</li>
+        <li>Consulta o mensaje</li>
+      </ul>
+      <p class="legal-p">No recopilamos datos de menores de 14 años sin consentimiento expreso del padre, madre o tutor legal.</p>
+    </div>
+
+    <div class="legal-section r d2">
+      <h3 class="legal-h3">3. Finalidad del tratamiento</h3>
+      <p class="legal-p">Utilizamos tus datos exclusivamente para:</p>
+      <ul class="legal-ul">
+        <li>Gestionar y responder a las consultas recibidas a través del formulario de contacto.</li>
+        <li>Elaborar propuestas comerciales adaptadas a tu organización.</li>
+        <li>Mantener la relación profesional con clientes actuales y potenciales.</li>
+      </ul>
+      <p class="legal-p">No utilizamos tus datos para envíos masivos no solicitados (spam) ni para fines de marketing sin tu consentimiento previo.</p>
+    </div>
+
+    <div class="legal-section r d1">
+      <h3 class="legal-h3">4. Legitimación</h3>
+      <p class="legal-p">
+        La base legal para el tratamiento de tus datos es el <strong style="color:var(--text)">consentimiento del interesado</strong> al cumplimentar y enviar el formulario de contacto, de conformidad con el artículo 6.1.a del Reglamento (UE) 2016/679 (RGPD).
+      </p>
+    </div>
+
+    <div class="legal-section r d2">
+      <h3 class="legal-h3">5. Conservación de datos</h3>
+      <p class="legal-p">
+        Los datos se conservarán durante el tiempo necesario para gestionar la relación comercial o profesional, o hasta que el interesado solicite su supresión. Una vez cumplida la finalidad, los datos serán eliminados de forma segura.
+      </p>
+    </div>
+
+    <div class="legal-section r d1">
+      <h3 class="legal-h3">6. Destinatarios</h3>
+      <p class="legal-p">No cedemos ni comunicamos tus datos a terceros, salvo obligación legal. Como herramienta de trabajo utilizamos:</p>
+      <ul class="legal-ul">
+        <li><strong style="color:var(--text)">Google Workspace</strong> — para el almacenamiento y gestión del correo electrónico, con garantías adecuadas conforme a la normativa de transferencias internacionales de datos.</li>
+      </ul>
+      <p class="legal-p">Google LLC dispone de mecanismos de transferencia adecuados (Cláusulas Contractuales Tipo). Puedes consultar su política de privacidad en <a href="https://policies.google.com/privacy" class="legal-a" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+    </div>
+
+    <div class="legal-section r d2">
+      <h3 class="legal-h3">7. Tus derechos</h3>
+      <p class="legal-p">Conforme al RGPD, puedes ejercer en cualquier momento los siguientes derechos:</p>
+      <ul class="legal-ul">
+        <li><strong style="color:var(--text)">Acceso</strong> — conocer qué datos tuyos tratamos.</li>
+        <li><strong style="color:var(--text)">Rectificación</strong> — corregir datos inexactos o incompletos.</li>
+        <li><strong style="color:var(--text)">Supresión</strong> — solicitar la eliminación de tus datos.</li>
+        <li><strong style="color:var(--text)">Limitación</strong> — restringir el tratamiento en determinados supuestos.</li>
+        <li><strong style="color:var(--text)">Portabilidad</strong> — recibir tus datos en formato estructurado.</li>
+        <li><strong style="color:var(--text)">Oposición</strong> — oponerte al tratamiento de tus datos.</li>
+      </ul>
+      <p class="legal-p">Para ejercer cualquiera de estos derechos, dirígete a: <a href="mailto:ri@palferia.com" class="legal-a">ri@palferia.com</a></p>
+      <p class="legal-p">Si consideras que el tratamiento no se ajusta a la normativa, también tienes derecho a presentar una reclamación ante la <strong style="color:var(--text)">Agencia Española de Protección de Datos</strong> (AEPD): <a href="https://www.aepd.es" class="legal-a" target="_blank" rel="noopener">www.aepd.es</a></p>
+    </div>
+
+    <div class="legal-section r d1">
+      <h3 class="legal-h3">8. Cookies</h3>
+      <p class="legal-p">
+        Esta web utiliza un número mínimo de cookies. Para más información sobre qué cookies usamos y cómo puedes controlarlas, consulta nuestra <a href="politica-cookies.html" class="legal-a">Política de Cookies</a>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-logo">PALFERIA<span>.</span>ME</div>
+      <div class="footer-brand-tagline">IA para el sport business · Valencia, España · 2025</div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h5>Verticales</h5>
+        <ul>
+          <li><a href="verticales/vertical-academias.html">Academias</a></li>
+          <li><a href="verticales/vertical-clubes.html">Clubes</a></li>
+          <li><a href="verticales/vertical-eventos.html">Eventos</a></li>
+          <li><a href="verticales/vertical-federaciones.html">Federaciones</a></li>
+          <li><a href="verticales/vertical-turismo.html">Turismo activo</a></li>
+          <li><a href="verticales/vertical-patrocinios.html">Patrocinios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="planes.html">Planes y precios</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="politica-privacidad.html">Política de privacidad</a></li>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="politica-cookies.html">Política de cookies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Ecosistema</h5>
+        <ul>
+          <li><a href="https://palferia.com">palferia.com</a></li>
+          <li><a href="https://draftday.es">draftday.es</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Palferia.me — PalferIA Studio, Valencia. All rights reserved.</span>
+    <div class="footer-eco">
+      <a href="https://palferia.com">palferia.com</a>
+      <a href="https://draftday.es">draftday.es</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav'),ticker=document.querySelector('.ticker');
+  function uN(){nav.classList.toggle('scrolled',window.scrollY>ticker.offsetHeight+10);nav.style.top=window.scrollY>ticker.offsetHeight+10?'0':ticker.offsetHeight+'px'}
+  window.addEventListener('scroll',uN,{passive:true});uN();
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
+  document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+</script>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Palferia.me · IA para Sport Business</title>
+<meta name="description" content="Ideas, casos de uso y estrategia de IA aplicada al deporte. Recursos de palferia.me, palferia.com y draftday.es">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --deep:#012D38;--surface:#01404F;--raised:#025265;
+  --accent:#B1F727;--accentd:#8BC920;
+  --text:#EFF8FF;--muted:#7BB5C4;--faint:#3D6B78;--border:#0A4A5C;
+  --fd:'Bebas Neue',sans-serif;--fh:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif
+}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:9999}
+
+/* ── TICKER ── */
+.ticker{background:var(--accent);overflow:hidden;padding:.55rem 0;position:sticky;top:0;z-index:200}
+.ticker-track{display:flex;width:max-content;animation:tick 32s linear infinite}
+.ticker-item{font-family:var(--fh);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);white-space:nowrap;padding:0 1.5rem}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── NAV ── */
+nav{position:sticky;top:32px;z-index:100;padding:1.1rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s}
+nav.scrolled{background:rgba(1,45,56,.9);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--border)}
+.logo{font-family:var(--fd);font-size:1.7rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--fh);font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-cta{font-family:var(--fh);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.65rem 1.6rem;border-radius:2px;text-decoration:none;transition:background .2s,transform .2s}
+.nav-cta:hover{background:var(--accentd);transform:translateY(-1px)}
+
+/* ── BUTTONS ── */
+.btn-p{font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.9rem 2rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-p:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 8px 32px rgba(177,247,39,.25)}
+.btn-g{font-family:var(--fh);font-weight:600;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text);background:transparent;padding:.9rem 2rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--border);transition:border-color .2s,color .2s,transform .2s}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ── SECTIONS ── */
+.sec{padding:7rem 4rem;position:relative}
+.sec-alt{background:var(--surface)}
+.sec-label{display:flex;align-items:center;gap:.75rem;font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.sec-label::before{content:'';display:block;width:20px;height:2px;background:var(--accent)}
+.sec-h2{font-family:var(--fd);font-size:clamp(2.8rem,5.5vw,5.5rem);line-height:.95;color:var(--text);margin-bottom:.75rem}
+.sec-h2 .hl{color:var(--accent)}
+.sec-p{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:3.5rem}
+
+/* ── REVEAL ── */
+.r{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.r.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── HERO BLOG ── */
+.blog-hero{padding:5rem 4rem 4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.blog-hero-bg{position:absolute;top:0;right:0;font-family:var(--fd);font-size:22vw;color:rgba(177,247,39,.025);line-height:1;user-select:none;pointer-events:none;letter-spacing:-.03em}
+.blog-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.15;pointer-events:none}
+.blog-hero-inner{max-width:720px;position:relative}
+.blog-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;opacity:0;animation:up .7s ease .1s forwards}
+.blog-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+.blog-eyebrow-text{font-family:var(--fh);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.blog-h1{font-family:var(--fd);font-size:clamp(4rem,8vw,8.5rem);line-height:.92;color:var(--text);opacity:0;animation:up .8s ease .25s forwards}
+.blog-h1 .hl{color:var(--accent)}
+.blog-sub{font-size:1.05rem;color:var(--muted);line-height:1.75;margin-top:1.5rem;max-width:520px;opacity:0;animation:up .8s ease .4s forwards}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── FILTERS ── */
+.filter-bar{padding:2rem 4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;position:sticky;top:65px;z-index:50;background:var(--deep);backdrop-filter:blur(16px)}
+.filter-label{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-right:.5rem}
+.filter-btn{font-family:var(--fh);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:2px;padding:.45rem 1.1rem;cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:var(--deep)}
+.filter-sep{width:1px;height:20px;background:var(--border);margin:0 .5rem}
+.source-btn{font-family:var(--fh);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;padding:.4rem 1rem;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.source-btn.s-me{color:#7BB5C4;border-color:rgba(123,181,196,.25);background:rgba(123,181,196,.06)}
+.source-btn.s-me:hover,.source-btn.s-me.active{background:rgba(123,181,196,.15);border-color:rgba(123,181,196,.5)}
+.source-btn.s-com{color:#B1F727;border-color:rgba(177,247,39,.25);background:rgba(177,247,39,.06)}
+.source-btn.s-com:hover,.source-btn.s-com.active{background:rgba(177,247,39,.12);border-color:rgba(177,247,39,.4)}
+.source-btn.s-draft{color:#FF7B54;border-color:rgba(255,123,84,.25);background:rgba(255,123,84,.06)}
+.source-btn.s-draft:hover,.source-btn.s-draft.active{background:rgba(255,123,84,.12);border-color:rgba(255,123,84,.4)}
+
+/* ── ARTICLE GRID ── */
+.blog-main{padding:4rem 4rem 6rem;display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start}
+.articles-col{}
+.articles-featured{margin-bottom:3rem}
+.article-hero-card{background:var(--surface);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;text-decoration:none;transition:background .3s,transform .25s;position:relative}
+.article-hero-card:hover{background:rgba(2,82,101,.6);transform:translateY(-2px)}
+.article-hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.article-hero-card:hover::before{transform:scaleX(1)}
+.ahc-visual{background:var(--raised);min-height:280px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-right:1px solid var(--border)}
+.ahc-visual-icon{font-size:6rem;opacity:.4}
+.ahc-visual-tag{position:absolute;top:1.25rem;left:1.25rem;font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px}
+.tag-me{color:#7BB5C4;background:rgba(123,181,196,.15);border:1px solid rgba(123,181,196,.3)}
+.tag-com{color:#B1F727;background:rgba(177,247,39,.1);border:1px solid rgba(177,247,39,.25)}
+.tag-draft{color:#FF7B54;background:rgba(255,123,84,.1);border:1px solid rgba(255,123,84,.25)}
+.ahc-content{padding:2.5rem 2rem}
+.ahc-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.ahc-cat{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:rgba(177,247,39,.08);border:1px solid rgba(177,247,39,.2);padding:.22rem .65rem;border-radius:2px}
+.ahc-date{font-family:var(--fh);font-size:.68rem;letter-spacing:.1em;color:var(--faint)}
+.ahc-title{font-family:var(--fd);font-size:1.8rem;line-height:1.05;color:var(--text);margin-bottom:.85rem}
+.ahc-excerpt{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.ahc-read{font-family:var(--fh);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.4rem}
+
+/* ── ARTICLE CARDS GRID ── */
+.articles-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.art-card{background:var(--surface);border:1px solid var(--border);border-radius:3px;overflow:hidden;text-decoration:none;display:block;transition:background .3s,transform .25s;position:relative}
+.art-card:hover{background:rgba(2,82,101,.6);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.art-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.art-card:hover::after{transform:scaleX(1)}
+.art-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;border-bottom:1px solid var(--border)}
+.art-thumb-bg-me{background:linear-gradient(135deg,rgba(123,181,196,.12) 0%,rgba(1,64,79,.4) 100%)}
+.art-thumb-bg-com{background:linear-gradient(135deg,rgba(177,247,39,.08) 0%,rgba(1,64,79,.4) 100%)}
+.art-thumb-bg-draft{background:linear-gradient(135deg,rgba(255,123,84,.08) 0%,rgba(1,64,79,.4) 100%)}
+.art-thumb-label{position:absolute;top:.75rem;left:.75rem;font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px}
+.art-body{padding:1.5rem}
+.art-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;flex-wrap:wrap}
+.art-cat{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+.art-date{font-family:var(--fh);font-size:.62rem;letter-spacing:.08em;color:var(--faint)}
+.art-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:.6rem}
+.art-excerpt{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.art-cta{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.35rem}
+
+/* ── SIDEBAR ── */
+.sidebar{display:flex;flex-direction:column;gap:2rem;position:sticky;top:130px}
+.sidebar-block{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1.75rem}
+.sb-title{font-family:var(--fh);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+.sb-title::before{content:'';display:block;width:14px;height:2px;background:var(--accent)}
+
+/* ECOSISTEMA */
+.eco-card{border:1px solid var(--border);border-radius:2px;padding:1.25rem;margin-bottom:.75rem;text-decoration:none;display:block;transition:background .2s,border-color .2s}
+.eco-card:hover{background:rgba(177,247,39,.04);border-color:rgba(177,247,39,.25)}
+.eco-card:last-child{margin-bottom:0}
+.eco-logo{font-family:var(--fd);font-size:1.15rem;color:var(--text);margin-bottom:.3rem}
+.eco-logo span{color:var(--accent)}
+.eco-desc{font-size:.79rem;color:var(--muted);line-height:1.5;margin-bottom:.6rem}
+.eco-tag{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* TEMAS POPULARES */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.5rem}
+.tc-tag{font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);border-radius:2px;padding:.32rem .8rem;cursor:pointer;transition:all .2s}
+.tc-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+/* NEWSLETTER */
+.nl-form{display:flex;flex-direction:column;gap:.75rem}
+.nl-input{background:rgba(1,45,56,.6);border:1px solid var(--border);border-radius:2px;padding:.75rem 1rem;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .2s}
+.nl-input:focus{border-color:var(--accent)}
+.nl-input::placeholder{color:var(--faint)}
+.nl-btn{font-family:var(--fh);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);background:var(--accent);border:none;border-radius:2px;padding:.8rem 1.25rem;cursor:pointer;transition:background .2s}
+.nl-btn:hover{background:var(--accentd)}
+.nl-note{font-size:.75rem;color:var(--faint);line-height:1.5}
+
+/* ── ECOSISTEMA BANNER ── */
+.eco-sec{padding:5rem 4rem;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:3.5rem}
+.eco-panel{background:var(--deep);padding:3rem 2.5rem;position:relative;overflow:hidden}
+.eco-panel::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.eco-panel-num{font-family:var(--fd);font-size:5rem;color:rgba(177,247,39,.07);line-height:1;position:absolute;bottom:-.5rem;right:1rem;user-select:none}
+.eco-panel-source{font-family:var(--fh);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.ep-me{color:#7BB5C4}.ep-com{color:#B1F727}.ep-draft{color:#FF7B54}
+.eco-panel-logo{font-family:var(--fd);font-size:2.2rem;color:var(--text);line-height:1;margin-bottom:.5rem}
+.eco-panel-logo .hl-me{color:#7BB5C4}.eco-panel-logo .hl-com{color:#B1F727}.eco-panel-logo .hl-draft{color:#FF7B54}
+.eco-panel-desc{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.75rem}
+.eco-panel-link{font-family:var(--fh);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.25rem;border-radius:2px;border:1px solid;transition:all .2s}
+.ep-link-me{color:#7BB5C4;border-color:rgba(123,181,196,.3)}.ep-link-me:hover{background:rgba(123,181,196,.1);border-color:#7BB5C4}
+.ep-link-com{color:#B1F727;border-color:rgba(177,247,39,.3)}.ep-link-com:hover{background:rgba(177,247,39,.08);border-color:#B1F727}
+.ep-link-draft{color:#FF7B54;border-color:rgba(255,123,84,.3)}.ep-link-draft:hover{background:rgba(255,123,84,.08);border-color:#FF7B54}
+
+/* ── LOAD MORE ── */
+.load-more-bar{padding:2rem 4rem;text-align:center;border-top:1px solid var(--border)}
+
+/* ── FOOTER ── */
+footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4rem 2rem}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{display:inline-block;margin-bottom:.85rem}
+.footer-brand p{font-size:.88rem;color:var(--muted);line-height:1.7;max-width:260px}
+.footer-col-title{font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.footer-links a{font-size:.88rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:1rem}
+.footer-copy{font-size:.8rem;color:var(--faint)}
+.footer-legal{display:flex;gap:1.5rem}
+.footer-legal a{font-size:.8rem;color:var(--faint);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:var(--muted)}
+
+/* ── HIDDEN / FILTERED ── */
+.art-card.hidden,.article-hero-card.hidden{display:none}
+
+@media(max-width:1100px){
+  .blog-main{grid-template-columns:1fr;gap:3rem}
+  .sidebar{position:static}
+}
+@media(max-width:900px){
+  nav{padding:1rem 2rem}
+  .blog-hero,.sec,.eco-sec{padding-left:2rem;padding-right:2rem}
+  .filter-bar{padding-left:2rem;padding-right:2rem;top:58px}
+  .blog-main{padding:3rem 2rem 5rem}
+  .load-more-bar{padding:2rem}
+  footer{padding:3rem 2rem 2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .articles-grid{grid-template-columns:1fr}
+  .article-hero-card{grid-template-columns:1fr}
+  .ahc-visual{min-height:180px}
+}
+@media(max-width:600px){
+  .blog-h1{font-size:3.5rem}
+  .nav-links{display:none}
+  .eco-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .filter-bar{gap:.5rem}
+  .filter-sep{display:none}
+}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.75rem;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1.4rem;border-radius:50px;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:transform .25s,box-shadow .25s;animation:wafloat .5s ease .8s both}
+.wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 40px rgba(37,211,102,.45)}
+.wa-float-icon{font-size:1.3rem;flex-shrink:0}
+@keyframes wafloat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.wa-pulse{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid #012D38}
+.wa-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:rgba(37,211,102,.5);animation:wapulse 2s ease infinite}
+@keyframes wapulse{0%{transform:scale(1);opacity:.8}70%{transform:scale(1.8);opacity:0}100%{transform:scale(1.8);opacity:0}}
+@media(max-width:600px){.wa-float{padding:.9rem 1rem}.wa-float span.wa-label{display:none}}
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20agente%20IA%20para%20mi%20entidad%20deportiva" target="_blank" rel="noopener" class="wa-float" aria-label="Contactar por WhatsApp">
+  <span class="wa-pulse"></span>
+  <span class="wa-float-icon">💬</span>
+  <span class="wa-label">WhatsApp</span>
+</a>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">IA DEPORTIVA</span><span class="ticker-item">·</span>
+    <span class="ticker-item">AUTOMATIZACIÓN PARA CLUBES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">SPORT BUSINESS</span><span class="ticker-item">·</span>
+    <span class="ticker-item">CASOS DE USO REALES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">ACADEMIA AGENT</span><span class="ticker-item">·</span>
+    <span class="ticker-item">DRAFTDAY.ES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">FEDERACIONES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">EVENTOS DEPORTIVOS</span><span class="ticker-item">·</span>
+    <span class="ticker-item">IA DEPORTIVA</span><span class="ticker-item">·</span>
+    <span class="ticker-item">AUTOMATIZACIÓN PARA CLUBES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">SPORT BUSINESS</span><span class="ticker-item">·</span>
+    <span class="ticker-item">CASOS DE USO REALES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">ACADEMIA AGENT</span><span class="ticker-item">·</span>
+    <span class="ticker-item">DRAFTDAY.ES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">FEDERACIONES</span><span class="ticker-item">·</span>
+    <span class="ticker-item">EVENTOS DEPORTIVOS</span><span class="ticker-item">·</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="home-onepage.html" class="logo-link" aria-label="Palferia.me"><img src="https://plum-yak-655063.hostingersite.com/wp-content/uploads/2026/06/Palferia_logo02-scaled.png" alt="Palferia.me" style="height:36px;width:auto;display:block"></a>
+  <ul class="nav-links">
+    <li><a href="home-onepage.html#agentes">Agentes</a></li>
+    <li><a href="home-onepage.html#como-funciona">Cómo funciona</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="home-onepage.html#contacto">Contacto</a></li>
+  </ul>
+  <a href="home-onepage.html#contacto" class="nav-cta">Quiero mi agente →</a>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-grid" aria-hidden="true"></div>
+  <div class="blog-hero-bg" aria-hidden="true">BLOG</div>
+  <div class="blog-hero-inner">
+    <div class="blog-eyebrow">
+      <div class="blog-dot"></div>
+      <span class="blog-eyebrow-text">Conocimiento · IA Deportiva</span>
+    </div>
+    <h1 class="blog-h1">EL <span class="hl">CAMPO</span><br>DE IDEAS</h1>
+    <p class="blog-sub">No escribimos sobre tendencias. Escribimos sobre lo que ya funciona en clubes, academias y eventos. Casos reales, estrategia aplicada, sin ruido.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filter-bar" id="filter-bar" role="navigation" aria-label="Filtros">
+  <span class="filter-label">Tema:</span>
+  <button class="filter-btn active" data-filter="all">Todos</button>
+  <button class="filter-btn" data-filter="ia-deportiva">IA Deportiva</button>
+  <button class="filter-btn" data-filter="automatizacion">Automatización</button>
+  <button class="filter-btn" data-filter="sport-business">Sport Business</button>
+  <button class="filter-btn" data-filter="casos-de-uso">Casos de uso</button>
+  <div class="filter-sep"></div>
+  <span class="filter-label">Fuente:</span>
+  <button class="source-btn s-me" data-source="palferia-me">palferia.me</button>
+  <button class="source-btn s-com" data-source="palferia-com">palferia.com</button>
+  <button class="source-btn s-draft" data-source="draftday">draftday.es</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="blog-main">
+
+  <!-- ARTICLES COLUMN -->
+  <div class="articles-col">
+
+    <!-- FEATURED -->
+    <div class="articles-featured">
+      <a href="https://palferia.me/academia-agent-resultado" target="_blank" rel="noopener"
+         class="article-hero-card r"
+         data-tags="ia-deportiva casos-de-uso" data-source="palferia-me">
+        <div class="ahc-visual art-thumb-bg-me">
+          <span class="ahc-visual-icon">🏟️</span>
+          <span class="ahc-visual-tag tag-me">palferia.me</span>
+        </div>
+        <div class="ahc-content">
+          <div class="ahc-meta">
+            <span class="ahc-cat">Caso de uso</span>
+            <span class="ahc-date">Mayo 2026</span>
+          </div>
+          <h2 class="ahc-title">Una academia de pádel con 3 sedes cerró 47 nuevos socios en 30 días. Sin llamar a nadie.</h2>
+          <p class="ahc-excerpt">Así funciona el Academia Agent cuando se activa correctamente: califica leads por WhatsApp, agenda visitas automáticas y recupera los que no contestaron.</p>
+          <span class="ahc-read">Leer en palferia.me →</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ARTICLES GRID -->
+    <div class="articles-grid" id="articles-grid">
+
+      <a href="https://palferia.com/ia-clubes-deportivos-2026" target="_blank" rel="noopener"
+         class="art-card r d1"
+         data-tags="ia-deportiva sport-business" data-source="palferia-com">
+        <div class="art-thumb art-thumb-bg-com">
+          <span>⚽</span>
+          <span class="art-thumb-label tag-com">palferia.com</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">IA Deportiva</span>
+            <span class="art-date">Abr 2026</span>
+          </div>
+          <h3 class="art-title">Por qué los clubes deportivos españoles van a perder socios si no adoptan IA en 2026</h3>
+          <p class="art-excerpt">El mercado ya se movió. Los clubes que no automatizan van a ceder cuota a los que sí lo hacen, y el gap se amplía cada trimestre.</p>
+          <span class="art-cta">Leer en palferia.com →</span>
+        </div>
+      </a>
+
+      <a href="https://draftday.es/sport-business-ia-inversores" target="_blank" rel="noopener"
+         class="art-card r d2"
+         data-tags="sport-business" data-source="draftday">
+        <div class="art-thumb art-thumb-bg-draft">
+          <span>📈</span>
+          <span class="art-thumb-label tag-draft">draftday.es</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">Sport Business</span>
+            <span class="art-date">Abr 2026</span>
+          </div>
+          <h3 class="art-title">Cómo los inversores están leyendo la automatización en sport business para 2026-2027</h3>
+          <p class="art-excerpt">Desde Draft Day analizamos los movimientos de capital y lo que implica para clubs, academias y federaciones en España.</p>
+          <span class="art-cta">Leer en draftday.es →</span>
+        </div>
+      </a>
+
+      <a href="https://palferia.me/automatizacion-whatsapp-club" target="_blank" rel="noopener"
+         class="art-card r d1"
+         data-tags="automatizacion casos-de-uso" data-source="palferia-me">
+        <div class="art-thumb art-thumb-bg-me">
+          <span>💬</span>
+          <span class="art-thumb-label tag-me">palferia.me</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">Automatización</span>
+            <span class="art-date">Mar 2026</span>
+          </div>
+          <h3 class="art-title">WhatsApp como canal de captación: cómo tu agente responde leads a las 2 de la mañana</h3>
+          <p class="art-excerpt">Los padres preguntan cuando pueden. Si tu club responde en horas, ya perdiste al lead. Aquí explicamos cómo el agente cambia esto.</p>
+          <span class="art-cta">Leer en palferia.me →</span>
+        </div>
+      </a>
+
+      <a href="https://palferia.com/evento-deportivo-inscripciones-ia" target="_blank" rel="noopener"
+         class="art-card r d2"
+         data-tags="ia-deportiva automatizacion" data-source="palferia-com">
+        <div class="art-thumb art-thumb-bg-com">
+          <span>🏅</span>
+          <span class="art-thumb-label tag-com">palferia.com</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">Automatización</span>
+            <span class="art-date">Mar 2026</span>
+          </div>
+          <h3 class="art-title">Evento con 1.200 inscritos, cero emails manuales enviados: el caso Event Agent</h3>
+          <p class="art-excerpt">SportMadness gestiona la inscripción. El agente hace el resto: confirmaciones, recordatorios, upsell de dorsal y recuperación de abandonos.</p>
+          <span class="art-cta">Leer en palferia.com →</span>
+        </div>
+      </a>
+
+      <a href="https://draftday.es/patrocinio-deportivo-datos-ia" target="_blank" rel="noopener"
+         class="art-card r d1"
+         data-tags="sport-business casos-de-uso" data-source="draftday">
+        <div class="art-thumb art-thumb-bg-draft">
+          <span>🤝</span>
+          <span class="art-thumb-label tag-draft">draftday.es</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">Sport Business</span>
+            <span class="art-date">Feb 2026</span>
+          </div>
+          <h3 class="art-title">Por qué los patrocinadores piden datos de retorno y cómo el Sponsor Agent los entrega solos</h3>
+          <p class="art-excerpt">El patrocinador ya no firma por fe. Firma cuando ve ROI claro. Aquí explicamos el sistema de reporting automático que cierra renovaciones.</p>
+          <span class="art-cta">Leer en draftday.es →</span>
+        </div>
+      </a>
+
+      <a href="https://palferia.me/federacion-licencias-automaticas" target="_blank" rel="noopener"
+         class="art-card r d2"
+         data-tags="automatizacion casos-de-uso" data-source="palferia-me">
+        <div class="art-thumb art-thumb-bg-me">
+          <span>🏛️</span>
+          <span class="art-thumb-label tag-me">palferia.me</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">Casos de uso</span>
+            <span class="art-date">Feb 2026</span>
+          </div>
+          <h3 class="art-title">Una federación autonómica redujo las consultas de licencias un 68% sin contratar a nadie</h3>
+          <p class="art-excerpt">El Fed Agent atiende 24/7, tramita en tiempo real y escala solo lo que necesita intervención humana. Así quedó después de 90 días.</p>
+          <span class="art-cta">Leer en palferia.me →</span>
+        </div>
+      </a>
+
+      <a href="https://palferia.com/alojamiento-deportivo-reservas-directas" target="_blank" rel="noopener"
+         class="art-card r d1"
+         data-tags="ia-deportiva automatizacion" data-source="palferia-com">
+        <div class="art-thumb art-thumb-bg-com">
+          <span>🏕️</span>
+          <span class="art-thumb-label tag-com">palferia.com</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">IA Deportiva</span>
+            <span class="art-date">Ene 2026</span>
+          </div>
+          <h3 class="art-title">Cómo un alojamiento de trail running pasó de 70% OTA a 55% reserva directa en 4 meses</h3>
+          <p class="art-excerpt">El Stay Sport Agent captura el email antes de que el viajero llegue a Booking. De ahí, todo el proceso es automático y sin comisión.</p>
+          <span class="art-cta">Leer en palferia.com →</span>
+        </div>
+      </a>
+
+      <a href="https://draftday.es/gestion-deportiva-software-ia-diferencia" target="_blank" rel="noopener"
+         class="art-card r d2"
+         data-tags="ia-deportiva sport-business" data-source="draftday">
+        <div class="art-thumb art-thumb-bg-draft">
+          <span>🧠</span>
+          <span class="art-thumb-label tag-draft">draftday.es</span>
+        </div>
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat">Sport Business</span>
+            <span class="art-date">Ene 2026</span>
+          </div>
+          <h3 class="art-title">Tu software de gestión ya hace lo que hacía. La IA hace lo que tú no puedes.</h3>
+          <p class="art-excerpt">No son competidores. Clupik, SportMadness y Mindbody organizan datos. El agente convierte, retiene y reporta. El análisis completo.</p>
+          <span class="art-cta">Leer en draftday.es →</span>
+        </div>
+      </a>
+
+    </div><!-- /articles-grid -->
+
+    <div class="load-more-bar">
+      <button class="btn-g" id="load-more-btn">Cargar más artículos</button>
+    </div>
+
+  </div><!-- /articles-col -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- ECOSISTEMA -->
+    <div class="sidebar-block r">
+      <div class="sb-title">Nuestros proyectos</div>
+      <a href="https://palferia.me" target="_blank" rel="noopener" class="eco-card">
+        <div class="eco-logo">PALFE<span>RI</span>A.ME</div>
+        <div class="eco-desc">Agencia de IA para sport business. Aquí construimos y activamos los agentes.</div>
+        <div class="eco-tag">→ Casos reales</div>
+      </a>
+      <a href="https://palferia.com" target="_blank" rel="noopener" class="eco-card">
+        <div class="eco-logo">PALFE<span>RI</span>A.COM</div>
+        <div class="eco-desc">Estrategia, análisis y recursos de sport business digital.</div>
+        <div class="eco-tag">→ Estrategia y análisis</div>
+      </a>
+      <a href="https://draftday.es" target="_blank" rel="noopener" class="eco-card">
+        <div class="eco-logo">DRAFT<span>DAY</span>.ES</div>
+        <div class="eco-desc">El lado del negocio del deporte. Inversión, mercado y tendencias.</div>
+        <div class="eco-tag">→ Sport Business</div>
+      </a>
+    </div>
+
+    <!-- TEMAS -->
+    <div class="sidebar-block r d1">
+      <div class="sb-title">Temas</div>
+      <div class="tag-cloud">
+        <button class="tc-tag" data-filter="ia-deportiva">IA Deportiva</button>
+        <button class="tc-tag" data-filter="automatizacion">Automatización</button>
+        <button class="tc-tag" data-filter="sport-business">Sport Business</button>
+        <button class="tc-tag" data-filter="casos-de-uso">Casos de uso</button>
+        <button class="tc-tag" data-source="palferia-me">palferia.me</button>
+        <button class="tc-tag" data-source="palferia-com">palferia.com</button>
+        <button class="tc-tag" data-source="draftday">draftday.es</button>
+      </div>
+    </div>
+
+    <!-- AGENTES DIRECTOS -->
+    <div class="sidebar-block r d2">
+      <div class="sb-title">Agentes disponibles</div>
+      <div style="display:flex;flex-direction:column;gap:.5rem">
+        <a href="verticales/vertical-academias.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Academia Agent <span style="color:var(--accent)">→</span></a>
+        <a href="verticales/vertical-clubes.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Club Agent <span style="color:var(--accent)">→</span></a>
+        <a href="verticales/vertical-eventos.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Event Agent <span style="color:var(--accent)">→</span></a>
+        <a href="verticales/vertical-federaciones.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Fed Agent <span style="color:var(--accent)">→</span></a>
+        <a href="verticales/vertical-turismo.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Stay Sport Agent <span style="color:var(--accent)">→</span></a>
+        <a href="verticales/vertical-patrocinios.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Sponsor Agent <span style="color:var(--accent)">→</span></a>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="sidebar-block r d3">
+      <div class="sb-title">Recibe los mejores artículos</div>
+      <p style="font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem">Seleccionamos los artículos más relevantes de los tres proyectos. Sin ruido, sin spam.</p>
+      <div class="nl-form" id="nl-form">
+        <input type="email" class="nl-input" placeholder="tu@email.com" id="nl-email" required>
+        <button class="nl-btn" type="button" id="nl-submit">Suscribirme →</button>
+        <p class="nl-note" id="nl-msg" style="display:none"></p>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /blog-main -->
+
+<!-- ECOSISTEMA BANNER -->
+<section class="eco-sec">
+  <div class="sec-label r">El ecosistema Palferia</div>
+  <h2 class="sec-h2 r d1">TRES PROYECTOS.<br><span class="hl">UNA MISIÓN.</span></h2>
+  <p class="sec-p r d2">Cada proyecto tiene su audiencia y su ángulo. Juntos cubren el ciclo completo: conocimiento estratégico, ejecución técnica y visión de negocio.</p>
+  <div class="eco-grid">
+    <div class="eco-panel r">
+      <div class="eco-panel-num">01</div>
+      <div class="eco-panel-source ep-me">● palferia.me</div>
+      <div class="eco-panel-logo">PALFE<span class="hl-me">RI</span>A.ME</div>
+      <p class="eco-panel-desc">La agencia. Donde se construyen y activan los agentes de IA para clubes, academias, eventos, federaciones, alojamientos y patrocinios deportivos. Casos reales, resultados medibles.</p>
+      <a href="https://palferia.me" target="_blank" rel="noopener" class="eco-panel-link ep-link-me">Ir a palferia.me →</a>
+    </div>
+    <div class="eco-panel r d1">
+      <div class="eco-panel-num">02</div>
+      <div class="eco-panel-source ep-com">● palferia.com</div>
+      <div class="eco-panel-logo">PALFE<span class="hl-com">RI</span>A.COM</div>
+      <p class="eco-panel-desc">El hub estratégico. Análisis, metodologías y recursos de sport business digital. Para los que quieren entender antes de decidir. Sin vender humo, con datos.</p>
+      <a href="https://palferia.com" target="_blank" rel="noopener" class="eco-panel-link ep-link-com">Ir a palferia.com →</a>
+    </div>
+    <div class="eco-panel r d2">
+      <div class="eco-panel-num">03</div>
+      <div class="eco-panel-source ep-draft">● draftday.es</div>
+      <div class="eco-panel-logo">DRAFT<span class="hl-draft">DAY</span>.ES</div>
+      <p class="eco-panel-desc">El lado del dinero. Inversión, mercados, tendencias y negocio deportivo en España y Europa. Para directivos, inversores y gestores que miran más allá del partido.</p>
+      <a href="https://draftday.es" target="_blank" rel="noopener" class="eco-panel-link ep-link-draft">Ir a draftday.es →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="home-onepage.html" class="logo-link" aria-label="Palferia.me"><img src="https://plum-yak-655063.hostingersite.com/wp-content/uploads/2026/06/Palferia_logo02-scaled.png" alt="Palferia.me" style="height:36px;width:auto;display:block"></a>
+      <p>Agencia de IA especializada en sport business. Automatizamos lo que te quita tiempo y te roba socios.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Agentes</div>
+      <ul class="footer-links">
+        <li><a href="verticales/vertical-academias.html">Academia Agent</a></li>
+        <li><a href="verticales/vertical-clubes.html">Club Agent</a></li>
+        <li><a href="verticales/vertical-eventos.html">Event Agent</a></li>
+        <li><a href="verticales/vertical-federaciones.html">Fed Agent</a></li>
+        <li><a href="verticales/vertical-turismo.html">Stay Sport Agent</a></li>
+        <li><a href="verticales/vertical-patrocinios.html">Sponsor Agent</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Proyectos</div>
+      <ul class="footer-links">
+        <li><a href="https://palferia.me" target="_blank" rel="noopener">palferia.me</a></li>
+        <li><a href="https://palferia.com" target="_blank" rel="noopener">palferia.com</a></li>
+        <li><a href="https://draftday.es" target="_blank" rel="noopener">draftday.es</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contacto</div>
+      <ul class="footer-links">
+        <li><a href="home-onepage.html#contacto">Hablar con nosotros</a></li>
+        <li><a href="remarketing.html">¿Por qué Palferia?</a></li>
+        <li><a href="home-onepage.html#como-funciona">Cómo funciona</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Palferia.me · Todos los derechos reservados</span>
+    <div class="footer-legal">
+      <a href="#">Privacidad</a>
+      <a href="#">Aviso legal</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV SCROLL
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>20)
+},{ passive:true });
+
+// ── REVEAL OBSERVER
+const ro=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+// ── FILTERING
+let activeFilter='all';
+let activeSource='';
+
+function applyFilters(){
+  const cards=document.querySelectorAll('#articles-grid .art-card, .article-hero-card');
+  cards.forEach(card=>{
+    const tags=(card.dataset.tags||'').split(' ');
+    const source=card.dataset.source||'';
+    const matchFilter=(activeFilter==='all'||tags.includes(activeFilter));
+    const matchSource=(activeSource===''||source===activeSource);
+    card.classList.toggle('hidden',!(matchFilter&&matchSource));
+  });
+}
+
+// Topic filters
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter=btn.dataset.filter||'all';
+    applyFilters();
+  });
+});
+
+// Source filters (toggle)
+document.querySelectorAll('.source-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    if(btn.classList.contains('active')){
+      btn.classList.remove('active');
+      activeSource='';
+    } else {
+      document.querySelectorAll('.source-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeSource=btn.dataset.source||'';
+    }
+    applyFilters();
+  });
+});
+
+// Sidebar tag cloud (syncs with filter bar)
+document.querySelectorAll('.tc-tag').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    if(btn.dataset.filter){
+      document.querySelectorAll('.filter-btn').forEach(b=>{
+        b.classList.toggle('active',b.dataset.filter===btn.dataset.filter);
+      });
+      activeFilter=btn.dataset.filter;
+    } else if(btn.dataset.source){
+      if(activeSource===btn.dataset.source){
+        document.querySelectorAll('.source-btn').forEach(b=>b.classList.remove('active'));
+        activeSource='';
+      } else {
+        document.querySelectorAll('.source-btn').forEach(b=>{
+          b.classList.toggle('active',b.dataset.source===btn.dataset.source);
+        });
+        activeSource=btn.dataset.source;
+      }
+    }
+    applyFilters();
+  });
+});
+
+// ── LOAD MORE (show hidden cards one by one up to +4)
+let extra=0;
+document.getElementById('load-more-btn').addEventListener('click',function(){
+  const hidden=document.querySelectorAll('#articles-grid .art-card.hidden');
+  if(hidden.length>0){
+    // If filters hide them, don't pretend to load
+    this.textContent='No hay más artículos con este filtro';
+    this.disabled=true;
+    return;
+  }
+  // Simulate loading (placeholder pattern for future CMS integration)
+  this.textContent='Cargando...';
+  setTimeout(()=>{
+    this.textContent='No hay más artículos por ahora — vuelve pronto';
+    this.disabled=true;
+    this.style.opacity='.5';
+  },600);
+});
+
+// ── NEWSLETTER SUBMIT
+document.getElementById('nl-submit').addEventListener('click',function(){
+  const email=document.getElementById('nl-email').value.trim();
+  const msg=document.getElementById('nl-msg');
+  if(!email||!email.includes('@')){
+    msg.style.display='block';
+    msg.style.color='#FF7B54';
+    msg.textContent='Introduce un email válido.';
+    return;
+  }
+  this.textContent='Enviando...';
+  this.disabled=true;
+  // Replace with actual newsletter endpoint
+  setTimeout(()=>{
+    msg.style.display='block';
+    msg.style.color='var(--accent)';
+    msg.textContent='¡Apuntado! Te llegan los mejores artículos.';
+    document.getElementById('nl-email').style.display='none';
+    this.style.display='none';
+  },800);
+});
+</script>
+</body>
+</html>

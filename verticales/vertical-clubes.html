@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Agent — PalferIA Studio</title>
+<meta name="description" content="Agente IA para clubes deportivos. Automatiza la captación de socios, comunicación con familias y gestión de cuotas. PalferIA Studio, Valencia.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--deep:#012D38;--surface:#01404F;--raised:#025265;--accent:#B1F727;--accentd:#8BC920;--text:#EFF8FF;--muted:#7BB5C4;--faint:#3D6B78;--border:#0A4A5C;--fd:'Bebas Neue',sans-serif;--fh:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:9999}
+.ticker{background:var(--accent);overflow:hidden;padding:.55rem 0;position:sticky;top:0;z-index:200}
+.ticker-track{display:flex;width:max-content;animation:tick 28s linear infinite}
+.ticker-item{font-family:var(--fh);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);white-space:nowrap;padding:0 1.5rem}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+nav{position:sticky;top:32px;z-index:100;padding:1.1rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s}
+nav.scrolled{background:rgba(1,45,56,.88);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.logo{font-family:var(--fd);font-size:1.7rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.75rem;list-style:none}
+.nav-links a{font-family:var(--fh);font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-cta{font-family:var(--fh);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.65rem 1.6rem;border-radius:2px;text-decoration:none;transition:background .2s,transform .2s}
+.nav-cta:hover{background:var(--accentd);transform:translateY(-1px)}
+.btn-p{font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:1rem 2.25rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-p:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 8px 32px rgba(177,247,39,.25)}
+.btn-g{font-family:var(--fh);font-weight:600;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text);background:transparent;padding:1rem 2.25rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--border);transition:border-color .2s,color .2s,transform .2s}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.sec{padding:7rem 4rem;position:relative}
+.sec-alt{background:var(--surface)}
+.sec-label{display:flex;align-items:center;gap:.75rem;font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.sec-label::before{content:'';display:block;width:20px;height:2px;background:var(--accent)}
+.sec-h2{font-family:var(--fd);font-size:clamp(2.8rem,5.5vw,5.5rem);line-height:.95;color:var(--text);margin-bottom:.75rem}
+.sec-h2 .hl{color:var(--accent)}
+.sec-p{font-size:1rem;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:3.5rem}
+.hero{min-height:65vh;padding:5rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.2;pointer-events:none}
+.hero-line{position:absolute;top:0;bottom:0;right:40%;width:3px;background:linear-gradient(180deg,transparent 0%,var(--accent) 20%,var(--accent) 80%,transparent 100%);transform:skewX(-4deg);pointer-events:none}
+.hero-breadcrumb{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:1.5rem}
+.hero-breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--accent)}
+.hero-h1{font-family:var(--fd);font-size:clamp(4rem,9vw,9.5rem);line-height:.93;color:var(--text);max-width:60%;opacity:0;animation:up .8s ease .1s forwards}
+.hero-h1 .hl{color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;line-height:1.7;margin-top:1.75rem;opacity:0;animation:up .8s ease .3s forwards}
+.hero-actions{display:flex;gap:1rem;margin-top:2rem;opacity:0;animation:up .8s ease .5s forwards}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.pain-card{background:var(--deep);padding:2.5rem 2rem;transition:background .3s}
+.pain-card:hover{background:rgba(2,82,101,.5)}
+.pain-title{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.pain-title::before{content:'✕';color:rgba(255,100,100,.6);font-size:.9rem}
+.pain-desc{font-size:.88rem;color:var(--muted);line-height:1.6}
+.process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.p-step{background:var(--deep);padding:2.5rem 2rem;position:relative}
+.p-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-family:var(--fd);font-size:1.5rem;color:var(--accent);z-index:1}
+.p-step:last-child::after{display:none}
+.p-num{font-family:var(--fd);font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:.75rem}
+.p-name{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
+.p-desc{font-size:.85rem;color:var(--muted);line-height:1.55}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:2.5rem 2rem;transition:border-color .3s,transform .3s}
+.price-card:hover{border-color:rgba(177,247,39,.4);transform:translateY(-3px)}
+.price-card.star{border-color:var(--accent);background:rgba(177,247,39,.04)}
+.price-badge{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.22rem .65rem;border-radius:2px;display:inline-block;margin-bottom:1.25rem}
+.price-name{font-family:var(--fd);font-size:2.2rem;color:var(--text);line-height:1;margin-bottom:.4rem}
+.price-val{font-family:var(--fd);font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:.15rem}
+.price-note{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.price-desc{font-size:.87rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.price-inc{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem}
+.price-inc li{font-size:.84rem;color:var(--muted);display:flex;align-items:flex-start;gap:.55rem}
+.price-inc li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:1px;flex-shrink:0;margin-top:.45rem}
+.price-cta{display:block;text-align:center;font-family:var(--fh);font-weight:700;font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.5rem;border-radius:2px;text-decoration:none;transition:all .2s}
+.pc-p{background:var(--accent);color:var(--deep)}
+.pc-p:hover{background:var(--accentd);transform:translateY(-2px)}
+.pc-g{border:1px solid var(--border);color:var(--text)}
+.pc-g:hover{border-color:var(--accent);color:var(--accent)}
+.cta-sec{background:var(--surface);text-align:center;padding:8rem 4rem;position:relative;overflow:hidden}
+.cta-bg{position:absolute;font-family:var(--fd);font-size:18rem;color:rgba(177,247,39,.025);left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none}
+.cta-h2{font-family:var(--fd);font-size:clamp(3rem,6vw,6.5rem);line-height:.93;color:var(--text);margin-bottom:1.25rem;position:relative}
+.cta-h2 .hl{color:var(--accent)}
+.cta-p{font-size:1.05rem;color:var(--muted);max-width:480px;margin:0 auto 3rem;line-height:1.7;position:relative}
+.cta-actions{display:flex;gap:1rem;justify-content:center;position:relative}
+footer{background:#010C11;padding:4rem 4rem 2.5rem;border-top:1px solid var(--border)}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:4rem;flex-wrap:wrap;padding-bottom:3rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.footer-logo{font-family:var(--fd);font-size:2rem;color:var(--text);letter-spacing:.04em;margin-bottom:.5rem}
+.footer-logo span{color:var(--accent)}
+.footer-tagline{font-size:.85rem;color:var(--muted)}
+.footer-cols{display:flex;gap:4.5rem}
+.footer-col h5{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:1.25rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col a{font-size:.88rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:.78rem;color:var(--faint)}
+.footer-eco{display:flex;gap:2rem}
+.footer-eco a{font-family:var(--fh);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);text-decoration:none;transition:color .2s}
+.footer-eco a:hover{color:var(--accent)}
+.r{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}
+.agent-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);background:rgba(177,247,39,.07);border:1px solid rgba(177,247,39,.2);border-radius:2px;padding:.4rem 1rem;margin-bottom:1.25rem}
+.agent-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:ablink 2s ease-in-out infinite}
+@keyframes ablink{0%,100%{opacity:1}50%{opacity:.2}}
+.integ-strip{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.5rem}
+.integ-chip{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(10,74,92,.5);border:1px solid var(--border);border-radius:2px;padding:.35rem .9rem}
+.integ-chip.hi{color:var(--accent);border-color:rgba(177,247,39,.3);background:rgba(177,247,39,.05)}
+.auto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.auto-block{background:var(--deep);border:1px solid var(--border);border-radius:3px;padding:2.25rem 2rem;transition:border-color .3s}
+.auto-block:hover{border-color:rgba(177,247,39,.3)}
+.auto-block-head{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem}
+.auto-block-num{font-family:var(--fd);font-size:2.8rem;color:var(--accent);line-height:1;flex-shrink:0}
+.auto-block-title{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.25rem}
+.auto-block-count{font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.auto-items{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.auto-items li{font-size:.84rem;color:var(--muted);display:flex;align-items:flex-start;gap:.55rem;line-height:1.5}
+.auto-items li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:1px;flex-shrink:0;margin-top:.45rem}
+/* ── CONTACTO ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start}
+.wa-btn{display:flex;align-items:center;gap:1rem;background:#25D366;color:#fff;font-family:var(--fh);font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;padding:1.25rem 2rem;border-radius:3px;text-decoration:none;margin-bottom:1.5rem;transition:filter .2s,transform .2s}
+.wa-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.wa-btn svg{width:26px;height:26px;flex-shrink:0}
+.contact-info{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+.ci-block{background:var(--raised);border:1px solid var(--border);border-radius:3px;padding:1.5rem 1.75rem;transition:border-color .3s}
+.ci-block:hover{border-color:rgba(177,247,39,.25)}
+.ci-label{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.ci-val{font-family:var(--fd);font-size:1.5rem;color:var(--text);letter-spacing:.02em}
+.ci-val a{color:var(--text);text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--accent)}
+.ci-sub{font-size:.82rem;color:var(--muted);margin-top:.25rem}
+.contact-form{display:flex;flex-direction:column;gap:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.form-group{display:flex;flex-direction:column;gap:.45rem}
+.form-group label{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.form-group input,.form-group select,.form-group textarea{background:var(--raised);border:1px solid var(--border);border-radius:3px;color:var(--text);font-family:var(--fb);font-size:.92rem;padding:.85rem 1rem;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237BB5C4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+.form-group select option{background:var(--surface);color:var(--text)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--faint)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{background:var(--accent);color:var(--deep);font-family:var(--fh);font-weight:700;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;padding:1.1rem 2rem;border-radius:3px;border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;width:100%}
+.form-submit:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 8px 32px rgba(177,247,39,.25)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.form-note{font-size:.8rem;color:var(--faint);line-height:1.5;margin-top:.25rem}
+.form-success{display:none;background:rgba(177,247,39,.08);border:1px solid rgba(177,247,39,.3);border-radius:3px;padding:2rem;text-align:center}
+.form-success.show{display:block}
+.form-success-title{font-family:var(--fd);font-size:2rem;color:var(--accent);margin-bottom:.5rem}
+.form-success-text{font-size:.9rem;color:var(--muted)}
+@media(max-width:900px){.hero,.sec{padding:5rem 1.5rem}.hero-h1{font-size:clamp(3.5rem,12vw,7rem);max-width:100%}.pain-grid,.auto-grid,.process-row,.price-grid{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+
+/* ── LP HEADER ── */
+.lp-header{padding:1.25rem 4rem;display:flex;align-items:center;border-bottom:1px solid var(--border);background:var(--deep)}
+@media(max-width:900px){.lp-header{padding:1rem 1.5rem}}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.75rem;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1.4rem;border-radius:50px;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:transform .25s,box-shadow .25s;animation:wafloat .5s ease .8s both}
+.wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 40px rgba(37,211,102,.45)}
+.wa-float-icon{font-size:1.3rem;flex-shrink:0}
+@keyframes wafloat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.wa-pulse{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid #012D38}
+.wa-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:rgba(37,211,102,.5);animation:wapulse 2s ease infinite}
+@keyframes wapulse{0%{transform:scale(1);opacity:.8}70%{transform:scale(1.8);opacity:0}100%{transform:scale(1.8);opacity:0}}
+@media(max-width:600px){.wa-float{padding:.9rem 1rem}.wa-float span.wa-label{display:none}}
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20agente%20IA%20para%20mi%20entidad%20deportiva" target="_blank" rel="noopener" class="wa-float" aria-label="Contactar por WhatsApp">
+  <span class="wa-pulse"></span>
+  <span class="wa-float-icon">💬</span>
+  <span class="wa-label">WhatsApp</span>
+</a>
+
+<header class="lp-header">
+  <a href="https://palferia.me" class="logo">PALFERIA<span>.</span>ME</a>
+</header>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-line"></div>
+  <div class="hero-breadcrumb">Clubes deportivos · PalferIA Studio</div>
+  <div class="agent-badge"><span class="agent-dot"></span> Club Agent · Activo 24/7</div>
+  <h1 class="hero-h1">CLUB<br><span class="hl">AGENT</span><br>SOCIOS,<br>COMUNICACIÓN<br>Y CUOTAS<br>EN AUTOMÁTICO</h1>
+  <p class="hero-sub">Un agente IA que opera sobre Clupik, Spond o Club Manager para captar socios, gestionar la comunicación con jugadores y familias, y entregar a la directiva datos en tiempo real — sin trabajo manual del coordinador.</p>
+  <div class="hero-actions">
+    <a href="#registro" class="btn-p">Reservar reunión &rarr;</a>
+    <a href="#automatizaciones" class="btn-g">Cómo funciona</a>
+  </div>
+</section>
+
+<section class="sec" id="problema">
+  <div class="sec-label">El problema real</div>
+  <h2 class="sec-h2 r">Clupik organiza<br><span class="hl">tu club. No convierte</span><br>ni retiene socios.</h2>
+  <p class="sec-p r d1">Los clubes deportivos tienen software de gestión. Lo que no tienen es un sistema que convierta interesados en socios, mantenga informadas a las familias sin esfuerzo y dé a la directiva los datos que necesita.</p>
+  <div class="pain-grid r d2">
+    <div class="pain-card">
+      <div class="pain-title">Nuevas fichas sin sistema de captación</div>
+      <div class="pain-desc">Cuando una familia quiere inscribir a su hijo, pregunta por WhatsApp personal, espera y no recibe respuesta inmediata. Acaba en el club de al lado. Sin calificación automática, cada lead depende de que alguien del club esté disponible en ese momento exacto.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-title">Comunicación con familias caótica</div>
+      <div class="pain-desc">Horarios de entrenamiento, cambios de campo, convocatorias y pagos de cuotas se comunican por grupos de WhatsApp. La información se pierde, hay malentendidos y el coordinador invierte horas semanales respondiendo lo mismo a padres distintos.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-title">Renovaciones perdidas por falta de seguimiento</div>
+      <div class="pain-desc">Cada temporada hay socios que no renuevan porque nadie les recordó a tiempo. Sin automatización, la directiva persigue pagos manualmente y pierde porcentaje de renovación que se recuperaría con un sistema básico de seguimiento proactivo.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-title">Directiva sin datos de rendimiento</div>
+      <div class="pain-desc">La junta toma decisiones sin saber cuántos socios nuevos llegaron este trimestre, cuántos se fueron, en qué categoría hay más bajas ni qué canales traen más inscripciones. Gestión por intuición, no por datos reales.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="automatizaciones">
+  <div class="sec-label">Bloques de automatización</div>
+  <h2 class="sec-h2 r">19 automatizaciones.<br><span class="hl">Cuatro bloques.</span></h2>
+  <p class="sec-p r d1">El Club Agent se instala sobre tu plataforma actual y gestiona captación, comunicación, renovaciones y reporting sin intervención manual de la directiva ni del coordinador.</p>
+  <div class="auto-grid r d2">
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">01</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Captación de nuevos socios</div>
+          <div class="auto-block-count">5 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Respuesta inmediata a consultas de nuevas fichas vía WhatsApp y web (24/7)</li>
+        <li>Calificación conversacional: deporte, categoría de edad, nivel, zona</li>
+        <li>Envío automático de ficha de inscripción y documentación necesaria</li>
+        <li>Seguimiento a familias que no completaron el proceso (24h / 72h)</li>
+        <li>Confirmación de plaza y bienvenida automática al completar la inscripción</li>
+      </ul>
+    </div>
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">02</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Comunicación con jugadores y familias</div>
+          <div class="auto-block-count">6 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Convocatorias de entrenamiento y partidos con confirmación de asistencia</li>
+        <li>Alertas automáticas de cambios de horario o campo</li>
+        <li>Canal de preguntas frecuentes atendido por el agente, no el coordinador</li>
+        <li>Comunicación segmentada por categoría (infantil, cadete, senior)</li>
+        <li>Registro automático de ausencias justificadas</li>
+        <li>Comunicados de directiva distribuidos en todos los canales</li>
+      </ul>
+    </div>
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">03</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Cuotas y renovaciones</div>
+          <div class="auto-block-count">5 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Recordatorio de cuota 5 días antes del vencimiento</li>
+        <li>Gestión de impagos con seguimiento escalonado (3 / 7 / 15 días)</li>
+        <li>Campaña automática de renovación de temporada (90 días antes del cierre)</li>
+        <li>Oferta de upgrade de categoría o servicios adicionales del club</li>
+        <li>Reactivación de socios que no renovaron la temporada anterior</li>
+      </ul>
+    </div>
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">04</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Reporting para directiva</div>
+          <div class="auto-block-count">3 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Informe semanal: altas, bajas, consultas y tasa de conversión por categoría</li>
+        <li>Informe mensual: recaudación de cuotas, asistencia y análisis completo</li>
+        <li>Alertas automáticas cuando baja la renovación o sube la tasa de baja</li>
+      </ul>
+    </div>
+  </div>
+  <div class="integ-strip r d3">
+    <span class="integ-chip hi">Clupik</span>
+    <span class="integ-chip hi">Spond</span>
+    <span class="integ-chip hi">Club Manager</span>
+    <span class="integ-chip">Palco4</span>
+    <span class="integ-chip">Federación autonómica</span>
+    <span class="integ-chip">WhatsApp Business API</span>
+    <span class="integ-chip">Google Sheets</span>
+    <span class="integ-chip">Make / Zapier</span>
+  </div>
+</section>
+
+<section class="sec" id="proceso">
+  <div class="sec-label">Implementación</div>
+  <h2 class="sec-h2 r">Activo en<br><span class="hl">3 semanas.</span><br>Sin cambiar<br>tu software.</h2>
+  <p class="sec-p r d1">El Club Agent se integra sobre lo que ya usas. Clupik sigue gestionando tu club — el agente añade la capa de comunicación e inteligencia que falta.</p>
+  <div class="process-row r d2">
+    <div class="p-step">
+      <div class="p-num">01</div>
+      <div class="p-name">Diagnóstico</div>
+      <div class="p-desc">Auditamos el stack actual del club, los canales de comunicación y los flujos de captación. Identificamos cuántos leads se pierden cada temporada y dónde está el mayor impacto de automatizar.</div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">02</div>
+      <div class="p-name">Diseño del agente</div>
+      <div class="p-desc">Configuramos el agente con las categorías, precios, documentación y preguntas frecuentes específicas de tu club. Habla como vosotros, con los datos exactos de vuestra estructura deportiva.</div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">03</div>
+      <div class="p-name">Integración</div>
+      <div class="p-desc">Conectamos el agente a Clupik/Spond, WhatsApp Business y vuestro canal web. Construimos los 4 bloques de automatización y los probamos con casos reales antes de activar.</div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">04</div>
+      <div class="p-name">Activación</div>
+      <div class="p-desc">Go live con acompañamiento la primera semana. Formamos al coordinador y la directiva para que operen el sistema.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="precios">
+  <div class="sec-label">Inversión</div>
+  <h2 class="sec-h2 r">Tu club,<br><span class="hl">un sistema.</span><br>Hablamos<br>del resto.</h2>
+  <p class="sec-p r d1">El alcance, las categorías y el volumen de tu club determinan qué nivel tiene sentido. En 30 minutos lo vemos juntos.</p>
+  <div class="price-grid r d2">
+    <div class="price-card">
+      <div class="price-badge">Club Starter</div>
+      <div class="price-name">Setup Base</div>
+      <div class="price-desc">Para clubes que quieren automatizar la captación y la comunicación con familias. Agente activo, integrado con tu software, gestionando fichas y respondiendo 24 horas sin intervención del coordinador.</div>
+      <ul class="price-inc">
+        <li>Club Agent configurado para tu deporte y categorías</li>
+        <li>Captación automática de fichas vía WhatsApp y web</li>
+        <li>Integración con Clupik / Spond / Club Manager</li>
+        <li>Comunicación automática con jugadores y familias</li>
+        <li>Seguimiento de leads sin respuesta</li>
+        <li>Informe mensual de altas y actividad</li>
+        <li>Mantenimiento: revisión mensual y corrección de errores</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">Límite:</strong> Funciona sobre la infraestructura del cliente. No incluye cambios de lógica tras la entrega.
+      </div>
+      <a href="#registro" class="price-cta pc-g">Pon a calentar tu captación &rarr;</a>
+    </div>
+    <div class="price-card star">
+      <div class="price-badge">Club Pro</div>
+      <div class="price-name">Sistema Integral</div>
+      <div class="price-desc">Sistema completo de captación, comunicación, gestión de cuotas y renovaciones con reporting para directiva. El agente gestiona el ciclo completo del socio.</div>
+      <ul class="price-inc">
+        <li>Todo lo del plan Club Starter</li>
+        <li>Automatización de cuotas y seguimiento de impagos</li>
+        <li>Campaña de renovación de temporada</li>
+        <li>Reactivación de socios que no renovaron</li>
+        <li>Informe semanal con alertas para directiva</li>
+        <li>Optimización mensual del agente</li>
+        <li>Hasta 3h/mes de ajustes incluidas</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">Límite:</strong> Optimización bimensual por revisión de logs programada. No incluye llamadas periódicas de revisión.
+      </div>
+      <a href="#registro" class="price-cta pc-p">Pasa al siguiente nivel &rarr;</a>
+    </div>
+    <div class="price-card">
+      <div class="price-badge">Multi-sección</div>
+      <div class="price-name">A la Medida</div>
+      <div class="price-val" style="font-size:2rem;line-height:1.3">Según<br>proyecto</div>
+      <div class="price-note">Hablamos del alcance</div>
+      <div class="price-desc">Para clubs con múltiples secciones deportivas, categorías y equipos. Agente centralizado con vistas por sección y reporting ejecutivo a junta directiva.</div>
+      <ul class="price-inc">
+        <li>Agente multi-sección centralizado</li>
+        <li>Dashboard por sección y vista ejecutiva global</li>
+        <li>Integración con sistema federativo autonómico</li>
+        <li>Gestión de licencias y tramitación</li>
+        <li>Reporting ejecutivo mensual para junta</li>
+        <li>Mantenimiento definido en contrato</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">Límite:</strong> Soporte en horario comercial. Sin guardias nocturnas ni SLAs fuera del horario acordado.
+      </div>
+      <a href="#registro" class="price-cta pc-g">Lidera la primera división &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="planes">
+  <div class="sec-label">Mantenimiento técnico</div>
+  <h2 class="sec-h2 r">El sistema<br><span class="hl">sigue rodando.</span><br>Tú te centras<br>en el club.</h2>
+  <p class="sec-p r d1">El mantenimiento corrige y optimiza lo que ya funciona. Cada plan tiene un alcance definido. Lo que no esté incluido expresamente se presupuesta aparte.</p>
+  <div class="price-grid r d2">
+    <!-- PIT STOP -->
+    <div class="price-card">
+      <div class="price-badge">Pit Stop</div>
+      <div class="price-name">Mantenimiento Esencial</div>
+      <div class="price-desc">El sistema sigue activo. Supervisión básica, corrección de errores y una revisión mensual para que nada se detenga sin que la directiva lo note.</div>
+      <ul class="price-inc">
+        <li>Supervisión del sistema y detección de fallos</li>
+        <li>Corrección de errores y restauración del servicio</li>
+        <li>Adaptación del agente cuando cambian APIs de plataformas externas</li>
+        <li>Revisión mensual de conversaciones — familias, cuotas y consultas de socios</li>
+        <li>Actualización de FAQs existentes cuando cambia información del club (horarios, cuotas, entrenadores)</li>
+        <li>Hasta 1h/mes de ajustes incluida</li>
+        <li>Informe mensual de actividad</li>
+        <li>Soporte por email en horario laboral</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">No incluye:</strong> Atención directa a familias o socios, nuevas automatizaciones, cambios de lógica, formación al equipo del club, soporte fuera de horario laboral ni consumos de plataformas externas.
+      </div>
+      <a href="#registro" class="price-cta pc-g">Reservar reunión</a>
+    </div>
+    <!-- ALTO RENDIMIENTO -->
+    <div class="price-card star">
+      <div class="price-badge">Alto Rendimiento</div>
+      <div class="price-name">Mantenimiento + Temporada</div>
+      <div class="price-desc">El agente mejora mes a mes y está reforzado en los momentos críticos del club — inicio de temporada, campañas de renovación e inscripciones masivas.</div>
+      <ul class="price-inc">
+        <li>Todo lo del plan Pit Stop</li>
+        <li>Hasta 3h/mes de ajustes incluidas</li>
+        <li>Supervisión prioritaria en inicio de temporada, inscripciones y renovaciones</li>
+        <li>Revisión quincenal del agente — conversaciones problemáticas con familias y coordinador</li>
+        <li>Optimización del flujo de renovación de cuotas y recuperación de impagos</li>
+        <li>Detección de preguntas frecuentes no cubiertas y actualización del agente</li>
+        <li>Soporte técnico por tickets en horario laboral</li>
+        <li>Informe mensual con métricas de conversión, renovaciones y recomendaciones</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">No incluye:</strong> Nuevos canales, nuevas integraciones, rediseño del agente, nuevas automatizaciones, formación recurrente al equipo ni soporte fuera de horario laboral.
+      </div>
+      <a href="#registro" class="price-cta pc-p">Reservar reunión</a>
+    </div>
+    <!-- PARTNER -->
+    <div class="price-card">
+      <div class="price-badge">Partner</div>
+      <div class="price-name">Gestión Continua</div>
+      <div class="price-val" style="font-size:2rem;line-height:1.3">Según<br>proyecto</div>
+      <div class="price-note">Definido en contrato</div>
+      <div class="price-desc">Para clubs con múltiples secciones o alto volumen. Un equipo técnico dedicado que evoluciona el sistema cada mes sin que la directiva tenga que gestionar nada.</div>
+      <ul class="price-inc">
+        <li>Todo lo del plan Alto Rendimiento</li>
+        <li>Hasta 6h/mes de ajustes incluidas</li>
+        <li>Reunión mensual de revisión estratégica con coordinador o directiva</li>
+        <li>Evolución activa del agente — nuevos flujos, secciones y FAQs cada mes</li>
+        <li>Informe avanzado con métricas de renovación, impagos recuperados y altas por sección</li>
+        <li>Plan de contingencia documentado ante fallos críticos en temporada</li>
+        <li>Acceso directo al equipo técnico</li>
+        <li>Alcance definido en contrato antes de empezar — sin sorpresas</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">No incluye:</strong> Soporte fuera de horario laboral, consumos de plataformas externas (WhatsApp API, tokens IA, Clupik, Spond), herramientas no incluidas en el contrato inicial ni cambios provocados por modificaciones en sistemas de terceros.
+      </div>
+      <a href="#registro" class="price-cta pc-g">Pedir presupuesto</a>
+    </div>
+  </div>
+  <!-- Nota costes de terceros -->
+  <div class="r d3" style="margin-top:2.5rem;padding:1.5rem 2rem;background:var(--deep);border:1px solid var(--border);border-radius:3px;font-size:.83rem;color:var(--muted);line-height:1.7">
+    <strong style="color:var(--text);display:block;margin-bottom:.5rem">Sobre los costes de infraestructura</strong>
+    Los honorarios de PalferIA cubren el servicio de mantenimiento y optimización del sistema. Los costes operativos de plataformas externas (WhatsApp Business API, tokens de inteligencia artificial, Clupik, Spond, Club Manager) son responsabilidad del club y se contratan directamente con cada proveedor. PalferIA no responde por interrupciones causadas por terceros ni por cambios en las políticas de plataformas federativas. Todo lo que no esté incluido expresamente en el plan se presupuesta aparte.
+  </div>
+</section>
+
+<section class="sec" id="registro">
+  <div class="sec-label">Siguiente paso</div>
+  <h2 class="sec-h2 r">30 minutos.<br><span class="hl">Sin compromiso.</span><br>Con toda la<br>información.</h2>
+  <p class="sec-p r d1">Cuéntanos dónde estáis ahora mismo y qué queréis dejar de gestionar a mano. Analizamos lo que tiene sentido para el tamaño y estructura de vuestro club — aunque eso signifique que no trabajemos juntos.</p>
+
+  <div class="contact-wrap r d2">
+    <div class="contact-left">
+      <a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20Club%20Agent%20para%20mi%20club" target="_blank" rel="noopener" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp directo
+      </a>
+      <div class="contact-info">
+        <div class="ci-block">
+          <div class="ci-label">Email</div>
+          <div class="ci-val"><a href="mailto:ri@palferia.com">ri@palferia.com</a></div>
+          <div class="ci-sub">Respondemos en horario laboral</div>
+        </div>
+        <div class="ci-block">
+          <div class="ci-label">WhatsApp / Teléfono</div>
+          <div class="ci-val"><a href="tel:+34643469239">+34 643 469 239</a></div>
+          <div class="ci-sub">Ronald Palma · Fundador</div>
+        </div>
+        <div class="ci-block">
+          <div class="ci-label">Ubicación</div>
+          <div class="ci-val">Valencia, España</div>
+          <div class="ci-sub">Clientes en toda España y Latam</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp (opcional)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+34 600 000 000">
+        </div>
+        <div class="form-group">
+          <label for="sector">Tipo de entidad</label>
+          <select id="sector" name="sector" required>
+            <option value="" disabled>Selecciona tu tipo de entidad</option>
+            <option value="academia">Academia deportiva</option>
+            <option value="club" selected>Club deportivo</option>
+            <option value="evento">Organizador de eventos</option>
+            <option value="federacion">Federación</option>
+            <option value="turismo">Turismo deportivo</option>
+            <option value="patrocinios">Gestión de patrocinios</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">¿Qué quieres automatizar?</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente tu situación actual y qué queréis mejorar..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Solicitar sesión estratégica →</button>
+        <p class="form-note">Sin compromiso. Sin costes hasta tener toda la información sobre la mesa.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-title">¡Recibido!</div>
+        <div class="form-success-text">Nos ponemos en contacto para coordinar la reunión. Si prefieres más rapidez, escríbenos por <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL='https://aqaiqmsypbwhgknbbmae.supabase.co';
+const SUPABASE_ANON_KEY='TU_SUPABASE_ANON_KEY';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+/* ── CONTACT FORM → WHATSAPP + SUPABASE ── */
+document.getElementById('contactForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='Enviando...';
+  const data={
+    nombre:  document.getElementById('nombre').value,
+    email:   document.getElementById('email').value,
+    telefono:document.getElementById('whatsapp').value,
+    servicio:document.getElementById('sector').value,
+    mensaje: document.getElementById('mensaje').value
+  };
+  const msg=encodeURIComponent(
+    `Hola, soy ${data.nombre} (${data.email}). Tengo un club deportivo y quiero información sobre el Club Agent. ${data.mensaje}`
+  );
+  window.open(`https://wa.me/34643469239?text=${msg}`,'_blank');
+  try{await sb.from('web_contacts').insert({nombre:data.nombre,email:data.email,whatsapp:data.telefono,sector:data.servicio,mensaje:data.mensaje,fuente:'clubes'});}catch(err){console.warn('Supabase insert error',err);}
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').classList.add('show');
+  setTimeout(function(){window.location.href='https://palferia.me';},2500);
+});
+</script>
+
+</body>
+</html>

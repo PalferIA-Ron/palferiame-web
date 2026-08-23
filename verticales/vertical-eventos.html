@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Agent — PalferIA Studio</title>
+<meta name="description" content="Agente IA para organizadores de eventos deportivos. Convierte interesados en inscritos, automatiza la comunicación pre-evento y genera datos para patrocinadores. PalferIA Studio, Valencia.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--deep:#012D38;--surface:#01404F;--raised:#025265;--accent:#B1F727;--accentd:#8BC920;--text:#EFF8FF;--muted:#7BB5C4;--faint:#3D6B78;--border:#0A4A5C;--fd:'Bebas Neue',sans-serif;--fh:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:9999}
+.btn-p{font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:1rem 2.25rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-p:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 8px 32px rgba(177,247,39,.25)}
+.btn-g{font-family:var(--fh);font-weight:600;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text);background:transparent;padding:1rem 2.25rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--border);transition:border-color .2s,color .2s,transform .2s}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.sec{padding:7rem 4rem;position:relative}
+.sec-alt{background:var(--surface)}
+.sec-label{display:flex;align-items:center;gap:.75rem;font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.sec-label::before{content:'';display:block;width:20px;height:2px;background:var(--accent)}
+.sec-h2{font-family:var(--fd);font-size:clamp(2.8rem,5.5vw,5.5rem);line-height:.95;color:var(--text);margin-bottom:.75rem}
+.sec-h2 .hl{color:var(--accent)}
+.sec-p{font-size:1rem;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:3.5rem}
+.hero{min-height:65vh;padding:5rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.2;pointer-events:none}
+.hero-line{position:absolute;top:0;bottom:0;right:40%;width:3px;background:linear-gradient(180deg,transparent 0%,var(--accent) 20%,var(--accent) 80%,transparent 100%);transform:skewX(-4deg);pointer-events:none}
+.hero-breadcrumb{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:1.5rem}
+.hero-h1{font-family:var(--fd);font-size:clamp(4rem,9vw,9.5rem);line-height:.93;color:var(--text);max-width:60%;opacity:0;animation:up .8s ease .1s forwards}
+.hero-h1 .hl{color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;line-height:1.7;margin-top:1.75rem;opacity:0;animation:up .8s ease .3s forwards}
+.hero-actions{display:flex;gap:1rem;margin-top:2rem;opacity:0;animation:up .8s ease .5s forwards}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.pain-card{background:var(--deep);padding:2.5rem 2rem;transition:background .3s}
+.pain-card:hover{background:rgba(2,82,101,.5)}
+.pain-title{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.pain-title::before{content:'✕';color:rgba(255,100,100,.6);font-size:.9rem}
+.pain-desc{font-size:.88rem;color:var(--muted);line-height:1.6}
+.process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.p-step{background:var(--deep);padding:2.5rem 2rem;position:relative}
+.p-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-family:var(--fd);font-size:1.5rem;color:var(--accent);z-index:1}
+.p-step:last-child::after{display:none}
+.p-num{font-family:var(--fd);font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:.75rem}
+.p-name{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
+.p-desc{font-size:.85rem;color:var(--muted);line-height:1.55}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:2.5rem 2rem;transition:border-color .3s,transform .3s}
+.price-card:hover{border-color:rgba(177,247,39,.4);transform:translateY(-3px)}
+.price-card.star{border-color:var(--accent);background:rgba(177,247,39,.04)}
+.price-badge{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.22rem .65rem;border-radius:2px;display:inline-block;margin-bottom:1.25rem}
+.price-name{font-family:var(--fd);font-size:2.2rem;color:var(--text);line-height:1;margin-bottom:.4rem}
+.price-val{font-family:var(--fd);font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:.15rem}
+.price-note{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.price-desc{font-size:.87rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.price-inc{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem}
+.price-inc li{font-size:.84rem;color:var(--muted);display:flex;align-items:flex-start;gap:.55rem}
+.price-inc li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:1px;flex-shrink:0;margin-top:.45rem}
+.price-cta{display:block;text-align:center;font-family:var(--fh);font-weight:700;font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.5rem;border-radius:2px;text-decoration:none;transition:all .2s}
+.pc-p{background:var(--accent);color:var(--deep)}
+.pc-p:hover{background:var(--accentd);transform:translateY(-2px)}
+.pc-g{border:1px solid var(--border);color:var(--text)}
+.pc-g:hover{border-color:var(--accent);color:var(--accent)}
+.cta-sec{background:var(--surface);text-align:center;padding:8rem 4rem;position:relative;overflow:hidden}
+.cta-bg{position:absolute;font-family:var(--fd);font-size:18rem;color:rgba(177,247,39,.025);left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none}
+.cta-h2{font-family:var(--fd);font-size:clamp(3rem,6vw,6.5rem);line-height:.93;color:var(--text);margin-bottom:1.25rem;position:relative}
+.cta-h2 .hl{color:var(--accent)}
+.cta-p{font-size:1.05rem;color:var(--muted);max-width:480px;margin:0 auto 3rem;line-height:1.7;position:relative}
+.cta-actions{display:flex;gap:1rem;justify-content:center;position:relative}
+.r{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}
+.agent-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);background:rgba(177,247,39,.07);border:1px solid rgba(177,247,39,.2);border-radius:2px;padding:.4rem 1rem;margin-bottom:1.25rem}
+.agent-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:ablink 2s ease-in-out infinite}
+@keyframes ablink{0%,100%{opacity:1}50%{opacity:.2}}
+.integ-strip{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.5rem}
+.integ-chip{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(10,74,92,.5);border:1px solid var(--border);border-radius:2px;padding:.35rem .9rem}
+.integ-chip.hi{color:var(--accent);border-color:rgba(177,247,39,.3);background:rgba(177,247,39,.05)}
+.auto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.auto-block{background:var(--deep);border:1px solid var(--border);border-radius:3px;padding:2.25rem 2rem;transition:border-color .3s}
+.auto-block:hover{border-color:rgba(177,247,39,.3)}
+.auto-block-head{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem}
+.auto-block-num{font-family:var(--fd);font-size:2.8rem;color:var(--accent);line-height:1;flex-shrink:0}
+.auto-block-title{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.25rem}
+.auto-block-count{font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.auto-items{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.auto-items li{font-size:.84rem;color:var(--muted);display:flex;align-items:flex-start;gap:.55rem;line-height:1.5}
+.auto-items li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:1px;flex-shrink:0;margin-top:.45rem}
+/* ── CONTACTO ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start}
+.wa-btn{display:flex;align-items:center;gap:1rem;background:#25D366;color:#fff;font-family:var(--fh);font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;padding:1.25rem 2rem;border-radius:3px;text-decoration:none;margin-bottom:1.5rem;transition:filter .2s,transform .2s}
+.wa-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.wa-btn svg{width:26px;height:26px;flex-shrink:0}
+.contact-info{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+.ci-block{background:var(--raised);border:1px solid var(--border);border-radius:3px;padding:1.5rem 1.75rem;transition:border-color .3s}
+.ci-block:hover{border-color:rgba(177,247,39,.25)}
+.ci-label{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.ci-val{font-family:var(--fd);font-size:1.5rem;color:var(--text);letter-spacing:.02em}
+.ci-val a{color:var(--text);text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--accent)}
+.ci-sub{font-size:.82rem;color:var(--muted);margin-top:.25rem}
+.contact-form{display:flex;flex-direction:column;gap:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.form-group{display:flex;flex-direction:column;gap:.45rem}
+.form-group label{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.form-group input,.form-group select,.form-group textarea{background:var(--raised);border:1px solid var(--border);border-radius:3px;color:var(--text);font-family:var(--fb);font-size:.92rem;padding:.85rem 1rem;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237BB5C4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+.form-group select option{background:var(--surface);color:var(--text)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--faint)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{background:var(--accent);color:var(--deep);font-family:var(--fh);font-weight:700;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;padding:1.1rem 2rem;border-radius:3px;border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;width:100%}
+.form-submit:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 8px 32px rgba(177,247,39,.25)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.form-note{font-size:.8rem;color:var(--faint);line-height:1.5;margin-top:.25rem}
+.form-success{display:none;background:rgba(177,247,39,.08);border:1px solid rgba(177,247,39,.3);border-radius:3px;padding:2rem;text-align:center}
+.form-success.show{display:block}
+.form-success-title{font-family:var(--fd);font-size:2rem;color:var(--accent);margin-bottom:.5rem}
+.form-success-text{font-size:.9rem;color:var(--muted)}
+/* ── LP HEADER ── */
+.lp-header{padding:1.25rem 4rem;display:flex;align-items:center;border-bottom:1px solid var(--border);background:var(--deep)}
+.logo{font-family:var(--fd);font-size:1.7rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+.logo span{color:var(--accent)}
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.75rem;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1.4rem;border-radius:50px;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:transform .25s,box-shadow .25s;animation:wafloat .5s ease .8s both}
+.wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 40px rgba(37,211,102,.45)}
+.wa-float-icon{font-size:1.3rem;flex-shrink:0}
+@keyframes wafloat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.wa-pulse{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid #012D38}
+.wa-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:rgba(37,211,102,.5);animation:wapulse 2s ease infinite}
+@keyframes wapulse{0%{transform:scale(1);opacity:.8}70%{transform:scale(1.8);opacity:0}100%{transform:scale(1.8);opacity:0}}
+@media(max-width:900px){.lp-header{padding:1rem 1.5rem}.hero,.sec{padding:5rem 1.5rem}.hero-h1{font-size:clamp(3.5rem,12vw,7rem);max-width:100%}.pain-grid,.auto-grid,.process-row,.price-grid{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.cta-sec{padding:5rem 1.5rem}}
+@media(max-width:600px){.wa-float{padding:.9rem 1rem}.wa-float span.wa-label{display:none}}
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20agente%20IA%20para%20mi%20evento%20deportivo" target="_blank" rel="noopener" class="wa-float" aria-label="Contactar por WhatsApp">
+  <span class="wa-pulse"></span>
+  <span class="wa-float-icon">💬</span>
+  <span class="wa-label">WhatsApp</span>
+</a>
+
+<header class="lp-header">
+  <a href="https://palferia.me" class="logo">PALFERIA<span>.</span>ME</a>
+</header>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-line"></div>
+  <div class="hero-breadcrumb">Eventos deportivos · PalferIA Studio</div>
+  <div class="agent-badge"><span class="agent-dot"></span> Event Agent · Activo 24/7</div>
+  <h1 class="hero-h1">EVENT<br><span class="hl">AGENT</span><br>CADA<br>INSCRITO<br>CALIFICADO<br>Y COMUNICADO</h1>
+  <p class="hero-sub">Un agente IA que opera sobre SportMadness, Inscribirme.es o RaceResult para convertir visitantes en inscritos, gestionar la comunicación pre y post-evento y entregar a los patrocinadores los datos que exigen.</p>
+  <div class="hero-actions">
+    <a href="#registro" class="btn-p">Reservar reunión &rarr;</a>
+    <a href="#precios" class="btn-g">Ver planes</a>
+  </div>
+</section>
+
+<section class="sec" id="problema">
+  <div class="sec-label">El problema real</div>
+  <h2 class="sec-h2 r">SportMadness<br><span class="hl">gestiona inscritos.</span><br>No los convierte.</h2>
+  <p class="sec-p r d1">Las plataformas de gestión de eventos procesan inscripciones ya decididas. El trabajo de convertir un interesado en inscrito, mantenerle informado hasta el día del evento y activar la próxima edición — eso sigue siendo manual.</p>
+  <div class="pain-grid r d2">
+    <div class="pain-card">
+      <div class="pain-title">Interesados que no acaban inscribiéndose</div>
+      <div class="pain-desc">Un visitante llega a tu web, mira la carrera, duda y cierra. Sin sistema de calificación conversacional que resuelva sus dudas en tiempo real sobre recorrido, categorías o requisitos, la tasa de conversión se queda en el 20-30% cuando podría llegar al 60%.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-title">Comunicación pre-evento fragmentada</div>
+      <div class="pain-desc">Los 500 inscritos de tu carrera reciben la información en distintos momentos, por distintos canales y en distintos formatos. Las dudas de último momento colapsan tu correo. La logística del día D se complica porque la información no llegó a tiempo.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-title">Patrocinadores sin datos de impacto</div>
+      <div class="pain-desc">Cada patrocinador quiere saber cuánta gente vio su marca, cuántos participantes hay de su zona de influencia y qué perfil de corredor asiste. Sin sistema de datos automático, preparas ese informe a mano cada vez — si es que lo haces.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-title">El evento acaba y el contacto muere</div>
+      <div class="pain-desc">Después del evento tienes 500 contactos calificados de personas apasionadas por tu deporte. Sin sistema de seguimiento post-evento, esa base de datos se enfría en 30 días y la próxima edición vuelve a empezar desde cero.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="automatizaciones">
+  <div class="sec-label">Bloques de automatización</div>
+  <h2 class="sec-h2 r">20 automatizaciones.<br><span class="hl">Cuatro bloques.</span></h2>
+  <p class="sec-p r d1">El Event Agent cubre el ciclo completo del evento: convierte visitantes, informa a inscritos, genera datos para patrocinadores y activa la próxima edición automáticamente.</p>
+  <div class="auto-grid r d2">
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">01</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Conversión de inscritos</div>
+          <div class="auto-block-count">6 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Respuesta inmediata a consultas sobre el evento vía WhatsApp y web (24/7)</li>
+        <li>Calificación conversacional: distancia, categoría, nivel, experiencia previa</li>
+        <li>Resolución automática de dudas sobre recorrido, requisitos y logística</li>
+        <li>Enlace directo a inscripción en SportMadness / Inscribirme.es al momento</li>
+        <li>Seguimiento a interesados que no completaron la inscripción (24h / 48h)</li>
+        <li>Alerta de últimas plazas disponibles para inscritos en lista de espera</li>
+      </ul>
+    </div>
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">02</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Comunicación pre-evento</div>
+          <div class="auto-block-count">6 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Secuencia de bienvenida al inscribirse con información completa del evento</li>
+        <li>Recordatorio con instrucciones logísticas 7 días antes del evento</li>
+        <li>Briefing final 48h antes: punto de encuentro, horario, dorsales</li>
+        <li>Canal de preguntas frecuentes de última hora (el agente responde, tú no)</li>
+        <li>Alertas de cambios de recorrido o condiciones meteorológicas</li>
+        <li>Activación de número de emergencia y protocolo de seguridad el día D</li>
+      </ul>
+    </div>
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">03</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Post-evento y fidelización</div>
+          <div class="auto-block-count">5 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Envío automático de resultados y clasificaciones a cada participante</li>
+        <li>Solicitud de valoración del evento (alimenta reputación online)</li>
+        <li>Distribución de fotos y vídeos oficiales del evento</li>
+        <li>Campaña de inscripción anticipada para la próxima edición (descuento early bird)</li>
+        <li>Reactivación de no-participantes (inscritos que no acudieron) para la siguiente</li>
+      </ul>
+    </div>
+    <div class="auto-block">
+      <div class="auto-block-head">
+        <div class="auto-block-num">04</div>
+        <div class="auto-block-info">
+          <div class="auto-block-title">Datos para patrocinadores</div>
+          <div class="auto-block-count">3 automatizaciones activas</div>
+        </div>
+      </div>
+      <ul class="auto-items">
+        <li>Informe de perfil de participantes: edad, sexo, procedencia y canal de inscripción</li>
+        <li>Métricas de alcance digital: consultas, conversión, engagement pre-evento</li>
+        <li>Dossier post-evento automático para renovación o captación de nuevos patrocinadores</li>
+      </ul>
+    </div>
+  </div>
+  <div class="integ-strip r d3">
+    <span class="integ-chip hi">SportMadness</span>
+    <span class="integ-chip hi">Inscribirme.es</span>
+    <span class="integ-chip hi">RaceResult</span>
+    <span class="integ-chip">Eventbrite</span>
+    <span class="integ-chip">Weezevent</span>
+    <span class="integ-chip">WhatsApp Business API</span>
+    <span class="integ-chip">Google Sheets</span>
+    <span class="integ-chip">Make / Zapier</span>
+  </div>
+</section>
+
+<section class="sec" id="proceso">
+  <div class="sec-label">Implementación</div>
+  <h2 class="sec-h2 r">Activo antes<br><span class="hl">de abrir</span><br>inscripciones.</h2>
+  <p class="sec-p r d1">El Event Agent se activa al inicio de cada edición y opera durante todo el ciclo del evento. Sin setup repetido — una vez configurado, cada edición se lanza en días.</p>
+  <div class="process-row r d2">
+    <div class="p-step">
+      <div class="p-num">01</div>
+      <div class="p-name">Diagnóstico</div>
+      <div class="p-desc">Analizamos tu plataforma de inscripciones, la tasa de conversión actual y los canales de comunicación con participantes. Identificamos cuántos inscritos potenciales se pierden en cada edición.</div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">02</div>
+      <div class="p-name">Diseño del agente</div>
+      <div class="p-desc">Configuramos el agente con la información específica de tu evento: modalidades, categorías, recorrido, preguntas frecuentes y protocolo de comunicación. Una vez configurado, escala a cada edición.</div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">03</div>
+      <div class="p-name">Integración</div>
+      <div class="p-desc">Conectamos el agente a SportMadness/Inscribirme.es, WhatsApp Business y tu canal web. Configuramos los 4 bloques de automatización y ejecutamos pruebas antes del lanzamiento de inscripciones.</div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">04</div>
+      <div class="p-name">Activación</div>
+      <div class="p-desc">Go live al abrir inscripciones. El agente empieza a calificar y convertir desde el primer día. El dossier de patrocinadores se genera automáticamente al cerrar el evento.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="precios">
+  <div class="sec-label">Inversión</div>
+  <h2 class="sec-h2 r">Más inscritos.<br><span class="hl">Patrocinadores</span><br>satisfechos.<br>Próxima edición<br>ya activada.</h2>
+  <p class="sec-p r d1">Un 10% más de conversión en tu carrera de 500 inscritos son 50 participantes extra. A 40€ de inscripción media, eso cubre el coste anual del agente en la primera edición.</p>
+  <div class="price-grid r d2">
+    <div class="price-card">
+      <div class="price-badge">Starter</div>
+      <div class="price-name">Event Starter</div>
+      <div class="price-desc">Agente de conversión y comunicación pre-evento activo. Califica interesados, resuelve dudas y gestiona la comunicación hasta el día del evento sin intervención manual.</div>
+      <ul class="price-inc">
+        <li>Event Agent configurado para tu evento y modalidades</li>
+        <li>Calificación de interesados 24/7 vía WhatsApp + web</li>
+        <li>Integración con SportMadness / Inscribirme.es / RaceResult</li>
+        <li>Secuencia de comunicación pre-evento automatizada</li>
+        <li>Seguimiento de interesados que no completaron inscripción</li>
+        <li>Informe básico de conversión por edición</li>
+      </ul>
+      <a href="#registro" class="price-cta pc-g">Reservar reunión</a>
+    </div>
+    <div class="price-card star">
+      <div class="price-badge">Recomendado</div>
+      <div class="price-name">Event Pro</div>
+      <div class="price-desc">Ciclo completo del evento automatizado: conversión, comunicación, post-evento, fidelización y generación automática de dossier para patrocinadores.</div>
+      <ul class="price-inc">
+        <li>Todo lo del Event Starter incluido</li>
+        <li>Bloque completo post-evento: resultados, fotos, valoraciones</li>
+        <li>Campaña automática de inscripción anticipada siguiente edición</li>
+        <li>Dossier de patrocinadores generado automáticamente</li>
+        <li>Informe de perfil de participantes para patrocinadores</li>
+        <li>Optimización entre ediciones</li>
+      </ul>
+      <a href="#registro" class="price-cta pc-p">Reservar reunión</a>
+    </div>
+    <div class="price-card">
+      <div class="price-badge">Enterprise</div>
+      <div class="price-name">Multi-evento</div>
+      <div class="price-val" style="font-size:2.8rem">A medida</div>
+      <div class="price-note">Proyecto personalizado</div>
+      <div class="price-desc">Para organizadores con calendario de varios eventos anuales o circuitos deportivos que necesitan un agente centralizado que opere en todas las ediciones de forma coordinada.</div>
+      <ul class="price-inc">
+        <li>Agente multi-evento centralizado</li>
+        <li>Dashboard de conversión por evento y vista de circuito</li>
+        <li>Base de datos unificada de participantes cross-evento</li>
+        <li>Patrocinadores con visibilidad en todo el circuito</li>
+        <li>Reporting ejecutivo por temporada</li>
+      </ul>
+      <a href="#registro" class="price-cta pc-g">Solicitar propuesta</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="planes">
+  <div class="sec-label">Mantenimiento técnico</div>
+  <h2 class="sec-h2 r">El agente<br><span class="hl">sigue activo</span><br>edición tras<br>edición.</h2>
+  <p class="sec-p r d1">El mantenimiento corrige y optimiza lo que ya funciona. Cada plan tiene un alcance definido. Lo que no esté incluido expresamente se presupuesta aparte.</p>
+  <div class="price-grid r d2">
+    <!-- PIT STOP -->
+    <div class="price-card">
+      <div class="price-badge">Pit Stop</div>
+      <div class="price-name">Mantenimiento Esencial</div>
+      <div class="price-desc">El sistema sigue activo entre eventos. Supervisión básica, corrección de errores y una revisión mensual para que nada falle cuando abres inscripciones.</div>
+      <ul class="price-inc">
+        <li>Supervisión del sistema y detección de fallos</li>
+        <li>Corrección de errores y restauración del servicio</li>
+        <li>Adaptación del agente cuando cambian APIs de plataformas externas (SportMadness, Inscribirme.es)</li>
+        <li>Revisión mensual de conversaciones — consultas e interesados del evento</li>
+        <li>Actualización de FAQs cuando cambia información del evento (recorrido, categorías, logística)</li>
+        <li>Hasta 1h/mes de ajustes incluida</li>
+        <li>Informe mensual de actividad</li>
+        <li>Soporte por email en horario laboral</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">No incluye:</strong> Atención directa a participantes, nuevas automatizaciones, cambios de lógica, soporte el día del evento, soporte fuera de horario laboral ni consumos de plataformas externas.
+      </div>
+      <a href="#registro" class="price-cta pc-g">Reservar reunión</a>
+    </div>
+    <!-- ALTO RENDIMIENTO -->
+    <div class="price-card star">
+      <div class="price-badge">Alto Rendimiento</div>
+      <div class="price-name">Mantenimiento + Edición</div>
+      <div class="price-desc">El agente mejora entre ediciones y está reforzado en los momentos críticos — apertura de inscripciones y días previos al evento.</div>
+      <ul class="price-inc">
+        <li>Todo lo del plan Pit Stop</li>
+        <li>Hasta 3h/mes de ajustes incluidas</li>
+        <li>Supervisión prioritaria en apertura de inscripciones y días previos al evento</li>
+        <li>Revisión quincenal del agente — conversaciones problemáticas y preguntas sin respuesta</li>
+        <li>Optimización de tasa de conversión de interesados a inscritos</li>
+        <li>Detección de preguntas frecuentes no cubiertas y actualización del agente</li>
+        <li>Soporte técnico por tickets en horario laboral</li>
+        <li>Informe mensual con métricas de conversión, engagement y recomendaciones para la siguiente edición</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">No incluye:</strong> Nuevos canales, nuevas integraciones, rediseño del agente, soporte presencial el día del evento ni soporte fuera de horario laboral.
+      </div>
+      <a href="#registro" class="price-cta pc-p">Reservar reunión</a>
+    </div>
+    <!-- PARTNER -->
+    <div class="price-card">
+      <div class="price-badge">Partner</div>
+      <div class="price-name">Gestión Continua</div>
+      <div class="price-val" style="font-size:2rem;line-height:1.3">Según<br>proyecto</div>
+      <div class="price-note">Definido en contrato</div>
+      <div class="price-desc">Para organizadores con calendario de varios eventos al año. Un equipo técnico dedicado que evoluciona el agente cada edición y genera los datos para tus patrocinadores sin esfuerzo manual.</div>
+      <ul class="price-inc">
+        <li>Todo lo del plan Alto Rendimiento</li>
+        <li>Hasta 6h/mes de ajustes incluidas</li>
+        <li>Reunión mensual de revisión estratégica por edición</li>
+        <li>Evolución activa del agente — nuevos flujos, modalidades y FAQs cada edición</li>
+        <li>Informe post-edición: inscritos generados, conversión, engagement, impacto patrocinadores</li>
+        <li>Plan de contingencia documentado ante fallos en días de alta carga</li>
+        <li>Acceso directo al equipo técnico</li>
+        <li>Alcance definido en contrato antes de empezar — sin sorpresas</li>
+      </ul>
+      <div style="font-size:.8rem;color:var(--faint);margin-bottom:1.5rem;padding:.75rem;background:rgba(10,74,92,.3);border-radius:2px;border-left:2px solid var(--faint)">
+        <strong style="color:var(--muted)">No incluye:</strong> Soporte fuera de horario laboral, consumos de plataformas externas (WhatsApp API, tokens IA, SportMadness, Inscribirme.es), asistencia presencial en el evento ni cambios provocados por modificaciones en sistemas de terceros.
+      </div>
+      <a href="#registro" class="price-cta pc-g">Pedir presupuesto</a>
+    </div>
+  </div>
+  <div class="r d3" style="margin-top:2.5rem;padding:1.5rem 2rem;background:var(--deep);border:1px solid var(--border);border-radius:3px;font-size:.83rem;color:var(--muted);line-height:1.7">
+    <strong style="color:var(--text);display:block;margin-bottom:.5rem">Sobre los costes de infraestructura</strong>
+    Los honorarios de PalferIA cubren el servicio de mantenimiento y optimización del sistema. Los costes operativos de plataformas externas (WhatsApp Business API, tokens de inteligencia artificial, SportMadness, Inscribirme.es, RaceResult) son responsabilidad del organizador y se contratan directamente con cada proveedor. Todo lo que no esté incluido expresamente en el plan se presupuesta aparte.
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="cta-bg">EVENT</div>
+  <h2 class="cta-h2 r">Tu evento llena.<br><span class="hl">El agente</span><br>convierte.</h2>
+  <p class="cta-p r d1">30 minutos de diagnóstico. Calculamos cuántos inscritos está perdiendo tu evento por falta de sistema de conversión — con datos de tu plataforma.</p>
+  <div class="cta-actions r d2">
+    <a href="#registro" class="btn-p">Reservar sesión estratégica &rarr;</a>
+    <a href="vertical-federaciones.html" class="btn-g">Ver Fed Agent</a>
+  </div>
+  <p style="margin-top:2rem;font-family:var(--fh);font-size:.85rem;letter-spacing:.08em;color:var(--muted);position:relative">
+    ¿Prefieres escribirnos directamente? &nbsp;
+    <a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20agente%20IA%20para%20mi%20evento%20deportivo" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:700">WhatsApp</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:ri@palferia.com" style="color:var(--accent);text-decoration:none;font-weight:700">ri@palferia.com</a>
+    &nbsp;·&nbsp;
+    <a href="tel:+34643469239" style="color:var(--accent);text-decoration:none;font-weight:700">+34 643 469 239</a>
+  </p>
+</section>
+
+<section class="sec" id="registro">
+  <div class="sec-label">Siguiente paso</div>
+  <h2 class="sec-h2 r">30 minutos.<br><span class="hl">Sin compromiso.</span><br>Con toda la<br>información.</h2>
+  <p class="sec-p r d1">Cuéntanos cómo gestionas la comunicación con participantes ahora mismo y qué quieres dejar de hacer a mano. Analizamos lo que tiene sentido para el tamaño y formato de tu evento.</p>
+
+  <div class="contact-wrap r d2">
+    <div class="contact-left">
+      <a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20Event%20Agent%20para%20mi%20evento" target="_blank" rel="noopener" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp directo
+      </a>
+      <div class="contact-info">
+        <div class="ci-block">
+          <div class="ci-label">Email</div>
+          <div class="ci-val"><a href="mailto:ri@palferia.com">ri@palferia.com</a></div>
+          <div class="ci-sub">Respondemos en horario laboral</div>
+        </div>
+        <div class="ci-block">
+          <div class="ci-label">WhatsApp / Teléfono</div>
+          <div class="ci-val"><a href="tel:+34643469239">+34 643 469 239</a></div>
+          <div class="ci-sub">Ronald Palma · Fundador</div>
+        </div>
+        <div class="ci-block">
+          <div class="ci-label">Ubicación</div>
+          <div class="ci-val">Valencia, España</div>
+          <div class="ci-sub">Clientes en toda España y Latam</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp (opcional)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+34 600 000 000">
+        </div>
+        <div class="form-group">
+          <label for="sector">Tipo de entidad</label>
+          <select id="sector" name="sector" required>
+            <option value="" disabled>Selecciona tu tipo de entidad</option>
+            <option value="academia">Academia deportiva</option>
+            <option value="club">Club deportivo</option>
+            <option value="evento" selected>Organizador de eventos</option>
+            <option value="federacion">Federación</option>
+            <option value="turismo">Turismo deportivo</option>
+            <option value="patrocinios">Gestión de patrocinios</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">¿Qué quieres automatizar?</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente tu evento y qué queréis mejorar..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Solicitar sesión estratégica →</button>
+        <p class="form-note">Sin compromiso. Sin costes hasta tener toda la información sobre la mesa.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-title">¡Recibido!</div>
+        <div class="form-success-text">Nos ponemos en contacto para coordinar la reunión. Si prefieres más rapidez, escríbenos por <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL='https://aqaiqmsypbwhgknbbmae.supabase.co';
+const SUPABASE_ANON_KEY='TU_SUPABASE_ANON_KEY';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+/* ── CONTACT FORM → WHATSAPP + SUPABASE ── */
+document.getElementById('contactForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='Enviando...';
+  const data={
+    nombre:  document.getElementById('nombre').value,
+    email:   document.getElementById('email').value,
+    telefono:document.getElementById('whatsapp').value,
+    servicio:document.getElementById('sector').value,
+    mensaje: document.getElementById('mensaje').value
+  };
+  const msg=encodeURIComponent(
+    `Hola, soy ${data.nombre} (${data.email}). Organizo eventos deportivos y quiero información sobre el Event Agent. ${data.mensaje}`
+  );
+  window.open(`https://wa.me/34643469239?text=${msg}`,'_blank');
+  try{await sb.from('web_contacts').insert({nombre:data.nombre,email:data.email,whatsapp:data.telefono,sector:data.servicio,mensaje:data.mensaje,fuente:'eventos'});}catch(err){console.warn('Supabase insert error',err);}
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').classList.add('show');
+  setTimeout(function(){window.location.href='https://palferia.me';},2500);
+});
+</script>
+
+</body>
+</html>

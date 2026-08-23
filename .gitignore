@@ -1,0 +1,32 @@
+# Internos — nunca al repo público
+_content/
+_archivo/
+wp-partials/
+ejemplo/
+personaje/
+
+# Elementor partial (referencia interna)
+home-onepage.html
+
+# Decks internos
+deck-4iCV.html
+deck-4iCV.pptx
+deck\ comercial-4iCV.pdf
+Checklist-IA-centros-deportivos.jpeg
+
+# Setter files (precios internos)
+verticales/Setter*
+verticales/*.rtf
+verticales/carpeta\ sin\ título/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Secrets
+.env
+.env.local
+*.env
