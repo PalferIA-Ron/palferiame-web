@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit IA Deportivo — Automatización lista en 48h · Palferia.me</title>
+  <meta name="description" content="Agente IA configurado, instalado y en marcha en 48 horas para tu centro deportivo. Pago único 1.000€ IVA incluido.">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --deep:#012D38;--surface:#01404F;--raised:#025265;
+  --accent:#B1F727;--accentd:#8BC920;
+  --text:#EFF8FF;--muted:#7BB5C4;--faint:#3D6B78;--border:#0A4A5C;
+  --fd:'Bebas Neue',sans-serif;--fh:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif
+}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:9999}
+
+/* ── REVEAL ── */
+.r{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}.r.d5{transition-delay:.5s}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── LP HEADER ── */
+.lp-header{padding:1.25rem 4rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(1,45,56,.95);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+.lp-logo img{height:36px;width:auto;display:block}
+.lp-cta-top{font-family:var(--fh);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.6rem 1.4rem;border-radius:2px;text-decoration:none;transition:background .2s}
+.lp-cta-top:hover{background:var(--accentd)}
+
+/* ── HERO ── */
+.hero{min-height:90vh;padding:6rem 4rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.15;pointer-events:none}
+.hero-img{position:absolute;right:0;top:0;bottom:0;width:48%;overflow:hidden;pointer-events:none}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 0%,rgba(1,45,56,.6) 45%,transparent 100%);z-index:1}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 15%,transparent 85%,var(--deep) 100%);z-index:1}
+.hero-inner{position:relative;max-width:600px}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:rgba(177,247,39,.07);border:1px solid rgba(177,247,39,.2);border-radius:2px;padding:.4rem 1rem;margin-bottom:1.5rem;opacity:0;animation:up .6s ease .1s forwards}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s ease infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-h1{font-family:var(--fd);font-size:clamp(3.5rem,7vw,8.5rem);line-height:.92;color:var(--text);margin-bottom:1.5rem;opacity:0;animation:up .8s ease .2s forwards}
+.hero-h1 .hl{color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:2rem;opacity:0;animation:up .8s ease .35s forwards}
+.hero-sub strong{color:var(--text)}
+.hero-price{display:flex;align-items:baseline;gap:.75rem;margin-bottom:2.5rem;opacity:0;animation:up .8s ease .5s forwards}
+.price-num{font-family:var(--fd);font-size:4.5rem;color:var(--accent);line-height:1}
+.price-label{font-family:var(--fh);font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up .8s ease .65s forwards}
+.btn-buy{font-family:var(--fh);font-weight:700;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:1.1rem 2.5rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-buy:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 10px 40px rgba(177,247,39,.3)}
+.btn-scroll{font-family:var(--fh);font-weight:600;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text);background:transparent;padding:1.1rem 2rem;border-radius:2px;text-decoration:none;border:1px solid var(--border);transition:border-color .2s,color .2s}
+.btn-scroll:hover{border-color:var(--accent);color:var(--accent)}
+.hero-note{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:1.25rem;opacity:0;animation:up .8s ease .8s forwards}
+
+/* ── SECTIONS ── */
+.sec{padding:7rem 4rem;position:relative}
+.sec-alt{background:var(--surface)}
+.sec-label{display:flex;align-items:center;gap:.75rem;font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.sec-label::before{content:'';display:block;width:20px;height:2px;background:var(--accent)}
+.sec-h2{font-family:var(--fd);font-size:clamp(2.8rem,5vw,5.5rem);line-height:.95;color:var(--text);margin-bottom:.75rem}
+.sec-h2 .hl{color:var(--accent)}
+.sec-p{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:3.5rem}
+
+/* ── PROBLEMA ── */
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.pain-card{background:var(--deep);padding:2.5rem 2rem;transition:background .3s}
+.pain-card:hover{background:rgba(2,82,101,.5)}
+.pain-icon{font-size:1.5rem;margin-bottom:.75rem}
+.pain-title{font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text);margin-bottom:.5rem}
+.pain-desc{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+/* ── INCLUYE ── */
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.inc-card{background:var(--raised);border:1px solid var(--border);border-radius:3px;padding:2.25rem 2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.inc-card:hover{border-color:rgba(177,247,39,.4);transform:translateY(-4px)}
+.inc-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.inc-card:hover::after{transform:scaleX(1)}
+.inc-num{font-family:var(--fd);font-size:4rem;color:rgba(177,247,39,.08);position:absolute;top:.5rem;right:1rem;line-height:1}
+.inc-ico{font-size:2rem;margin-bottom:1rem;display:block}
+.inc-title{font-family:var(--fh);font-weight:700;font-size:1.15rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text);margin-bottom:.5rem}
+.inc-desc{font-size:.87rem;color:var(--muted);line-height:1.65}
+.inc-tag{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);background:rgba(177,247,39,.08);border:1px solid rgba(177,247,39,.2);border-radius:2px;padding:.2rem .6rem;margin-top:.85rem}
+
+/* ── VISUAL STRIP ── */
+.visual-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;overflow:hidden}
+.vs-img{aspect-ratio:3/4;overflow:hidden;position:relative}
+.vs-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.vs-img:hover img{transform:scale(1.04)}
+.vs-img:first-child{aspect-ratio:3/5}
+.vs-img:last-child{aspect-ratio:3/5}
+
+/* ── PROCESO ── */
+.process-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.p-step{background:var(--deep);padding:3rem 2.5rem;position:relative}
+.p-step::after{content:'→';position:absolute;right:-14px;top:3rem;font-family:var(--fd);font-size:1.5rem;color:var(--accent);z-index:1}
+.p-step:last-child::after{display:none}
+.p-num{font-family:var(--fd);font-size:4rem;color:var(--accent);line-height:1;margin-bottom:.75rem}
+.p-name{font-family:var(--fh);font-weight:700;font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
+.p-desc{font-size:.87rem;color:var(--muted);line-height:1.6}
+.p-time{display:inline-flex;font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.2rem .65rem;border-radius:2px;margin-top:.85rem}
+
+/* ── SOPORTE ── */
+.soporte-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.soporte-img{border-radius:3px;overflow:hidden;border:1px solid var(--border)}
+.soporte-img img{width:100%;display:block;object-fit:cover}
+.soporte-list{list-style:none;display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem}
+.soporte-list li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--muted);line-height:1.6}
+.soporte-list li::before{content:'✓';color:var(--accent);font-family:var(--fh);font-weight:700;font-size:1rem;flex-shrink:0;margin-top:.05rem}
+
+/* ── PARA QUIÉN ── */
+.para-grid{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.para-chip{font-family:var(--fh);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text);background:rgba(10,74,92,.6);border:1px solid var(--border);border-radius:2px;padding:.5rem 1.2rem;transition:border-color .2s,color .2s}
+.para-chip:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── PRECIO ── */
+.precio-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+.precio-card{background:var(--surface);border:2px solid var(--accent);border-radius:3px;padding:3rem;position:relative;overflow:hidden}
+.precio-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.precio-badge{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.25rem .75rem;border-radius:2px;display:inline-block;margin-bottom:1.5rem}
+.precio-name{font-family:var(--fd);font-size:2.5rem;color:var(--text);line-height:1;margin-bottom:.5rem}
+.precio-val{font-family:var(--fd);font-size:5.5rem;color:var(--accent);line-height:1;margin-bottom:.25rem}
+.precio-iva{font-family:var(--fh);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem}
+.precio-inc{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2.5rem}
+.precio-inc li{font-size:.9rem;color:var(--muted);display:flex;align-items:flex-start;gap:.6rem;line-height:1.5}
+.precio-inc li::before{content:'';width:5px;height:5px;background:var(--accent);border-radius:1px;flex-shrink:0;margin-top:.45rem}
+.btn-buy-lg{display:block;text-align:center;font-family:var(--fh);font-weight:700;font-size:1.1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:1.25rem 2rem;border-radius:2px;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;margin-bottom:1rem}
+.btn-buy-lg:hover{background:var(--accentd);transform:translateY(-2px);box-shadow:0 10px 40px rgba(177,247,39,.3)}
+.bizum-block{background:rgba(1,45,56,.6);border:1px solid var(--border);border-radius:3px;padding:1.5rem;margin-top:1.5rem}
+.bizum-title{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:.75rem}
+.bizum-row{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:.35rem}
+.bizum-row span{color:var(--text);font-weight:600}
+.bizum-note{font-size:.78rem;color:var(--faint);margin-top:.75rem;line-height:1.55}
+.precio-garantia{background:rgba(177,247,39,.04);border:1px solid rgba(177,247,39,.15);border-radius:3px;padding:1.5rem 2rem;margin-top:1.5rem}
+.garantia-title{font-family:var(--fh);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.garantia-text{font-size:.85rem;color:var(--muted);line-height:1.65}
+.precio-lateral{display:flex;flex-direction:column;gap:2rem}
+.lateral-block{background:var(--raised);border:1px solid var(--border);border-radius:3px;padding:2rem}
+.lateral-ico{font-size:2rem;margin-bottom:.75rem}
+.lateral-title{font-family:var(--fh);font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
+.lateral-desc{font-size:.87rem;color:var(--muted);line-height:1.65}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-family:var(--fh);font-weight:700;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text);padding:1.75rem 2rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--deep);transition:background .2s}
+.faq-q:hover{background:var(--surface)}
+.faq-q::after{content:'+';font-family:var(--fd);font-size:1.5rem;color:var(--accent);transition:transform .25s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{font-size:.9rem;color:var(--muted);line-height:1.75;padding:0 2rem;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.faq-item.open .faq-a{max-height:300px;padding:0 2rem 1.75rem}
+
+/* ── CTA FINAL ── */
+.cta-final{padding:8rem 4rem;text-align:center;position:relative;overflow:hidden;background:var(--surface);border-top:1px solid var(--border)}
+.cta-bg{position:absolute;font-family:var(--fd);font-size:22vw;color:rgba(177,247,39,.025);left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none}
+.cta-final h2{font-family:var(--fd);font-size:clamp(3rem,6vw,7rem);line-height:.92;color:var(--text);margin-bottom:1.25rem;position:relative}
+.cta-final h2 .hl{color:var(--accent)}
+.cta-final p{font-size:1.05rem;color:var(--muted);max-width:480px;margin:0 auto 3rem;line-height:1.75;position:relative}
+.cta-final-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;gap:.75rem;background:#25D366;color:#fff;font-family:var(--fh);font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1.4rem;border-radius:50px;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:transform .25s,box-shadow .25s;animation:wafloat .5s ease .8s both}
+.wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 40px rgba(37,211,102,.45)}
+@keyframes wafloat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.wa-pulse{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid var(--deep)}
+.wa-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:rgba(37,211,102,.5);animation:wapulse 2s ease infinite}
+@keyframes wapulse{0%{transform:scale(1);opacity:.8}70%{transform:scale(1.8);opacity:0}100%{transform:scale(1.8);opacity:0}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.inc-grid{grid-template-columns:1fr 1fr}.precio-wrap{grid-template-columns:1fr}}
+@media(max-width:900px){
+  .lp-header{padding:1rem 1.5rem}
+  .hero{padding:5rem 1.5rem 4rem;min-height:auto}
+  .hero-img{width:100%;height:300px;position:relative;margin-bottom:2rem}
+  .hero-img::before{background:linear-gradient(180deg,var(--deep) 0%,transparent 30%,transparent 70%,var(--deep) 100%)}
+  .hero{flex-direction:column}
+  .sec{padding:5rem 1.5rem}
+  .pain-grid,.inc-grid,.process-row,.visual-strip{grid-template-columns:1fr}
+  .soporte-wrap{grid-template-columns:1fr}
+  .precio-wrap{grid-template-columns:1fr}
+  .cta-final{padding:5rem 1.5rem}
+  .visual-strip{grid-template-columns:1fr 1fr}
+  .vs-img,.vs-img:first-child,.vs-img:last-child{aspect-ratio:1/1}
+}
+@media(max-width:600px){.wa-float span{display:none}.wa-float{padding:.9rem 1rem}.hero-h1{font-size:3.5rem}.inc-grid{grid-template-columns:1fr}.visual-strip{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/34643469239?text=Hola%20Ronald%2C%20quiero%20información%20sobre%20el%20Kit%20IA%20Deportivo" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <span class="wa-pulse"></span>
+  <span>💬</span>
+  <span>WhatsApp</span>
+</a>
+
+<!-- LP HEADER -->
+<header class="lp-header">
+  <a href="https://palferia.me" class="lp-logo" aria-label="Palferia.me">
+    <img src="/assets/img/Logo-fondooscuro1.png" alt="Palferia.me">
+  </a>
+  <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="lp-cta-top">Comprar ahora — 1.000€ →</a>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-img">
+    <img src="/assets/img/palferiame-imge_01.jpg" alt="Kit IA Deportivo" loading="eager">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-dot"></span>
+      Kit IA Deportivo · Pago único
+    </div>
+    <h1 class="hero-h1">TU CENTRO<br>DEPORTIVO<br>EN <span class="hl">PILOTO<br>AUTOMÁTICO.</span><br>EN 48H.</h1>
+    <p class="hero-sub">
+      Agente IA configurado a medida, instalado y funcionando desde el primer día.
+      <strong>Sin mensualidades. Sin sorpresas. Sin curva de aprendizaje.</strong>
+    </p>
+    <div class="hero-price">
+      <span class="price-num">1.000€</span>
+      <span class="price-label">IVA incluido<br>pago único</span>
+    </div>
+    <div class="hero-actions">
+      <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy">Quiero el Kit →</a>
+      <a href="#incluye" class="btn-scroll">¿Qué incluye?</a>
+    </div>
+    <p class="hero-note">Stripe · Bizum disponible · Confirmación en menos de 24h</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EL PROBLEMA
+══════════════════════════════════════════ -->
+<section class="sec">
+  <div class="sec-label r">El problema real</div>
+  <h2 class="sec-h2 r d1">Gestionas un centro deportivo.<br><span class="hl">No una centralita de 24h.</span></h2>
+  <p class="sec-p r d2">Pero eso es lo que el mercado exige. Respuestas inmediatas, seguimiento constante, cero errores. Con tu equipo actual es imposible — a no ser que duermas con el teléfono en la mano.</p>
+  <div class="pain-grid r d3">
+    <div class="pain-card">
+      <div class="pain-icon">💬</div>
+      <div class="pain-title">Leads que no contestas a tiempo</div>
+      <div class="pain-desc">Cada minuto de retraso en responder una consulta nueva reduce la probabilidad de conversión un 80%. Tu equipo no puede estar disponible las 24h. El agente sí.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">🔁</div>
+      <div class="pain-title">Preguntas que repites cada día</div>
+      <div class="pain-desc">Horarios, precios, disponibilidad, cómo apuntarse. Las mismas preguntas, cien veces. El agente las responde siempre igual — perfecto y sin cansarse.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">📉</div>
+      <div class="pain-title">Alumnos que se van sin avisar</div>
+      <div class="pain-desc">La mayoría de bajas se podían haber evitado con una conversación a tiempo. Sin detección proactiva, pierdes alumnos que estaban a punto de quedarse.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">📊</div>
+      <div class="pain-title">Sin datos para tomar decisiones</div>
+      <div class="pain-desc">Sabes cuántos alumnos tienes. No sabes cuántos leads llegaron, en qué paso se perdieron ni qué canal los trajo. Sin datos, no puedes mejorar nada.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     QUÉ INCLUYE
+══════════════════════════════════════════ -->
+<section class="sec sec-alt" id="incluye">
+  <div class="sec-label r">Qué incluye</div>
+  <h2 class="sec-h2 r d1">Todo lo que necesitas.<br><span class="hl">Listo para usar.</span></h2>
+  <p class="sec-p r d2">No te vendemos una herramienta que tienes que aprender a configurar. Te entregamos el sistema funcionando desde el día 1.</p>
+  <div class="inc-grid">
+    <div class="inc-card r d1">
+      <div class="inc-num">01</div>
+      <span class="inc-ico">🤖</span>
+      <div class="inc-title">Agente IA configurado</div>
+      <div class="inc-desc">Entrenado con la información de tu centro — horarios, precios, servicios, FAQs. Responde como si fuera alguien de tu equipo, en tu tono, con tus datos.</div>
+      <span class="inc-tag">✓ A medida</span>
+    </div>
+    <div class="inc-card r d2">
+      <div class="inc-num">02</div>
+      <span class="inc-ico">⚙️</span>
+      <div class="inc-title">Instalación completa</div>
+      <div class="inc-desc">Nosotros hacemos toda la configuración técnica. Conexión con WhatsApp Business, integración con tu web y activación de los flujos de conversación automáticos.</div>
+      <span class="inc-tag">✓ Sin intervención tuya</span>
+    </div>
+    <div class="inc-card r d3">
+      <div class="inc-num">03</div>
+      <span class="inc-ico">🚀</span>
+      <div class="inc-title">Puesta en marcha en 48h</div>
+      <div class="inc-desc">Desde que confirmas el pago hasta que el agente está activo: 48 horas. No semanas, no meses. El primer lead respondido automáticamente en dos días.</div>
+      <span class="inc-tag">✓ 48h garantizadas</span>
+    </div>
+    <div class="inc-card r d1">
+      <div class="inc-num">04</div>
+      <span class="inc-ico">📘</span>
+      <div class="inc-title">Manual de uso completo</div>
+      <div class="inc-desc">Documento detallado con todo lo que necesitas saber: cómo consultar conversaciones, cómo actualizar información del agente, cómo interpretar los datos.</div>
+      <span class="inc-tag">✓ En español</span>
+    </div>
+    <div class="inc-card r d2">
+      <div class="inc-num">05</div>
+      <span class="inc-ico">🔧</span>
+      <div class="inc-title">3 soportes técnicos</div>
+      <div class="inc-desc">Tres sesiones de soporte directo con Ronald — para resolver dudas, ajustar el comportamiento del agente o añadir nuevos flujos de conversación según crezca tu centro.</div>
+      <span class="inc-tag">✓ Soporte real</span>
+    </div>
+    <div class="inc-card r d3" style="background:rgba(177,247,39,.03);border-color:rgba(177,247,39,.2)">
+      <div class="inc-num">+</div>
+      <span class="inc-ico">📋</span>
+      <div class="inc-title">Checklist IA para centros</div>
+      <div class="inc-desc">Guía de 30 puntos para auditar el estado de automatización de tu centro deportivo. Qué está funcionando, qué se puede mejorar y por dónde empezar.</div>
+      <span class="inc-tag">✓ Incluido gratis</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     GALERÍA VISUAL
+══════════════════════════════════════════ -->
+<div class="visual-strip">
+  <div class="vs-img">
+    <img src="/assets/img/palferiame-imge_04.jpg" alt="Deporte y tecnología" loading="lazy">
+  </div>
+  <div class="vs-img">
+    <img src="/assets/img/palferiame-imge_07.jpg" alt="Centro deportivo" loading="lazy">
+  </div>
+  <div class="vs-img">
+    <img src="/assets/img/palferiame-imge_10.jpg" alt="Automatización deportiva" loading="lazy">
+  </div>
+  <div class="vs-img">
+    <img src="/assets/img/palferiame-imge_12.jpg" alt="Gestión inteligente" loading="lazy">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CÓMO FUNCIONA
+══════════════════════════════════════════ -->
+<section class="sec sec-alt">
+  <div class="sec-label r">Cómo funciona</div>
+  <h2 class="sec-h2 r d1">Tres pasos.<br><span class="hl">Tú no haces nada.</span></h2>
+  <p class="sec-p r d2">El proceso está diseñado para que no tengas que invertir tiempo en configuraciones. Nosotros hacemos el trabajo técnico.</p>
+  <div class="process-row r d3">
+    <div class="p-step">
+      <div class="p-num">01</div>
+      <div class="p-name">Confirmas el pago</div>
+      <div class="p-desc">Pagas por Stripe o Bizum. En menos de 24h recibes un mensaje de WhatsApp para arrancar el proceso de configuración.</div>
+      <span class="p-time">Día 0</span>
+    </div>
+    <div class="p-step">
+      <div class="p-num">02</div>
+      <div class="p-name">Nos das la información</div>
+      <div class="p-desc">Horarios, precios, servicios, tono de comunicación. Un formulario sencillo de 15 minutos. Nosotros hacemos todo lo demás.</div>
+      <span class="p-time">Día 1</span>
+    </div>
+    <div class="p-step">
+      <div class="p-num">03</div>
+      <div class="p-name">El agente está activo</div>
+      <div class="p-desc">En 48h el agente está respondiendo leads, gestionando consultas y enviando reportes. Recibes el manual y tus 3 soportes disponibles.</div>
+      <span class="p-time">Día 2 — En marcha</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SOPORTE
+══════════════════════════════════════════ -->
+<section class="sec">
+  <div class="soporte-wrap">
+    <div>
+      <div class="sec-label r">Soporte técnico</div>
+      <h2 class="sec-h2 r d1">No te dejamos<br><span class="hl">solo.</span></h2>
+      <p class="sec-p r d2" style="margin-bottom:1rem">Incluyes 3 sesiones de soporte técnico directo. Úsalas cuando quieras — para afinar el agente, añadir nuevos flujos o resolver cualquier duda técnica.</p>
+      <ul class="soporte-list r d3">
+        <li>Sesión de revisión a los 7 días de activación — ajustes finos basados en las primeras conversaciones reales</li>
+        <li>Sesión de expansión — añadir nuevas respuestas, nuevos flujos o conectar con nuevos canales</li>
+        <li>Sesión de cierre — auditoría de resultados a los 30 días, próximos pasos</li>
+        <li>Acceso por WhatsApp para dudas puntuales entre sesiones</li>
+      </ul>
+    </div>
+    <div class="soporte-img r d2">
+      <img src="/assets/img/palferiame-imge_13.jpg" alt="Soporte técnico" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PARA QUIÉN
+══════════════════════════════════════════ -->
+<section class="sec sec-alt">
+  <div class="sec-label r">Para quién es</div>
+  <h2 class="sec-h2 r d1">Si gestionas<br><span class="hl">deporte, es para ti.</span></h2>
+  <p class="sec-p r d2">El Kit IA Deportivo está diseñado para cualquier entidad que quiera automatizar la comunicación y la captación sin complicaciones técnicas.</p>
+  <div class="para-grid r d3">
+    <span class="para-chip">Academias deportivas</span>
+    <span class="para-chip">Clubes de fútbol, pádel, baloncesto</span>
+    <span class="para-chip">Centros de crossfit y fitness</span>
+    <span class="para-chip">Escuelas de natación</span>
+    <span class="para-chip">Eventos y carreras populares</span>
+    <span class="para-chip">Federaciones deportivas</span>
+    <span class="para-chip">Alojamientos de turismo activo</span>
+    <span class="para-chip">Gimnasios independientes</span>
+    <span class="para-chip">Escuelas de artes marciales</span>
+    <span class="para-chip">Centros de tenis y pádel</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PRECIO
+══════════════════════════════════════════ -->
+<section class="sec" id="precio">
+  <div class="sec-label r">Inversión</div>
+  <h2 class="sec-h2 r d1">Un solo pago.<br><span class="hl">Sin mensualidades.</span></h2>
+  <div class="precio-wrap r d2">
+    <div>
+      <div class="precio-card">
+        <span class="precio-badge">Kit IA Deportivo</span>
+        <div class="precio-name">Pago único</div>
+        <div class="precio-val">1.000€</div>
+        <div class="precio-iva">IVA incluido · Sin mensualidades</div>
+        <ul class="precio-inc">
+          <li>Agente IA configurado a medida de tu centro</li>
+          <li>Instalación técnica completa por nuestro equipo</li>
+          <li>Puesta en marcha garantizada en 48h</li>
+          <li>Manual de uso en español</li>
+          <li>3 sesiones de soporte técnico</li>
+          <li>Checklist IA para centros deportivos</li>
+          <li>Acceso por WhatsApp entre sesiones</li>
+        </ul>
+        <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy-lg">Pagar con tarjeta — Stripe →</a>
+        <div class="precio-garantia">
+          <div class="garantia-title">Garantía de activación</div>
+          <div class="garantia-text">Si en 48h el agente no está activo y funcionando, te devolvemos el 100% del importe sin preguntas.</div>
+        </div>
+        <div class="bizum-block">
+          <div class="bizum-title">O paga por Bizum</div>
+          <div class="bizum-row">Número <span>+34 643 469 239</span></div>
+          <div class="bizum-row">Importe <span>1.000€</span></div>
+          <div class="bizum-row">Concepto <span>KIT-IA</span></div>
+          <div class="bizum-note">Tras el pago por Bizum, envíanos el justificante por <a href="https://wa.me/34643469239?text=He%20pagado%20por%20Bizum%20el%20Kit%20IA%20Deportivo" style="color:var(--accent);text-decoration:none">WhatsApp</a> para confirmar y arrancar.</div>
+        </div>
+      </div>
+    </div>
+    <div class="precio-lateral">
+      <div class="lateral-block r d1">
+        <div class="lateral-ico">🎯</div>
+        <div class="lateral-title">¿Por qué 1.000€?</div>
+        <div class="lateral-desc">Una recepcionista cuesta entre 1.200€ y 1.800€ al mes. El agente trabaja 24/7, no se pone enfermo y nunca olvida responder. Un mes de trabajo, pagado una sola vez.</div>
+      </div>
+      <div class="lateral-block r d2">
+        <div class="lateral-ico">⚡</div>
+        <div class="lateral-title">Sin riesgo técnico</div>
+        <div class="lateral-desc">No necesitas saber de tecnología. Nosotros hacemos la integración completa. Tú revisas, apruebas y empiezas a usarlo.</div>
+      </div>
+      <div class="lateral-block r d3">
+        <div class="lateral-ico">📈</div>
+        <div class="lateral-title">Resultado medible</div>
+        <div class="lateral-desc">A los 30 días revisamos juntos las métricas: leads atendidos, tiempo de respuesta, conversaciones iniciadas. Los números hablan solos.</div>
+      </div>
+      <div class="lateral-block r d4">
+        <div class="lateral-ico">🤝</div>
+        <div class="lateral-title">¿Tienes dudas?</div>
+        <div class="lateral-desc">Escríbenos por WhatsApp antes de comprar. Cuéntanos tu centro y te decimos honestamente si el kit encaja con lo que necesitas.</div>
+        <a href="https://wa.me/34643469239?text=Hola%20Ronald%2C%20tengo%20dudas%20sobre%20el%20Kit%20IA%20Deportivo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-family:var(--fh);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#25D366;text-decoration:none">💬 Consulta gratis →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════ -->
+<section class="sec sec-alt">
+  <div class="sec-label r">Preguntas frecuentes</div>
+  <h2 class="sec-h2 r d1" style="margin-bottom:2.5rem">Lo que<br><span class="hl">preguntan siempre.</span></h2>
+  <div class="faq-list r d2">
+    <div class="faq-item">
+      <div class="faq-q">¿Con qué plataformas funciona el agente?</div>
+      <div class="faq-a">El agente se conecta principalmente a través de WhatsApp Business API, que es el canal de comunicación principal para la mayoría de centros deportivos. También puede integrarse con el formulario de contacto de tu web y con las herramientas de gestión más habituales (Glofox, Mindbody, Clupik, etc.) en función de tu configuración.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Qué pasa cuando se acaban los 3 soportes?</div>
+      <div class="faq-a">Puedes contratar soportes adicionales a 150€/sesión, o pasar a un plan de mantenimiento mensual si tu centro crece y necesita actualizaciones frecuentes. No hay ninguna obligación de continuidad tras el Kit.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cuánto tiempo me lleva poner en marcha el Kit?</div>
+      <div class="faq-a">Tu parte es rellenar un formulario de onboarding de aproximadamente 15 minutos con la información de tu centro. El resto lo hacemos nosotros. En 48h el agente está activo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Puedo actualizar la información del agente después?</div>
+      <div class="faq-a">Sí. El manual de uso incluye instrucciones paso a paso para actualizar horarios, precios y servicios sin necesidad de soporte técnico. Para cambios más profundos en los flujos de conversación, puedes usar una de tus sesiones de soporte.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Emite factura?</div>
+      <div class="faq-a">Sí. Si pagas por Stripe la factura se genera automáticamente. Si pagas por Bizum te enviamos la factura en el mismo día por email.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════════ -->
+<section class="cta-final">
+  <div class="cta-bg">KIT</div>
+  <h2 class="r"><span class="hl">48 horas</span><br>y tu centro<br>en automático.</h2>
+  <p class="r d1">Un solo pago. Sin mensualidades. Sin curva de aprendizaje. El agente trabaja mientras tú entrenas, descansas o disfrutas.</p>
+  <div class="cta-final-actions r d2">
+    <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy">Quiero el Kit — 1.000€ →</a>
+    <a href="https://wa.me/34643469239?text=Hola%20Ronald%2C%20quiero%20información%20sobre%20el%20Kit%20IA%20Deportivo" target="_blank" rel="noopener" class="btn-scroll">Hablar primero →</a>
+  </div>
+</section>
+
+<script>
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
