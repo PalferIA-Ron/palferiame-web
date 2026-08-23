@@ -6,6 +6,15 @@
   <title>Palferia.me — Agentes IA para el sport business</title>
   <meta name="description" content="Agentes IA especializados para academias, clubes, eventos, federaciones, turismo y patrocinios deportivos. Automatiza atención, captación y fidelización 24/7.">
   <link rel="canonical" href="https://palferia.me/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Palferia.me — Agentes IA para el sport business">
+  <meta property="og:description" content="Agentes IA especializados para academias, clubes, eventos, federaciones, turismo y patrocinios deportivos. Automatiza atención, captación y fidelización 24/7.">
+  <meta property="og:image" content="https://palferia.me/assets/img/hero-sport-ia.jpg">
+  <meta property="og:url" content="https://palferia.me/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Palferia.me — Agentes IA para el sport business">
+  <meta name="twitter:description" content="Agentes IA especializados para academias, clubes, eventos, federaciones, turismo y patrocinios deportivos. Automatiza atención, captación y fidelización 24/7.">
+  <meta name="twitter:image" content="https://palferia.me/assets/img/hero-sport-ia.jpg">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
@@ -200,6 +209,17 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .eco-card:hover .eco-link{color:var(--accent)}
 
 /* ── FOOTER ── */
+/* ── KIT ── */
+.kit-inner{background:rgba(177,247,39,.04);border:1px solid rgba(177,247,39,.2);border-radius:3px;padding:3.5rem;position:relative;overflow:hidden}
+.kit-inner::before{content:'KIT';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--fd);font-size:16rem;color:rgba(177,247,39,.025);line-height:1;pointer-events:none;user-select:none}
+.kit-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative}
+.kit-price{display:flex;align-items:baseline;gap:.75rem;margin-bottom:2rem}
+.kit-price-num{font-family:var(--fd);font-size:4rem;color:var(--accent);line-height:1}
+.kit-price-label{font-family:var(--fh);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+.kit-img{border-radius:3px;overflow:hidden;border:1px solid var(--border)}
+.kit-img img{width:100%;display:block;object-fit:cover;transition:transform .5s}
+.kit-img:hover img{transform:scale(1.03)}
+@media(max-width:900px){.kit-grid{grid-template-columns:1fr}.kit-inner{padding:2rem}.kit-img{display:none}}
 .pf-footer{background:#010C11;padding:4rem 4rem 2.5rem;border-top:1px solid var(--border);font-family:var(--fb)}
 .pf-footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:4rem;flex-wrap:wrap;padding-bottom:3rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
 .pf-footer-logo-img{height:36px;width:auto;display:block;margin-bottom:.65rem}
@@ -292,7 +312,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <section class="hero" id="inicio">
   <div class="hero-grid"></div>
   <div class="hero-panel">
-    <img src="/assets/img/hero-sport-ia.jpg" alt="Sport IA" loading="eager">
+    <img src="/assets/img/hero-sport-ia.jpg" alt="Agentes IA para entidades deportivas — Palferia.me" loading="eager">
   </div>
   <div class="hero-line"></div>
   <div class="hero-bg" aria-hidden="true">IA</div>
@@ -520,6 +540,29 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="blog-card-foot"><span>Mar 2026</span><span class="blog-card-read">Leer →</span></div>
       </div>
     </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     KIT IA DEPORTIVO
+══════════════════════════════════════════ -->
+<section class="sec">
+  <div class="kit-inner">
+    <div class="kit-grid">
+      <div>
+        <div class="sec-label r">Producto · Pago único</div>
+        <h2 class="sec-h2 r d1">Kit IA Deportivo<br><span class="hl">Listo en 48h.</span></h2>
+        <p class="sec-p r d2" style="margin-bottom:1.5rem">Agente IA configurado a medida, instalado y funcionando desde el primer día. Sin mensualidades. Un solo pago, todo incluido.</p>
+        <div class="kit-price r d3">
+          <span class="kit-price-num">1.000€</span>
+          <span class="kit-price-label">IVA incluido<br>Pago único</span>
+        </div>
+        <a href="/kit-web-scrolling.html" class="btn-p r d4">Ver el Kit completo →</a>
+      </div>
+      <div class="kit-img r d2">
+        <img src="/assets/img/palferiame-imge_08.png" alt="Kit IA Deportivo — agente IA para centros deportivos listo en 48 horas" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
 
