@@ -11,13 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy via rsync SSH
-        uses: burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -avzr --delete --exclude='.git*' --exclude='_assets/' --exclude='_content/' --exclude='_preview/' --exclude='assets/_capturas/'
-          path: ./
-          remote_path: /home/u454444055/domains/palferia.me/public_html/
-          remote_host: 147.93.93.199
-          remote_port: 65002
-          remote_user: u454444055
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 65002 -H 147.93.93.199 >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        run: |
+          rsync -avzr --delete \
+            --exclude='.git*' \
+            --exclude='_assets/' \
+            --exclude='_content/' \
+            --exclude='_preview/' \
+            --exclude='assets/_capturas/' \
+            -e "ssh -p 65002 -i ~/.ssh/id_ed25519" \
+            ./ \
+            u454444055@147.93.93.199:/home/u454444055/domains/palferia.me/public_html/
