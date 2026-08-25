@@ -7,6 +7,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.palferia\.me [NC]
 RewriteRule ^(.*)$ https://palferia.me/$1 [L,R=301]
 
+# ── URLs limpias ──
+RewriteRule ^deck$ /deck-4iCV.html [L]
+
 # ── 404 personalizado ──
 ErrorDocument 404 /404.html
 
