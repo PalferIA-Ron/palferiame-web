@@ -244,7 +244,16 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){.vert-grid{grid-template-columns:repeat(2,1fr)}.blog-grid{grid-template-columns:repeat(2,1fr)}.eco-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
-  .pf-nav{padding:1rem 1.5rem}.pf-nav-links{display:none}
+  .pf-nav{padding:1rem 1.5rem}
+  .pf-nav-links{display:none;position:fixed;inset:0;background:rgba(1,45,56,.98);backdrop-filter:blur(18px);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:200}
+  .pf-nav-links.open{display:flex}
+  .pf-nav-links a{font-size:1.6rem}
+  .pf-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;z-index:300;background:none;border:none;padding:.4rem}
+  .pf-burger span{display:block;width:24px;height:2px;background:var(--text);transition:transform .3s,opacity .3s}
+  .pf-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .pf-burger.open span:nth-child(2){opacity:0}
+  .pf-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .pf-nav-cta{display:none}
   .hero,.sec{padding:5rem 1.5rem}
   .hero-h1{font-size:clamp(3.5rem,12vw,7rem);max-width:100%}
   .hero-panel,.hero-bg,.hero-line{display:none}
@@ -303,14 +312,20 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <a href="/" class="pf-logo-link" aria-label="Palferia.me — Inicio">
     <img src="/assets/img/logo-fondooscuro1.png" alt="Palferia.me" class="pf-logo-img">
   </a>
-  <ul class="pf-nav-links">
-    <li><a href="#agentes" data-i18n="nav.agentes">Agentes</a></li>
-    <li><a href="#como-funciona" data-i18n="nav.como">Cómo funciona</a></li>
-    <li><a href="/about.html" data-i18n="nav.sobre">Sobre mí</a></li>
-    <li><a href="/blog.html" data-i18n="nav.blog">Blog</a></li>
+  <ul class="pf-nav-links" id="pf-nav-links">
+    <li><a href="#agentes" data-i18n="nav.agentes" onclick="closeMobileMenu()">Agentes</a></li>
+    <li><a href="#como-funciona" data-i18n="nav.como" onclick="closeMobileMenu()">Cómo funciona</a></li>
+    <li><a href="/about.html" data-i18n="nav.sobre" onclick="closeMobileMenu()">Sobre mí</a></li>
+    <li><a href="/blog.html" data-i18n="nav.blog" onclick="closeMobileMenu()">Blog</a></li>
+    <li><a href="#contacto" class="pf-nav-cta" style="display:inline-block;margin-top:1rem" data-i18n="nav.cta" onclick="closeMobileMenu()">Hablemos →</a></li>
   </ul>
-  <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
-  <a href="#contacto" class="pf-nav-cta" data-i18n="nav.cta">Hablemos →</a>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
+    <a href="#contacto" class="pf-nav-cta" data-i18n="nav.cta">Hablemos →</a>
+    <button class="pf-burger" id="pf-burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- ══════════════════════════════════════════
@@ -809,5 +824,19 @@ document.getElementById('contactForm').addEventListener('submit',async(e)=>{
 });
 </script>
 <script src="/assets/js/lang.js"></script>
+<script>
+var burger=document.getElementById('pf-burger');
+var navLinks=document.getElementById('pf-nav-links');
+function closeMobileMenu(){
+  burger.classList.remove('open');
+  navLinks.classList.remove('open');
+  document.body.style.overflow='';
+}
+burger.addEventListener('click',function(){
+  var isOpen=navLinks.classList.toggle('open');
+  burger.classList.toggle('open',isOpen);
+  document.body.style.overflow=isOpen?'hidden':'';
+});
+</script>
 </body>
 </html>
