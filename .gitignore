@@ -1,31 +1,27 @@
-# Internos — nunca al repo público
+# Archivos internos — no van a producción
+_assets/
 _content/
+_preview/
 _archivo/
-wp-partials/
-ejemplo/
+assets/_capturas/
+
+# Archivos de diseño y presentaciones
 personaje/
+*.ai
+*.pdf
+*.pptx
+*.ppt
+*.zip
 
-# Elementor partial (referencia interna)
+# Páginas internas / borradores
 home-onepage.html
-
-# Decks internos
+kit-web-scrolling.html
 deck-4iCV.html
-deck-4iCV.pptx
-deck\ comercial-4iCV.pdf
 
-# Setter files (precios internos)
-verticales/Setter*
-verticales/*.rtf
-verticales/carpeta\ sin\ título/
-
-# macOS
+# Sistema
 .DS_Store
+Thumbs.db
+*.log
 
-# Editor
-.vscode/
-.idea/
-
-# Secrets
-.env
-.env.local
-*.env
+# WordPress partials
+wp-partials/

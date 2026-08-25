@@ -1,0 +1,31 @@
+/* ── PALFERIA.ME · LANG SWITCHER ── */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: .15rem;
+  background: rgba(10,74,92,.5);
+  border: 1px solid #0A4A5C;
+  border-radius: 2px;
+  padding: .15rem;
+  flex-shrink: 0;
+}
+.lang-btn {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: .6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7BB5C4;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: .3rem .5rem;
+  border-radius: 1px;
+  transition: background .15s, color .15s;
+  line-height: 1;
+}
+.lang-btn:hover { color: #EFF8FF; }
+.lang-btn.active {
+  background: #B1F727;
+  color: #012D38;
+}

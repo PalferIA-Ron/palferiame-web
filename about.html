@@ -205,7 +205,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .pf-footer-eco a:hover{color:var(--accent)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-right{order:-1;max-width:400px;margin:0 auto}.contact-wrap{grid-template-columns:1fr}.milestone-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-right{order:1;max-width:400px;margin:0 auto}.contact-wrap{grid-template-columns:1fr}.milestone-grid{grid-template-columns:1fr}}
 @media(max-width:900px){
   .pf-nav{padding:1rem 1.5rem}.pf-nav-links{display:none}
   .pf-wa-float span.pf-wa-label{display:none}.pf-wa-float{padding:.9rem 1rem}
@@ -216,6 +216,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 }
 @media(max-width:600px){.hero-name{font-size:3.5rem}.edu-grid{grid-template-columns:1fr}.milestone-grid{grid-template-columns:1fr}}
   </style>
+  <link rel="stylesheet" href="/assets/js/lang-styles.css">
 </head>
 <body>
 
@@ -733,5 +734,6 @@ document.getElementById('cf-submit').addEventListener('click',async function(){
   setTimeout(function(){window.location.href='https://palferia.me';},2500);
 });
 </script>
+<script src="/assets/js/lang.js"></script>
 </body>
 </html>

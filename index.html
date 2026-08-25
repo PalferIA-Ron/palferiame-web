@@ -15,6 +15,7 @@
   <meta name="twitter:title" content="Palferia.me — Agentes IA para el sport business">
   <meta name="twitter:description" content="Agentes IA especializados para academias, clubes, eventos, federaciones, turismo y patrocinios deportivos. Automatiza atención, captación y fidelización 24/7.">
   <meta name="twitter:image" content="https://palferia.me/assets/img/hero-sport-ia.jpg">
+  <link rel="stylesheet" href="/assets/js/lang-styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
@@ -210,16 +211,21 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 /* ── FOOTER ── */
 /* ── KIT ── */
-.kit-inner{background:rgba(177,247,39,.04);border:1px solid rgba(177,247,39,.2);border-radius:3px;padding:3.5rem;position:relative;overflow:hidden}
-.kit-inner::before{content:'KIT';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--fd);font-size:16rem;color:rgba(177,247,39,.025);line-height:1;pointer-events:none;user-select:none}
-.kit-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative}
+.kit-sec{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center;justify-content:flex-end;padding:7rem 4rem}
+.kit-panel{position:absolute;left:0;top:0;bottom:0;width:62%;overflow:hidden;pointer-events:none;clip-path:polygon(0% 0%,86% 0%,100% 100%,0% 100%)}
+.kit-panel img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.6;mix-blend-mode:luminosity;display:block}
+.kit-panel::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,45,56,.1) 0%,transparent 35%,rgba(1,45,56,.75) 72%,var(--deep) 100%)}
+.kit-line{position:absolute;top:0;bottom:0;left:59%;width:3px;background:linear-gradient(180deg,transparent 0%,var(--accent) 20%,var(--accent) 80%,transparent 100%);transform:skewX(-4deg);pointer-events:none}
+.kit-text{position:relative;z-index:2;width:38%;max-width:460px}
 .kit-price{display:flex;align-items:baseline;gap:.75rem;margin-bottom:2rem}
 .kit-price-num{font-family:var(--fd);font-size:4rem;color:var(--accent);line-height:1}
 .kit-price-label{font-family:var(--fh);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5}
-.kit-img{border-radius:3px;overflow:hidden;border:1px solid var(--border)}
-.kit-img img{width:100%;display:block;object-fit:cover;transition:transform .5s}
-.kit-img:hover img{transform:scale(1.03)}
-@media(max-width:900px){.kit-grid{grid-template-columns:1fr}.kit-inner{padding:2rem}.kit-img{display:none}}
+@media(max-width:900px){
+  .kit-sec{padding:5rem 1.5rem;justify-content:flex-start;min-height:auto}
+  .kit-panel{display:none}
+  .kit-line{display:none}
+  .kit-text{width:100%;max-width:100%}
+}
 .pf-footer{background:#010C11;padding:4rem 4rem 2.5rem;border-top:1px solid var(--border);font-family:var(--fb)}
 .pf-footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:4rem;flex-wrap:wrap;padding-bottom:3rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
 .pf-footer-logo-img{height:36px;width:auto;display:block;margin-bottom:.65rem}
@@ -298,12 +304,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <img src="/assets/img/Logo-fondooscuro1.png" alt="Palferia.me" class="pf-logo-img">
   </a>
   <ul class="pf-nav-links">
-    <li><a href="#agentes">Agentes</a></li>
-    <li><a href="#como-funciona">Cómo funciona</a></li>
-    <li><a href="/about.html">Sobre mí</a></li>
-    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="#agentes" data-i18n="nav.agentes">Agentes</a></li>
+    <li><a href="#como-funciona" data-i18n="nav.como">Cómo funciona</a></li>
+    <li><a href="/about.html" data-i18n="nav.sobre">Sobre mí</a></li>
+    <li><a href="/blog.html" data-i18n="nav.blog">Blog</a></li>
   </ul>
-  <a href="#contacto" class="pf-nav-cta">Hablemos →</a>
+  <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
+  <a href="#contacto" class="pf-nav-cta" data-i18n="nav.cta">Hablemos →</a>
 </nav>
 
 <!-- ══════════════════════════════════════════
@@ -319,7 +326,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
   <div class="hero-eyebrow">
     <span class="hero-dot"></span>
-    <span class="hero-eyebrow-text">Agentes IA para sport business · Valencia 2026</span>
+    <span class="hero-eyebrow-text" data-i18n="home.hero.badge">Agentes IA para sport business · Valencia 2026</span>
   </div>
 
   <h1 class="hero-h1">
@@ -328,14 +335,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <span class="stroke">deportiva</span>
   </h1>
 
-  <p class="hero-sub">
+  <p class="hero-sub" data-i18n="home.hero.sub">
     Automatiza atención al cliente, captación y fidelización con IA que entiende el deporte.<br>
     <strong>24/7. Sin perder leads. Sin perder tiempo.</strong>
   </p>
 
   <div class="hero-actions">
-    <a href="#contacto" class="btn-p">Solicitar sesión estratégica →</a>
-    <a href="#agentes" class="btn-g">Ver agentes IA</a>
+    <a href="#contacto" class="btn-p" data-i18n="home.contact.submit">Solicitar sesión estratégica →</a>
+    <a href="#agentes" class="btn-g" data-i18n="home.hero.cta1">Ver agentes →</a>
   </div>
 
   <div class="hero-stats">
@@ -489,6 +496,26 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </section>
 
 <!-- ══════════════════════════════════════════
+     KIT IA DEPORTIVO
+══════════════════════════════════════════ -->
+<section class="kit-sec">
+  <div class="kit-panel">
+    <img src="/assets/img/palferiame-imge_08.png" alt="Kit IA Deportivo" loading="lazy">
+  </div>
+  <div class="kit-line"></div>
+  <div class="kit-text">
+    <div class="sec-label r">Producto · Pago único</div>
+    <h2 class="sec-h2 r d1">Kit IA Deportivo<br><span class="hl">Listo en 72h.</span></h2>
+    <p class="sec-p r d2" style="margin-bottom:1.5rem">Agente IA configurado con los datos de tu centro, instalado y entrenado contigo. Sin mensualidades. Un solo pago, todo incluido.</p>
+    <div class="kit-price r d3">
+      <span class="kit-price-num">1.000€</span>
+      <span class="kit-price-label">IVA incluido<br>Pago único</span>
+    </div>
+    <a href="/ia-SportCenter.html" class="btn-p r d4">Ver el Kit completo →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
      BLOG
 ══════════════════════════════════════════ -->
 <section class="sec" id="blog">
@@ -540,29 +567,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="blog-card-foot"><span>Mar 2026</span><span class="blog-card-read">Leer →</span></div>
       </div>
     </a>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     KIT IA DEPORTIVO
-══════════════════════════════════════════ -->
-<section class="sec">
-  <div class="kit-inner">
-    <div class="kit-grid">
-      <div>
-        <div class="sec-label r">Producto · Pago único</div>
-        <h2 class="sec-h2 r d1">Kit IA Deportivo<br><span class="hl">Listo en 48h.</span></h2>
-        <p class="sec-p r d2" style="margin-bottom:1.5rem">Agente IA configurado a medida, instalado y funcionando desde el primer día. Sin mensualidades. Un solo pago, todo incluido.</p>
-        <div class="kit-price r d3">
-          <span class="kit-price-num">1.000€</span>
-          <span class="kit-price-label">IVA incluido<br>Pago único</span>
-        </div>
-        <a href="/kit-web-scrolling.html" class="btn-p r d4">Ver el Kit completo →</a>
-      </div>
-      <div class="kit-img r d2">
-        <img src="/assets/img/palferiame-imge_08.png" alt="Kit IA Deportivo — agente IA para centros deportivos listo en 48 horas" loading="lazy">
-      </div>
-    </div>
   </div>
 </section>
 
@@ -804,5 +808,6 @@ document.getElementById('contactForm').addEventListener('submit',async(e)=>{
   setTimeout(function(){window.location.href='https://palferia.me';},2500);
 });
 </script>
+<script src="/assets/js/lang.js"></script>
 </body>
 </html>

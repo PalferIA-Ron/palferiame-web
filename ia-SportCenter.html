@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kit IA Deportivo — Automatización lista en 48h · Palferia.me</title>
   <meta name="description" content="Agente IA configurado, instalado y en marcha en 48 horas para tu centro deportivo. Pago único 1.000€ IVA incluido.">
-  <link rel="canonical" href="https://palferia.me/kit-web-scrolling.html">
+  <link rel="canonical" href="https://palferia.me/ia-SportCenter.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kit IA Deportivo — Automatización lista en 48h · Palferia.me">
   <meta property="og:description" content="Agente IA configurado, instalado y en marcha en 48 horas para tu centro deportivo. Pago único 1.000€ IVA incluido.">
   <meta property="og:image" content="https://palferia.me/assets/img/palferiame-imge_01.jpg">
-  <meta property="og:url" content="https://palferia.me/kit-web-scrolling.html">
+  <meta property="og:url" content="https://palferia.me/ia-SportCenter.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kit IA Deportivo — Automatización lista en 48h · Palferia.me">
   <meta name="twitter:description" content="Agente IA configurado, instalado y en marcha en 48 horas para tu centro deportivo. Pago único 1.000€ IVA incluido.">
   <meta name="twitter:image" content="https://palferia.me/assets/img/palferiame-imge_01.jpg">
+  <link rel="stylesheet" href="/assets/js/lang-styles.css">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -41,13 +42,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .lp-cta-top:hover{background:var(--accentd)}
 
 /* ── HERO ── */
-.hero{min-height:90vh;padding:6rem 4rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.15;pointer-events:none}
-.hero-img{position:absolute;right:0;top:0;bottom:0;width:48%;overflow:hidden;pointer-events:none}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 0%,rgba(1,45,56,.6) 45%,transparent 100%);z-index:1}
-.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 15%,transparent 85%,var(--deep) 100%);z-index:1}
-.hero-inner{position:relative;max-width:600px}
+.hero{min-height:100vh;padding:4rem 4rem 5rem;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-bg{position:absolute;left:0;top:0;bottom:0;width:58%;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;filter:saturate(.85);transform:scale(1.02)}
+.hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 12%,transparent 82%,var(--deep) 100%);z-index:1}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,45,56,.15) 0%,transparent 35%,rgba(1,45,56,.7) 72%,var(--deep) 100%);z-index:1}
+.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.08;pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:520px;width:44%}
 .hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:rgba(177,247,39,.07);border:1px solid rgba(177,247,39,.2);border-radius:2px;padding:.4rem 1rem;margin-bottom:1.5rem;opacity:0;animation:up .6s ease .1s forwards}
 .hero-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s ease infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
@@ -102,6 +103,29 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .vs-img:first-child{aspect-ratio:3/5}
 .vs-img:last-child{aspect-ratio:3/5}
 
+/* ── COMO FUNCIONA WATERMARK ── */
+.sec-proceso{position:relative;overflow:hidden}
+.sec-proceso::before{content:'';position:absolute;inset:0;background:url('/assets/img/palferiame-imge_07.jpg') center/cover no-repeat;opacity:.4;z-index:0}
+.sec-proceso > *{position:relative;z-index:1}
+
+/* ── CARRUSEL ── */
+.carousel{position:relative;overflow:hidden;width:100%;aspect-ratio:16/7;background:var(--deep)}
+.carousel-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.carousel-slide{flex:0 0 100%;height:100%;overflow:hidden}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.carousel-dots{display:flex;justify-content:center;gap:.6rem;padding:1rem 0;background:var(--deep)}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:background .2s,transform .2s;padding:0}
+.carousel-dot.active{background:var(--accent);transform:scale(1.2)}
+.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(1,45,56,.7);border:1px solid var(--border);color:var(--text);font-family:var(--fd);font-size:1.2rem;width:44px;height:44px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;z-index:10}
+.carousel-prev{left:1rem}.carousel-next{right:1rem}
+.carousel-prev:hover,.carousel-next:hover{background:var(--accent);color:var(--deep);border-color:var(--accent)}
+.carousel-slide{position:relative}
+.carousel-caption{position:absolute;bottom:0;left:0;right:0;padding:2rem 2.5rem;background:linear-gradient(0deg,rgba(1,45,56,.92) 0%,rgba(1,45,56,.5) 60%,transparent 100%);z-index:2}
+.carousel-caption-label{font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.carousel-caption-title{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,3rem);line-height:.95;color:var(--text);margin-bottom:1rem}
+.carousel-caption-cta{display:inline-flex;align-items:center;font-family:var(--fh);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.55rem 1.3rem;border-radius:2px;text-decoration:none;transition:background .2s}
+.carousel-caption-cta:hover{background:var(--accentd)}
+
 /* ── PROCESO ── */
 .process-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden}
 .p-step{background:var(--deep);padding:3rem 2.5rem;position:relative}
@@ -113,9 +137,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .p-time{display:inline-flex;font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--deep);background:var(--accent);padding:.2rem .65rem;border-radius:2px;margin-top:.85rem}
 
 /* ── SOPORTE ── */
-.soporte-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.soporte-img{border-radius:3px;overflow:hidden;border:1px solid var(--border)}
-.soporte-img img{width:100%;display:block;object-fit:cover}
+.soporte-sec{position:relative;overflow:hidden;min-height:520px}
+.soporte-bg{position:absolute;right:0;top:0;bottom:0;width:48%;z-index:0;overflow:hidden}
+.soporte-bg img{width:100%;height:100%;object-fit:cover;object-position:left center;display:block;filter:saturate(.85);transform:scale(1.02)}
+.soporte-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 12%,transparent 82%,var(--deep) 100%);z-index:1}
+.soporte-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 0%,rgba(1,45,56,.7) 28%,transparent 65%);z-index:1}
+.soporte-content{position:relative;z-index:1;max-width:52%}
 .soporte-list{list-style:none;display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem}
 .soporte-list li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--muted);line-height:1.6}
 .soporte-list li::before{content:'✓';color:var(--accent);font-family:var(--fh);font-weight:700;font-size:1rem;flex-shrink:0;margin-top:.05rem}
@@ -183,19 +210,27 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 @media(max-width:1100px){.inc-grid{grid-template-columns:1fr 1fr}.precio-wrap{grid-template-columns:1fr}}
 @media(max-width:900px){
   .lp-header{padding:1rem 1.5rem}
-  .hero{padding:5rem 1.5rem 4rem;min-height:auto}
-  .hero-img{width:100%;height:300px;position:relative;margin-bottom:2rem}
-  .hero-img::before{background:linear-gradient(180deg,var(--deep) 0%,transparent 30%,transparent 70%,var(--deep) 100%)}
-  .hero{flex-direction:column}
+  .hero-slide{padding:2rem 1.5rem 5rem;align-items:stretch;min-height:100svh}
+  .hero-bg{width:100%;left:0;right:0}
+  .hero-bg img{filter:blur(4px) saturate(.6);transform:scale(1.08);object-position:center top}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(1,45,56,.4) 0%,rgba(1,45,56,.92) 60%,var(--deep) 100%)}
+  .hero-inner{max-width:100%;width:100%}
+  .hero-arr{display:none}
+  .soporte-bg{width:100%;right:0;left:0;opacity:.15}
+  .soporte-bg::after{background:linear-gradient(180deg,var(--deep) 0%,rgba(1,45,56,.6) 30%,rgba(1,45,56,.6) 70%,var(--deep) 100%)}
+  .soporte-content{max-width:100%}
   .sec{padding:5rem 1.5rem}
-  .pain-grid,.inc-grid,.process-row,.visual-strip{grid-template-columns:1fr}
-  .soporte-wrap{grid-template-columns:1fr}
+  .pain-grid,.inc-grid,.process-row{grid-template-columns:1fr}
+  .carousel{aspect-ratio:4/3}
+  .soporte-wrap{grid-template-columns:1fr;position:relative;overflow:hidden}
+  .soporte-img{position:absolute;inset:0;opacity:.12;border:none;border-radius:0;z-index:0}
+  .soporte-img img{width:100%;height:100%;object-fit:cover}
+  .soporte-wrap > div:first-child{position:relative;z-index:1}
   .precio-wrap{grid-template-columns:1fr}
   .cta-final{padding:5rem 1.5rem}
-  .visual-strip{grid-template-columns:1fr 1fr}
-  .vs-img,.vs-img:first-child,.vs-img:last-child{aspect-ratio:1/1}
+  .carousel-caption-title{font-size:1.6rem}
 }
-@media(max-width:600px){.wa-float span{display:none}.wa-float{padding:.9rem 1rem}.hero-h1{font-size:3.5rem}.inc-grid{grid-template-columns:1fr}.visual-strip{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.wa-float span{display:none}.wa-float{padding:.9rem 1rem}.hero-h1{font-size:3.5rem}.inc-grid{grid-template-columns:1fr}.carousel{aspect-ratio:3/4}.carousel-caption{padding:1.25rem 1.5rem}}
   </style>
 </head>
 <body>
@@ -212,36 +247,36 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <a href="https://palferia.me" class="lp-logo" aria-label="Palferia.me">
     <img src="/assets/img/Logo-fondooscuro1.png" alt="Palferia.me">
   </a>
-  <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="lp-cta-top">Comprar ahora — 1.000€ →</a>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
+    <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="lp-cta-top" data-i18n="kit.hero.cta1">Comprar ahora — 1.000€ →</a>
+  </div>
 </header>
 
 <!-- ══════════════════════════════════════════
      HERO
 ══════════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-img">
+  <div class="hero-bg">
     <img src="/assets/img/palferiame-imge_01.jpg" alt="Kit IA Deportivo" loading="eager">
   </div>
+  <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-badge">
-      <span class="hero-dot"></span>
-      Kit IA Deportivo · Pago único
-    </div>
-    <h1 class="hero-h1">TU CENTRO<br>DEPORTIVO<br>EN <span class="hl">PILOTO<br>AUTOMÁTICO.</span><br>EN 48H.</h1>
+    <div class="hero-badge"><span class="hero-dot"></span><span data-i18n="kit.badge">Kit IA Deportivo · Pago único</span></div>
+    <h1 class="hero-h1">TU CENTRO DEPORTIVO<br>EN PILOTO AUTOMÁTICO<br><span class="hl">72 HORAS</span></h1>
     <p class="hero-sub">
-      Agente IA configurado a medida, instalado y funcionando desde el primer día.
-      <strong>Sin mensualidades. Sin sorpresas. Sin curva de aprendizaje.</strong>
+      <span data-i18n="kit.hero.sub">Agente IA configurado a medida, instalado y funcionando desde el primer día.</span>
+      <strong data-i18n="kit.hero.strong"> Sin mensualidades. Sin sorpresas. Sin curva de aprendizaje.</strong>
     </p>
     <div class="hero-price">
       <span class="price-num">1.000€</span>
-      <span class="price-label">IVA incluido<br>pago único</span>
+      <span class="price-label" data-i18n="kit.price.label">IVA incluido<br>pago único</span>
     </div>
     <div class="hero-actions">
-      <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy">Quiero el Kit →</a>
-      <a href="#incluye" class="btn-scroll">¿Qué incluye?</a>
+      <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy" data-i18n="kit.hero.cta1">Quiero el Kit →</a>
+      <a href="#incluye" class="btn-scroll" data-i18n="kit.hero.cta2">¿Qué incluye?</a>
     </div>
-    <p class="hero-note">Stripe · Bizum disponible · Confirmación en menos de 24h</p>
+    <p class="hero-note" data-i18n="kit.hero.note">Stripe · Bizum disponible · Confirmación en menos de 24h</p>
   </div>
 </section>
 
@@ -250,8 +285,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 ══════════════════════════════════════════ -->
 <section class="sec">
   <div class="sec-label r">El problema real</div>
-  <h2 class="sec-h2 r d1">Gestionas un centro deportivo.<br><span class="hl">No una centralita de 24h.</span></h2>
-  <p class="sec-p r d2">Pero eso es lo que el mercado exige. Respuestas inmediatas, seguimiento constante, cero errores. Con tu equipo actual es imposible — a no ser que duermas con el teléfono en la mano.</p>
+  <h2 class="sec-h2 r d1">Tu equipo no puede<br><span class="hl">estar disponible 24h.</span><br>Los leads sí se van.</h2>
+  <p class="sec-p r d2">Cada consulta sin respuesta es un alumno que se va a la competencia. Tu equipo tiene límites — el agente IA no tiene horario, no se cansa y no deja ningún lead sin contestar.</p>
   <div class="pain-grid r d3">
     <div class="pain-card">
       <div class="pain-icon">💬</div>
@@ -281,43 +316,43 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 ══════════════════════════════════════════ -->
 <section class="sec sec-alt" id="incluye">
   <div class="sec-label r">Qué incluye</div>
-  <h2 class="sec-h2 r d1">Todo lo que necesitas.<br><span class="hl">Listo para usar.</span></h2>
-  <p class="sec-p r d2">No te vendemos una herramienta que tienes que aprender a configurar. Te entregamos el sistema funcionando desde el día 1.</p>
+  <h2 class="sec-h2 r d1">Todo lo que necesitas.<br><span class="hl">Sin sorpresas.</span></h2>
+  <p class="sec-p r d2">Configuramos el agente con la información de tu centro. En 72h después de la reunión de instalación está activo y entrenado contigo.</p>
   <div class="inc-grid">
     <div class="inc-card r d1">
       <div class="inc-num">01</div>
       <span class="inc-ico">🤖</span>
       <div class="inc-title">Agente IA configurado</div>
-      <div class="inc-desc">Entrenado con la información de tu centro — horarios, precios, servicios, FAQs. Responde como si fuera alguien de tu equipo, en tu tono, con tus datos.</div>
-      <span class="inc-tag">✓ A medida</span>
+      <div class="inc-desc">El agente se entrega conectado con la API y cargado con los datos de tu centro — horarios, precios, servicios y FAQs. Responde en tu tono desde el primer día.</div>
+      <span class="inc-tag">✓ Con tus datos</span>
     </div>
     <div class="inc-card r d2">
       <div class="inc-num">02</div>
       <span class="inc-ico">⚙️</span>
       <div class="inc-title">Instalación completa</div>
-      <div class="inc-desc">Nosotros hacemos toda la configuración técnica. Conexión con WhatsApp Business, integración con tu web y activación de los flujos de conversación automáticos.</div>
+      <div class="inc-desc">Configuración técnica completa: conexión con WhatsApp Business, integración con tu web y activación de los flujos de conversación. Sin intervención tuya.</div>
       <span class="inc-tag">✓ Sin intervención tuya</span>
     </div>
     <div class="inc-card r d3">
       <div class="inc-num">03</div>
       <span class="inc-ico">🚀</span>
-      <div class="inc-title">Puesta en marcha en 48h</div>
-      <div class="inc-desc">Desde que confirmas el pago hasta que el agente está activo: 48 horas. No semanas, no meses. El primer lead respondido automáticamente en dos días.</div>
-      <span class="inc-tag">✓ 48h garantizadas</span>
+      <div class="inc-title">72h de entrenamiento conjunto</div>
+      <div class="inc-desc">Tras la reunión de instalación, tienes 72h de entrenamiento real con tu centro — ajustamos respuestas, flujos y tono hasta que el agente funcione como necesitas.</div>
+      <span class="inc-tag">✓ 72h contigo</span>
     </div>
     <div class="inc-card r d1">
       <div class="inc-num">04</div>
       <span class="inc-ico">📘</span>
       <div class="inc-title">Manual de uso completo</div>
-      <div class="inc-desc">Documento detallado con todo lo que necesitas saber: cómo consultar conversaciones, cómo actualizar información del agente, cómo interpretar los datos.</div>
+      <div class="inc-desc">Documento detallado en español con todo lo que necesitas: cómo consultar conversaciones, cómo actualizar la información del agente y cómo interpretar los datos.</div>
       <span class="inc-tag">✓ En español</span>
     </div>
     <div class="inc-card r d2">
       <div class="inc-num">05</div>
       <span class="inc-ico">🔧</span>
-      <div class="inc-title">3 soportes técnicos</div>
-      <div class="inc-desc">Tres sesiones de soporte directo con Ronald — para resolver dudas, ajustar el comportamiento del agente o añadir nuevos flujos de conversación según crezca tu centro.</div>
-      <span class="inc-tag">✓ Soporte real</span>
+      <div class="inc-title">3 consultas de soporte</div>
+      <div class="inc-desc">Tres consultas por email para resolver dudas puntuales sobre el funcionamiento del agente. No incluye nuevos desarrollos ni flujos adicionales. Consultas extra a 30€/ud.</div>
+      <span class="inc-tag">✓ Soporte por email</span>
     </div>
     <div class="inc-card r d3" style="background:rgba(177,247,39,.03);border-color:rgba(177,247,39,.2)">
       <div class="inc-num">+</div>
@@ -330,27 +365,81 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </section>
 
 <!-- ══════════════════════════════════════════
-     GALERÍA VISUAL
+     CARRUSEL DE VERTICALES
 ══════════════════════════════════════════ -->
-<div class="visual-strip">
-  <div class="vs-img">
-    <img src="/assets/img/palferiame-imge_04.jpg" alt="Deporte y tecnología" loading="lazy">
+<div class="carousel" id="vertCarousel">
+  <div class="carousel-track" id="vertTrack">
+    <!-- 1: Academias -->
+    <div class="carousel-slide">
+      <img src="/assets/img/hero-academias.jpg" alt="Academias deportivas" loading="lazy">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Academia Agent</div>
+        <div class="carousel-caption-title">Academias</div>
+        <a href="/verticales/vertical-academias.html" class="carousel-caption-cta">Ver agente →</a>
+      </div>
+    </div>
+    <!-- 2: Clubes -->
+    <div class="carousel-slide">
+      <img src="/assets/img/hero-clubes.jpg" alt="Clubes deportivos" loading="lazy">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Club Agent</div>
+        <div class="carousel-caption-title">Clubes</div>
+        <a href="/verticales/vertical-clubes.html" class="carousel-caption-cta">Ver agente →</a>
+      </div>
+    </div>
+    <!-- 3: Eventos -->
+    <div class="carousel-slide">
+      <img src="/assets/img/hero-eventos.jpg" alt="Eventos deportivos" loading="lazy">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Event Agent</div>
+        <div class="carousel-caption-title">Eventos</div>
+        <a href="/verticales/vertical-eventos.html" class="carousel-caption-cta">Ver agente →</a>
+      </div>
+    </div>
+    <!-- 4: Federaciones -->
+    <div class="carousel-slide">
+      <img src="/assets/img/hero-federaciones.jpg" alt="Federaciones deportivas" loading="lazy">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Fed Agent</div>
+        <div class="carousel-caption-title">Federaciones</div>
+        <a href="/verticales/vertical-federaciones.html" class="carousel-caption-cta">Ver agente →</a>
+      </div>
+    </div>
+    <!-- 5: Turismo deportivo -->
+    <div class="carousel-slide">
+      <img src="/assets/img/hero-turismo.jpg" alt="Turismo deportivo" loading="lazy">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Stay Sport Agent</div>
+        <div class="carousel-caption-title">Turismo deportivo</div>
+        <a href="/verticales/vertical-turismo.html" class="carousel-caption-cta">Ver agente →</a>
+      </div>
+    </div>
+    <!-- 6: Patrocinios -->
+    <div class="carousel-slide">
+      <img src="/assets/img/hero-patrocinios.jpg" alt="Patrocinios deportivos" loading="lazy">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Sponsor Agent</div>
+        <div class="carousel-caption-title">Patrocinios</div>
+        <a href="/verticales/vertical-patrocinios.html" class="carousel-caption-cta">Ver agente →</a>
+      </div>
+    </div>
   </div>
-  <div class="vs-img">
-    <img src="/assets/img/palferiame-imge_07.jpg" alt="Centro deportivo" loading="lazy">
-  </div>
-  <div class="vs-img">
-    <img src="/assets/img/palferiame-imge_10.jpg" alt="Automatización deportiva" loading="lazy">
-  </div>
-  <div class="vs-img">
-    <img src="/assets/img/palferiame-imge_12.jpg" alt="Gestión inteligente" loading="lazy">
+  <button class="carousel-prev" id="vertPrev" aria-label="Anterior">‹</button>
+  <button class="carousel-next" id="vertNext" aria-label="Siguiente">›</button>
+  <div class="carousel-dots" id="vertDots">
+    <button class="carousel-dot active" data-s="0" aria-label="Slide 1"></button>
+    <button class="carousel-dot" data-s="1" aria-label="Slide 2"></button>
+    <button class="carousel-dot" data-s="2" aria-label="Slide 3"></button>
+    <button class="carousel-dot" data-s="3" aria-label="Slide 4"></button>
+    <button class="carousel-dot" data-s="4" aria-label="Slide 5"></button>
+    <button class="carousel-dot" data-s="5" aria-label="Slide 6"></button>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
      CÓMO FUNCIONA
 ══════════════════════════════════════════ -->
-<section class="sec sec-alt">
+<section class="sec sec-alt sec-proceso">
   <div class="sec-label r">Cómo funciona</div>
   <h2 class="sec-h2 r d1">Tres pasos.<br><span class="hl">Tú no haces nada.</span></h2>
   <p class="sec-p r d2">El proceso está diseñado para que no tengas que invertir tiempo en configuraciones. Nosotros hacemos el trabajo técnico.</p>
@@ -369,9 +458,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
     <div class="p-step">
       <div class="p-num">03</div>
-      <div class="p-name">El agente está activo</div>
-      <div class="p-desc">En 48h el agente está respondiendo leads, gestionando consultas y enviando reportes. Recibes el manual y tus 3 soportes disponibles.</div>
-      <span class="p-time">Día 2 — En marcha</span>
+      <div class="p-name">Agente activo y entrenado</div>
+      <div class="p-desc">En 72h tras la reunión de instalación el agente está activo, entrenado con tu centro y respondiendo leads reales. Recibes el manual y tus 3 consultas de soporte.</div>
+      <span class="p-time">72h — En marcha</span>
     </div>
   </div>
 </section>
@@ -379,22 +468,20 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <!-- ══════════════════════════════════════════
      SOPORTE
 ══════════════════════════════════════════ -->
-<section class="sec">
-  <div class="soporte-wrap">
-    <div>
-      <div class="sec-label r">Soporte técnico</div>
-      <h2 class="sec-h2 r d1">No te dejamos<br><span class="hl">solo.</span></h2>
-      <p class="sec-p r d2" style="margin-bottom:1rem">Incluyes 3 sesiones de soporte técnico directo. Úsalas cuando quieras — para afinar el agente, añadir nuevos flujos o resolver cualquier duda técnica.</p>
-      <ul class="soporte-list r d3">
-        <li>Sesión de revisión a los 7 días de activación — ajustes finos basados en las primeras conversaciones reales</li>
-        <li>Sesión de expansión — añadir nuevas respuestas, nuevos flujos o conectar con nuevos canales</li>
-        <li>Sesión de cierre — auditoría de resultados a los 30 días, próximos pasos</li>
-        <li>Acceso por WhatsApp para dudas puntuales entre sesiones</li>
-      </ul>
-    </div>
-    <div class="soporte-img r d2">
-      <img src="/assets/img/palferiame-imge_13.jpg" alt="Soporte técnico" loading="lazy">
-    </div>
+<section class="sec soporte-sec">
+  <div class="soporte-bg">
+    <img src="/assets/img/palferiame-imge_13.jpg" alt="Soporte técnico" loading="lazy">
+  </div>
+  <div class="soporte-content">
+    <div class="sec-label r">Soporte técnico</div>
+    <h2 class="sec-h2 r d1">Soporte técnico<br><span class="hl">cuando lo necesitas.</span></h2>
+    <p class="sec-p r d2" style="margin-bottom:1rem">El soporte incluido cubre dudas sobre el funcionamiento del agente. No es soporte personalizado conmigo — es atención técnica por email para que puedas resolver lo que surja.</p>
+    <ul class="soporte-list r d3">
+      <li>3 consultas por email incluidas — para dudas concretas sobre el agente</li>
+      <li>Respuesta en menos de 48h laborables</li>
+      <li>No incluye nuevos desarrollos, flujos adicionales ni integraciones nuevas</li>
+      <li>Consultas adicionales a 30€/ud. — sin compromiso de continuidad</li>
+    </ul>
   </div>
 </section>
 
@@ -412,7 +499,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <span class="para-chip">Escuelas de natación</span>
     <span class="para-chip">Eventos y carreras populares</span>
     <span class="para-chip">Federaciones deportivas</span>
-    <span class="para-chip">Alojamientos de turismo activo</span>
+
     <span class="para-chip">Gimnasios independientes</span>
     <span class="para-chip">Escuelas de artes marciales</span>
     <span class="para-chip">Centros de tenis y pádel</span>
@@ -433,18 +520,18 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="precio-val">1.000€</div>
         <div class="precio-iva">IVA incluido · Sin mensualidades</div>
         <ul class="precio-inc">
-          <li>Agente IA configurado a medida de tu centro</li>
+          <li>Agente IA configurado con los datos de tu centro</li>
           <li>Instalación técnica completa por nuestro equipo</li>
-          <li>Puesta en marcha garantizada en 48h</li>
+          <li>72h de entrenamiento conjunto tras la instalación</li>
+          <li>Agente activo y entrenado en 72h</li>
           <li>Manual de uso en español</li>
-          <li>3 sesiones de soporte técnico</li>
+          <li>3 consultas de soporte por email (adicionales a 30€)</li>
           <li>Checklist IA para centros deportivos</li>
-          <li>Acceso por WhatsApp entre sesiones</li>
         </ul>
         <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy-lg">Pagar con tarjeta — Stripe →</a>
         <div class="precio-garantia">
-          <div class="garantia-title">Garantía de activación</div>
-          <div class="garantia-text">Si en 48h el agente no está activo y funcionando, te devolvemos el 100% del importe sin preguntas.</div>
+          <div class="garantia-title">Compromiso claro</div>
+          <div class="garantia-text">En 72h tras la reunión de instalación el agente está activo y entrenado. Si no está funcionando en ese plazo, el soporte técnico necesario para dejarlo en marcha no tiene coste adicional.</div>
         </div>
         <div class="bizum-block">
           <div class="bizum-title">O paga por Bizum</div>
@@ -493,12 +580,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="faq-a">El agente se conecta principalmente a través de WhatsApp Business API, que es el canal de comunicación principal para la mayoría de centros deportivos. También puede integrarse con el formulario de contacto de tu web y con las herramientas de gestión más habituales (Glofox, Mindbody, Clupik, etc.) en función de tu configuración.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">¿Qué pasa cuando se acaban los 3 soportes?</div>
-      <div class="faq-a">Puedes contratar soportes adicionales a 150€/sesión, o pasar a un plan de mantenimiento mensual si tu centro crece y necesita actualizaciones frecuentes. No hay ninguna obligación de continuidad tras el Kit.</div>
+      <div class="faq-q">¿Qué pasa cuando se acaban las 3 consultas de soporte?</div>
+      <div class="faq-a">Puedes contratar consultas adicionales a 30€/ud. El soporte cubre dudas de funcionamiento — no incluye nuevos desarrollos ni flujos. Para cambios más profundos, contacta para presupuestar aparte. No hay ninguna obligación de continuidad tras el Kit.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">¿Cuánto tiempo me lleva poner en marcha el Kit?</div>
-      <div class="faq-a">Tu parte es rellenar un formulario de onboarding de aproximadamente 15 minutos con la información de tu centro. El resto lo hacemos nosotros. En 48h el agente está activo.</div>
+      <div class="faq-q">¿Cuánto tiempo tarda en estar el agente activo?</div>
+      <div class="faq-a">Tu parte es una reunión de instalación donde nos das la información de tu centro. A partir de ahí, en 72h el agente está activo y entrenado con tus datos, tu tono y tus FAQs.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">¿Puedo actualizar la información del agente después?</div>
@@ -516,7 +603,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 ══════════════════════════════════════════ -->
 <section class="cta-final">
   <div class="cta-bg">KIT</div>
-  <h2 class="r"><span class="hl">48 horas</span><br>y tu centro<br>en automático.</h2>
+  <h2 class="r"><span class="hl">72 horas</span><br>y tu centro<br>en automático.</h2>
   <p class="r d1">Un solo pago. Sin mensualidades. Sin curva de aprendizaje. El agente trabaja mientras tú entrenas, descansas o disfrutas.</p>
   <div class="cta-final-actions r d2">
     <a href="TU_STRIPE_PAYMENT_LINK" target="_blank" rel="noopener" class="btn-buy">Quiero el Kit — 1.000€ →</a>
@@ -536,6 +623,25 @@ document.querySelectorAll('.faq-q').forEach(q=>{
     if(!open)item.classList.add('open');
   });
 });
+
+/* ── CARRUSEL VERTICALES ── */
+(function(){
+  const track=document.getElementById('vertTrack');
+  const dots=document.querySelectorAll('#vertDots .carousel-dot');
+  const total=6;
+  let cur=0,timer;
+  function go(n){
+    cur=(n+total)%total;
+    track.style.transform=`translateX(-${cur*100}%)`;
+    dots.forEach((d,i)=>d.classList.toggle('active',i===cur));
+  }
+  document.getElementById('vertPrev').addEventListener('click',()=>{clearInterval(timer);go(cur-1);start()});
+  document.getElementById('vertNext').addEventListener('click',()=>{clearInterval(timer);go(cur+1);start()});
+  dots.forEach(d=>d.addEventListener('click',()=>{clearInterval(timer);go(+d.dataset.s);start()}));
+  function start(){timer=setInterval(()=>go(cur+1),6000)}
+  start();
+})();
 </script>
+<script src="/assets/js/lang.js"></script>
 </body>
 </html>

@@ -149,6 +149,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,transparent 18%,transparent 82%,var(--deep) 100%);z-index:1}
 @media(max-width:900px){.hero-img{display:none}}
 </style>
+  <link rel="stylesheet" href="/assets/js/lang-styles.css">
 </head>
 <body>
 
@@ -161,6 +162,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 <header class="lp-header">
   <a href="https://palferia.me" class="logo">PALFERIA<span>.</span>ME</a>
+  <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
 </header>
 
 <section class="hero">
@@ -562,5 +564,6 @@ document.getElementById('contactForm').addEventListener('submit',async(e)=>{
 });
 </script>
 
+<script src="/assets/js/lang.js"></script>
 </body>
 </html>
