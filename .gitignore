@@ -25,3 +25,13 @@ Thumbs.db
 # WordPress partials
 wp-partials/
 node_modules/
+
+# Credenciales y variables de entorno
+.env
+.env.*
+!.env.example
+config.js
+
+# Archivos de prompts/tareas con posible info sensible
+prompt-*.md
+assets/prompt-*.md
