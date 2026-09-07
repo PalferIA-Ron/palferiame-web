@@ -275,12 +275,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <!-- ── COOKIE BANNER ── -->
 <div id="cookie-banner">
   <p class="cookie-text">
-    Usamos cookies propias para analizar el tráfico y mejorar tu experiencia.
-    <a href="/politica-cookies.html">Política de cookies</a>
+    <span data-i18n="cookie.text">Usamos cookies propias para analizar el tráfico y mejorar tu experiencia.</span>
+    <a href="/politica-cookies.html" data-i18n="cookie.policylink">Política de cookies</a>
   </p>
   <div class="cookie-actions">
-    <a href="/politica-cookies.html" class="cookie-btn cookie-btn-link">Más info</a>
-    <button class="cookie-btn cookie-btn-accept" onclick="pfAcceptCookies()">Aceptar</button>
+    <a href="/politica-cookies.html" class="cookie-btn cookie-btn-link" data-i18n="cookie.moreinfo">Más info</a>
+    <button class="cookie-btn cookie-btn-accept" onclick="pfAcceptCookies()" data-i18n="cookie.accept">Aceptar</button>
   </div>
 </div>
 
@@ -346,18 +346,17 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
   <div class="hero-eyebrow">
     <span class="hero-dot"></span>
-    <span class="hero-eyebrow-text" data-i18n="home.hero.badge">Agentes IA para sport business · Valencia 2026</span>
+    <span class="hero-eyebrow-text" data-i18n="home.hero.badge">Agentes IA para entidades deportivas</span>
   </div>
 
-  <h1 class="hero-h1">
+  <h1 class="hero-h1" data-i18n="home.hero.h1">
     El <span class="hl">agente IA</span><br>
     para tu entidad<br>
     <span class="stroke">deportiva</span>
   </h1>
 
   <p class="hero-sub" data-i18n="home.hero.sub">
-    Automatiza atención al cliente, captación y fidelización con IA que entiende el deporte.<br>
-    <strong>24/7. Sin perder leads. Sin perder tiempo.</strong>
+    Agentes IA que gestionan leads, responden consultas y automatizan la comunicación de tu centro deportivo — sin perder el toque humano.
   </p>
 
   <div class="hero-actions">
@@ -366,10 +365,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
 
   <div class="hero-stats">
-    <div><div class="stat-n">+50</div><div class="stat-l">Entidades activas</div></div>
-    <div><div class="stat-n">24/7</div><div class="stat-l">Disponibilidad</div></div>
-    <div><div class="stat-n">6</div><div class="stat-l">Agentes especializados</div></div>
-    <div><div class="stat-n">-60%</div><div class="stat-l">Tiempo en gestión</div></div>
+    <div><div class="stat-n">+50</div><div class="stat-l" data-i18n="home.hero.stat1">Entidades activas</div></div>
+    <div><div class="stat-n">24/7</div><div class="stat-l" data-i18n="home.hero.stat2">Disponibilidad</div></div>
+    <div><div class="stat-n">6</div><div class="stat-l" data-i18n="home.hero.stat3">Agentes especializados</div></div>
+    <div><div class="stat-n">-60%</div><div class="stat-l" data-i18n="home.hero.stat4">Tiempo en gestión</div></div>
   </div>
 </section>
 
@@ -377,58 +376,58 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      AGENTES (VERTICALES)
 ══════════════════════════════════════════ -->
 <section class="sec sec-alt" id="agentes">
-  <div class="sec-label r">Soluciones por vertical</div>
-  <h2 class="sec-h2 r d1">6 <span class="hl">agentes</span><br>especializados</h2>
-  <p class="sec-p r d2">Cada agente está entrenado para tu tipo de entidad deportiva. No es un chatbot genérico — es un especialista en tu negocio.</p>
+  <div class="sec-label r" data-i18n="home.agentes.label">Soluciones por vertical</div>
+  <h2 class="sec-h2 r d1" data-i18n="home.agentes.h2">6 <span class="hl">agentes</span><br>especializados</h2>
+  <p class="sec-p r d2" data-i18n="home.agentes.sub">Cada agente está entrenado para tu tipo de entidad deportiva. No es un chatbot genérico — es un especialista en tu negocio.</p>
 
   <div class="vert-grid r d3">
     <a href="/verticales/vertical-academias.html" class="vert-card">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Academia Agent</div>
-      <div class="vert-name">Academias</div>
-      <div class="vert-desc">Gestiona inscripciones, horarios, pagos y seguimiento de alumnos de forma autónoma.</div>
-      <div class="vert-tags"><span class="vert-tag">Inscripciones</span><span class="vert-tag">WhatsApp</span><span class="vert-tag">Mindbody</span></div>
+      <div class="vert-name" data-i18n="home.vert.academia.name">Academias</div>
+      <div class="vert-desc" data-i18n="home.vert.academia.desc">Gestiona inscripciones, horarios, pagos y seguimiento de alumnos de forma autónoma.</div>
+      <div class="vert-tags"><span class="vert-tag" data-i18n="home.vert.academia.tag1">Inscripciones</span><span class="vert-tag">WhatsApp</span><span class="vert-tag">Mindbody</span></div>
       <span class="vert-arrow">→</span>
     </a>
     <a href="/verticales/vertical-clubes.html" class="vert-card">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Club Agent</div>
-      <div class="vert-name">Clubes</div>
-      <div class="vert-desc">Atención a socios, renovaciones, comunicación interna y captación de nuevos miembros.</div>
-      <div class="vert-tags"><span class="vert-tag">Socios</span><span class="vert-tag">Clupik</span><span class="vert-tag">CRM</span></div>
+      <div class="vert-name" data-i18n="home.vert.club.name">Clubes</div>
+      <div class="vert-desc" data-i18n="home.vert.club.desc">Atención a socios, renovaciones, comunicación interna y captación de nuevos miembros.</div>
+      <div class="vert-tags"><span class="vert-tag" data-i18n="home.vert.club.tag1">Socios</span><span class="vert-tag">Clupik</span><span class="vert-tag">CRM</span></div>
       <span class="vert-arrow">→</span>
     </a>
     <a href="/verticales/vertical-eventos.html" class="vert-card">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Event Agent</div>
-      <div class="vert-name">Eventos</div>
-      <div class="vert-desc">Inscripciones, acreditaciones, atención a participantes y comunicación pre/post evento.</div>
-      <div class="vert-tags"><span class="vert-tag">Registro</span><span class="vert-tag">SportMadness</span><span class="vert-tag">Ticketing</span></div>
+      <div class="vert-name" data-i18n="home.vert.evento.name">Eventos</div>
+      <div class="vert-desc" data-i18n="home.vert.evento.desc">Inscripciones, acreditaciones, atención a participantes y comunicación pre/post evento.</div>
+      <div class="vert-tags"><span class="vert-tag" data-i18n="home.vert.evento.tag1">Registro</span><span class="vert-tag">SportMadness</span><span class="vert-tag">Ticketing</span></div>
       <span class="vert-arrow">→</span>
     </a>
     <a href="/verticales/vertical-federaciones.html" class="vert-card">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Fed Agent</div>
-      <div class="vert-name">Federaciones</div>
-      <div class="vert-desc">Licencias, reglamentos, comunicación con clubs y atención a deportistas federados.</div>
-      <div class="vert-tags"><span class="vert-tag">Licencias</span><span class="vert-tag">Reglamentos</span><span class="vert-tag">Afiliados</span></div>
+      <div class="vert-name" data-i18n="home.vert.fed.name">Federaciones</div>
+      <div class="vert-desc" data-i18n="home.vert.fed.desc">Licencias, reglamentos, comunicación con clubs y atención a deportistas federados.</div>
+      <div class="vert-tags"><span class="vert-tag" data-i18n="home.vert.fed.tag1">Licencias</span><span class="vert-tag" data-i18n="home.vert.fed.tag2">Reglamentos</span><span class="vert-tag" data-i18n="home.vert.fed.tag3">Afiliados</span></div>
       <span class="vert-arrow">→</span>
     </a>
     <a href="/verticales/vertical-turismo.html" class="vert-card">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Stay Sport Agent</div>
-      <div class="vert-name">Turismo deportivo</div>
-      <div class="vert-desc">Paquetes de concentración, campus y turismo deportivo. Reservas y atención multiidioma.</div>
-      <div class="vert-tags"><span class="vert-tag">Reservas</span><span class="vert-tag">Multiidioma</span><span class="vert-tag">Campus</span></div>
+      <div class="vert-name" data-i18n="home.vert.turismo.name">Turismo deportivo</div>
+      <div class="vert-desc" data-i18n="home.vert.turismo.desc">Paquetes de concentración, campus y turismo deportivo. Reservas y atención multiidioma.</div>
+      <div class="vert-tags"><span class="vert-tag" data-i18n="home.vert.turismo.tag1">Reservas</span><span class="vert-tag" data-i18n="home.vert.turismo.tag2">Multiidioma</span><span class="vert-tag">Campus</span></div>
       <span class="vert-arrow">→</span>
     </a>
     <a href="/verticales/vertical-patrocinios.html" class="vert-card">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Sponsor Agent</div>
-      <div class="vert-name">Patrocinios</div>
-      <div class="vert-desc">Prospecta marcas, gestiona propuestas comerciales y hace seguimiento de sponsors activos.</div>
-      <div class="vert-tags"><span class="vert-tag">Prospección</span><span class="vert-tag">Propuestas</span><span class="vert-tag">CRM</span></div>
+      <div class="vert-name" data-i18n="home.vert.sponsor.name">Patrocinios</div>
+      <div class="vert-desc" data-i18n="home.vert.sponsor.desc">Prospecta marcas, gestiona propuestas comerciales y hace seguimiento de sponsors activos.</div>
+      <div class="vert-tags"><span class="vert-tag" data-i18n="home.vert.sponsor.tag1">Prospección</span><span class="vert-tag" data-i18n="home.vert.sponsor.tag2">Propuestas</span><span class="vert-tag">CRM</span></div>
       <span class="vert-arrow">→</span>
     </a>
     <div class="vert-card vert-custom">
       <div class="vert-agent"><span class="vert-agent-dot"></span>Custom Agent</div>
-      <div class="vert-name">Tu vertical</div>
-      <div class="vert-desc">¿Tienes un caso de uso específico? Construimos el agente a medida para tu operación.</div>
-      <a href="#contacto" class="btn-p" style="margin-top:1.5rem;display:inline-flex">Hablemos →</a>
+      <div class="vert-name" data-i18n="home.vert.custom.name">Tu vertical</div>
+      <div class="vert-desc" data-i18n="home.vert.custom.desc">¿Tienes un caso de uso específico? Construimos el agente a medida para tu operación.</div>
+      <a href="#contacto" class="btn-p" style="margin-top:1.5rem;display:inline-flex" data-i18n="home.vert.custom.cta">Hablemos →</a>
     </div>
   </div>
 </section>
@@ -437,45 +436,45 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      CÓMO FUNCIONA
 ══════════════════════════════════════════ -->
 <section class="sec" id="como-funciona">
-  <div class="sec-label r">Proceso</div>
-  <h2 class="sec-h2 r d1">En <span class="hl">3 pasos</span><br>tu agente está activo</h2>
-  <p class="sec-p r d2">Sin desarrollos complejos. Sin meses de integración. Tu agente funciona en semanas.</p>
+  <div class="sec-label r" data-i18n="home.how.label">Proceso</div>
+  <h2 class="sec-h2 r d1" data-i18n="home.how.h2">En <span class="hl">3 pasos</span><br>tu agente está activo</h2>
+  <p class="sec-p r d2" data-i18n="home.how.sub">Sin desarrollos complejos. Sin meses de integración. Tu agente funciona en semanas.</p>
 
   <div class="how-grid r d3">
     <div class="how-step" data-num="01">
       <div class="how-num">01</div>
-      <div class="how-name">Auditoría</div>
-      <div class="how-desc">Analizamos tu operación, tus canales y los flujos donde la IA puede impactar más rápido.</div>
+      <div class="how-name" data-i18n="home.how.s1.name">Auditoría</div>
+      <div class="how-desc" data-i18n="home.how.s1.desc">Analizamos tu operación, tus canales y los flujos donde la IA puede impactar más rápido.</div>
       <ul class="how-items">
-        <li>Mapeamos consultas repetitivas</li>
-        <li>Identificamos cuellos de botella</li>
-        <li>Definimos KPIs de éxito</li>
+        <li data-i18n="home.how.s1.li1">Mapeamos consultas repetitivas</li>
+        <li data-i18n="home.how.s1.li2">Identificamos cuellos de botella</li>
+        <li data-i18n="home.how.s1.li3">Definimos KPIs de éxito</li>
       </ul>
     </div>
     <div class="how-step" data-num="02">
       <div class="how-num">02</div>
-      <div class="how-name">Configuración</div>
-      <div class="how-desc">Entrenamos el agente con tu base de conocimiento, integramos tus herramientas y conectamos tus canales.</div>
+      <div class="how-name" data-i18n="home.how.s2.name">Configuración</div>
+      <div class="how-desc" data-i18n="home.how.s2.desc">Entrenamos el agente con tu base de conocimiento, integramos tus herramientas y conectamos tus canales.</div>
       <ul class="how-items">
-        <li>Base de conocimiento personalizada</li>
-        <li>Integración WhatsApp / Web / App</li>
-        <li>Conexión con tu software actual</li>
+        <li data-i18n="home.how.s2.li1">Base de conocimiento personalizada</li>
+        <li data-i18n="home.how.s2.li2">Integración WhatsApp / Web / App</li>
+        <li data-i18n="home.how.s2.li3">Conexión con tu software actual</li>
       </ul>
     </div>
     <div class="how-step" data-num="03">
       <div class="how-num">03</div>
-      <div class="how-name">Activación</div>
-      <div class="how-desc">Tu agente sale en vivo. Monitorizamos el rendimiento y optimizamos de forma continua.</div>
+      <div class="how-name" data-i18n="home.how.s3.name">Activación</div>
+      <div class="how-desc" data-i18n="home.how.s3.desc">Tu agente sale en vivo. Monitorizamos el rendimiento y optimizamos de forma continua.</div>
       <ul class="how-items">
-        <li>Go-live en semanas</li>
-        <li>Dashboard de conversaciones</li>
-        <li>Mejora continua mensual</li>
+        <li data-i18n="home.how.s3.li1">Go-live en semanas</li>
+        <li data-i18n="home.how.s3.li2">Dashboard de conversaciones</li>
+        <li data-i18n="home.how.s3.li3">Mejora continua mensual</li>
       </ul>
     </div>
   </div>
 
   <div class="r d4" style="margin-top:3rem">
-    <p class="sec-label" style="margin-bottom:1rem">Integraciones nativas</p>
+    <p class="sec-label" style="margin-bottom:1rem" data-i18n="home.how.integ.label">Integraciones nativas</p>
     <div class="integ-row">
       <span class="integ-chip">WhatsApp Business</span>
       <span class="integ-chip">Mindbody</span>
@@ -486,7 +485,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <span class="integ-chip">HubSpot</span>
       <span class="integ-chip">Mailchimp</span>
       <span class="integ-chip">Zapier / n8n</span>
-      <span class="integ-chip">API propia</span>
+      <span class="integ-chip" data-i18n="home.how.integ.api">API propia</span>
     </div>
   </div>
 </section>
@@ -498,19 +497,19 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="num-grid r">
     <div class="num-cell">
       <div class="num-v" data-target="50" data-suffix="+">0+</div>
-      <div class="num-l">Entidades deportivas activas</div>
+      <div class="num-l" data-i18n="home.num.1">Entidades deportivas activas</div>
     </div>
     <div class="num-cell">
       <div class="num-v">24/7</div>
-      <div class="num-l">Disponibilidad del agente</div>
+      <div class="num-l" data-i18n="home.num.2">Disponibilidad del agente</div>
     </div>
     <div class="num-cell">
       <div class="num-v" data-target="60" data-suffix="%">0%</div>
-      <div class="num-l">Menos tiempo en gestión</div>
+      <div class="num-l" data-i18n="home.num.3">Menos tiempo en gestión</div>
     </div>
     <div class="num-cell">
       <div class="num-v" data-target="3" data-suffix=" sem">0 sem</div>
-      <div class="num-l">Time-to-live medio</div>
+      <div class="num-l" data-i18n="home.num.4">Time-to-live medio</div>
     </div>
   </div>
 </section>
@@ -524,14 +523,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
   <div class="kit-line"></div>
   <div class="kit-text">
-    <div class="sec-label r">Producto · Pago único</div>
-    <h2 class="sec-h2 r d1">Kit IA Deportivo<br><span class="hl">Listo en 72h.</span></h2>
-    <p class="sec-p r d2" style="margin-bottom:1.5rem">Agente IA configurado con los datos de tu centro, instalado y entrenado contigo. Sin mensualidades. Un solo pago, todo incluido.</p>
+    <div class="sec-label r" data-i18n="home.kit.label">Producto · Pago único</div>
+    <h2 class="sec-h2 r d1" data-i18n="home.kit.h2">Kit IA Deportivo<br><span class="hl">Listo en 72h.</span></h2>
+    <p class="sec-p r d2" style="margin-bottom:1.5rem" data-i18n="home.kit.sub">Agente IA configurado con los datos de tu centro, instalado y entrenado contigo. Sin mensualidades. Un solo pago, todo incluido.</p>
     <div class="kit-price r d3">
       <span class="kit-price-num">1.000€</span>
-      <span class="kit-price-label">IVA incluido<br>Pago único</span>
+      <span class="kit-price-label" data-i18n="home.kit.price">IVA incluido<br>Pago único</span>
     </div>
-    <a href="/ia-SportCenter.html" class="btn-p r d4">Ver el Kit completo →</a>
+    <a href="/ia-SportCenter.html" class="btn-p r d4" data-i18n="home.kit.cta">Ver el Kit completo →</a>
   </div>
 </section>
 
@@ -541,10 +540,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <section class="sec" id="blog">
   <div class="blog-header">
     <div>
-      <div class="sec-label r">Conocimiento</div>
-      <h2 class="sec-h2 r d1">Recursos <span class="hl">sport IA</span></h2>
+      <div class="sec-label r" data-i18n="home.blog.label">Conocimiento</div>
+      <h2 class="sec-h2 r d1" data-i18n="home.blog.h2">Recursos <span class="hl">sport IA</span></h2>
     </div>
-    <a href="/blog.html" class="btn-g r d2">Ver todos →</a>
+    <a href="/blog.html" class="btn-g r d2" data-i18n="home.blog.cta">Ver todos →</a>
   </div>
 
   <div class="blog-grid">
@@ -555,10 +554,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="blog-card-src">palferia.me</span>
       </div>
       <div class="blog-card-body">
-        <div class="blog-card-tag">Caso de éxito</div>
-        <div class="blog-card-title">Cómo Grupo La Cueva redujo un 60% las consultas repetitivas</div>
-        <div class="blog-card-excerpt">Implementamos un agente IA para su academia de pádel. Resultado: menos carga para el equipo, más conversiones.</div>
-        <div class="blog-card-foot"><span>May 2026</span><span class="blog-card-read">Leer →</span></div>
+        <div class="blog-card-tag" data-i18n="home.blog.c1.tag">Caso de éxito</div>
+        <div class="blog-card-title" data-i18n="home.blog.c1.title">Cómo Grupo La Cueva redujo un 60% las consultas repetitivas</div>
+        <div class="blog-card-excerpt" data-i18n="home.blog.c1.excerpt">Implementamos un agente IA para su academia de pádel. Resultado: menos carga para el equipo, más conversiones.</div>
+        <div class="blog-card-foot"><span>May 2026</span><span class="blog-card-read" data-i18n="home.blog.c1.read">Leer →</span></div>
       </div>
     </a>
     <a href="/blog.html" class="blog-card r d2">
@@ -568,10 +567,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="blog-card-src">palferia.me</span>
       </div>
       <div class="blog-card-body">
-        <div class="blog-card-tag">Estrategia</div>
-        <div class="blog-card-title">5 flujos que todo club deportivo debería automatizar ya</div>
-        <div class="blog-card-excerpt">Renovaciones de socios, confirmaciones de clase, recordatorios de pago — todo puede funcionar solo.</div>
-        <div class="blog-card-foot"><span>Abr 2026</span><span class="blog-card-read">Leer →</span></div>
+        <div class="blog-card-tag" data-i18n="home.blog.c2.tag">Estrategia</div>
+        <div class="blog-card-title" data-i18n="home.blog.c2.title">5 flujos que todo club deportivo debería automatizar ya</div>
+        <div class="blog-card-excerpt" data-i18n="home.blog.c2.excerpt">Renovaciones de socios, confirmaciones de clase, recordatorios de pago — todo puede funcionar solo.</div>
+        <div class="blog-card-foot"><span>Abr 2026</span><span class="blog-card-read" data-i18n="home.blog.c2.read">Leer →</span></div>
       </div>
     </a>
     <a href="/blog.html" class="blog-card r d3">
@@ -581,10 +580,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="blog-card-src">palferia.me</span>
       </div>
       <div class="blog-card-body">
-        <div class="blog-card-tag">IA + Deporte</div>
-        <div class="blog-card-title">El sport business en 2026: qué entidades ya usan IA y qué resultados tienen</div>
-        <div class="blog-card-excerpt">Un repaso al estado del arte de la IA aplicada al deporte en España y Europa.</div>
-        <div class="blog-card-foot"><span>Mar 2026</span><span class="blog-card-read">Leer →</span></div>
+        <div class="blog-card-tag" data-i18n="home.blog.c3.tag">IA + Deporte</div>
+        <div class="blog-card-title" data-i18n="home.blog.c3.title">El sport business en 2026: qué entidades ya usan IA y qué resultados tienen</div>
+        <div class="blog-card-excerpt" data-i18n="home.blog.c3.excerpt">Un repaso al estado del arte de la IA aplicada al deporte en España y Europa.</div>
+        <div class="blog-card-foot"><span>Mar 2026</span><span class="blog-card-read" data-i18n="home.blog.c3.read">Leer →</span></div>
       </div>
     </a>
   </div>
@@ -594,31 +593,31 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      CONTACTO
 ══════════════════════════════════════════ -->
 <section class="sec sec-alt" id="contacto">
-  <div class="sec-label r">Contacto</div>
-  <h2 class="sec-h2 r d1">Hablemos de<br><span class="hl">tu entidad</span></h2>
-  <p class="sec-p r d2">Cuéntanos tu entidad y te mostramos qué agente encaja con tu operación.</p>
+  <div class="sec-label r" data-i18n="home.contact.label">Contacto</div>
+  <h2 class="sec-h2 r d1" data-i18n="home.contact.h2">Hablemos de<br><span class="hl">tu entidad</span></h2>
+  <p class="sec-p r d2" data-i18n="home.contact.sub">Cuéntanos tu entidad y te mostramos qué agente encaja con tu operación.</p>
 
   <div class="contact-wrap r d3">
     <div class="contact-left">
       <a href="https://wa.me/34643469239?text=Hola%2C%20quiero%20información%20sobre%20el%20agente%20IA%20para%20mi%20entidad%20deportiva" target="_blank" rel="noopener" class="wa-btn">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp directo
+        <span data-i18n="home.contact.wa">WhatsApp directo</span>
       </a>
       <div class="contact-info">
         <div class="ci-block">
           <div class="ci-label">Email</div>
           <div class="ci-val"><a href="mailto:ri@palferia.com">ri@palferia.com</a></div>
-          <div class="ci-sub">Respuesta en menos de 24h</div>
+          <div class="ci-sub" data-i18n="home.contact.ci.email.sub">Respuesta en menos de 24h</div>
         </div>
         <div class="ci-block">
-          <div class="ci-label">WhatsApp / Teléfono</div>
+          <div class="ci-label" data-i18n="home.contact.ci.wa.label">WhatsApp / Teléfono</div>
           <div class="ci-val"><a href="tel:+34643469239">+34 643 469 239</a></div>
-          <div class="ci-sub">Ronald Palma · Fundador</div>
+          <div class="ci-sub" data-i18n="home.contact.ci.wa.sub">Ronald Palma · Fundador</div>
         </div>
         <div class="ci-block">
-          <div class="ci-label">Ubicación</div>
-          <div class="ci-val">Valencia, España</div>
-          <div class="ci-sub">Clientes en toda España y Latam</div>
+          <div class="ci-label" data-i18n="home.contact.ci.loc.label">Ubicación</div>
+          <div class="ci-val" data-i18n="home.contact.ci.loc.val">Valencia, España</div>
+          <div class="ci-sub" data-i18n="home.contact.ci.loc.sub">Clientes en toda España y Latam</div>
         </div>
       </div>
     </div>
@@ -627,41 +626,41 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            <label for="nombre" data-i18n="home.contact.lbl.nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" data-i18n="home.contact.nombre" placeholder="Tu nombre" required>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+            <label for="email" data-i18n="home.contact.lbl.email">Email</label>
+            <input type="email" id="email" name="email" data-i18n="home.contact.email" placeholder="tu@email.com" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="whatsapp">WhatsApp (opcional)</label>
-          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+34 600 000 000">
+          <label for="whatsapp" data-i18n="home.contact.lbl.wa">WhatsApp (opcional)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" data-i18n="home.contact.whatsapp" placeholder="+34 600 000 000">
         </div>
         <div class="form-group">
-          <label for="sector">Tipo de entidad</label>
+          <label for="sector" data-i18n="home.contact.lbl.sector">Tipo de entidad</label>
           <select id="sector" name="sector" required>
-            <option value="" disabled selected>Selecciona tu tipo de entidad</option>
-            <option value="academia">Academia deportiva</option>
-            <option value="club">Club deportivo</option>
-            <option value="evento">Organizador de eventos</option>
-            <option value="federacion">Federación</option>
-            <option value="turismo">Turismo deportivo</option>
-            <option value="patrocinios">Gestión de patrocinios</option>
-            <option value="otro">Otro</option>
+            <option value="" disabled selected data-i18n="home.contact.ph.sector">Selecciona tu tipo de entidad</option>
+            <option value="academia" data-i18n="home.contact.opt.academia">Academia deportiva</option>
+            <option value="club" data-i18n="home.contact.opt.club">Club deportivo</option>
+            <option value="evento" data-i18n="home.contact.opt.evento">Organizador de eventos</option>
+            <option value="federacion" data-i18n="home.contact.opt.fed">Federación</option>
+            <option value="turismo" data-i18n="home.contact.opt.turismo">Turismo deportivo</option>
+            <option value="patrocinios" data-i18n="home.contact.opt.sponsor">Gestión de patrocinios</option>
+            <option value="otro" data-i18n="home.contact.opt.otro">Otro</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="mensaje">¿Qué quieres automatizar?</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Cuéntame brevemente tu situación actual y qué te gustaría mejorar..."></textarea>
+          <label for="mensaje" data-i18n="home.contact.lbl.mensaje">¿Qué quieres automatizar?</label>
+          <textarea id="mensaje" name="mensaje" data-i18n="home.contact.ph.mensaje" placeholder="Cuéntame brevemente tu situación actual y qué te gustaría mejorar..."></textarea>
         </div>
-        <button type="submit" class="form-submit" id="submitBtn">Solicitar sesión estratégica →</button>
-        <p class="form-note">Sin compromiso. Sin costes hasta tener toda la información sobre la mesa.</p>
+        <button type="submit" class="form-submit" id="submitBtn" data-i18n="home.contact.submit">Solicitar sesión estratégica →</button>
+        <p class="form-note" data-i18n="home.contact.note">Sin compromiso. Sin costes hasta tener toda la información sobre la mesa.</p>
       </form>
       <div class="form-success" id="formSuccess">
-        <div class="form-success-title">¡Recibido!</div>
-        <div class="form-success-text">Te contacto en menos de 24h para coordinar la sesión. Si prefieres más rapidez, escríbeme por <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.</div>
+        <div class="form-success-title" data-i18n="home.contact.success.title">¡Recibido!</div>
+        <div class="form-success-text" data-i18n="home.contact.success.text">Te contacto en menos de 24h para coordinar la sesión. Si prefieres más rapidez, escríbeme por <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.</div>
       </div>
     </div>
   </div>
@@ -671,28 +670,28 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      ECOSISTEMA
 ══════════════════════════════════════════ -->
 <section class="sec">
-  <div class="sec-label r">Ecosistema</div>
-  <h2 class="sec-h2 r d1">Más allá de<br><span class="hl">palferia.me</span></h2>
-  <p class="sec-p r d2">PalferIA Studio desarrolla herramientas y comunidades para el sport business.</p>
+  <div class="sec-label r" data-i18n="home.eco.label">Ecosistema</div>
+  <h2 class="sec-h2 r d1" data-i18n="home.eco.h2">Más allá de<br><span class="hl">palferia.me</span></h2>
+  <p class="sec-p r d2" data-i18n="home.eco.sub">PalferIA Studio desarrolla herramientas y comunidades para el sport business.</p>
 
   <div class="eco-grid">
     <div class="eco-card r d1">
       <div class="eco-domain">palferia.me</div>
-      <div class="eco-name">Agentes IA</div>
-      <div class="eco-desc">Agencia de agentes IA especializados en sport business. Automatización, captación y fidelización para entidades deportivas.</div>
-      <div class="eco-link">Estás aquí →</div>
+      <div class="eco-name" data-i18n="home.eco.c1.name">Agentes IA</div>
+      <div class="eco-desc" data-i18n="home.eco.c1.desc">Agencia de agentes IA especializados en sport business. Automatización, captación y fidelización para entidades deportivas.</div>
+      <div class="eco-link" data-i18n="home.eco.c1.link">Estás aquí →</div>
     </div>
     <a href="https://palferia.com" target="_blank" rel="noopener" class="eco-card r d2">
       <div class="eco-domain">palferia.com</div>
-      <div class="eco-name">Sport Consulting</div>
-      <div class="eco-desc">Consultoría estratégica para el sport business: marketing deportivo, ticketing, patrocinios y transformación digital.</div>
-      <div class="eco-link">Visitar →</div>
+      <div class="eco-name" data-i18n="home.eco.c2.name">Sport Consulting</div>
+      <div class="eco-desc" data-i18n="home.eco.c2.desc">Consultoría estratégica para el sport business: marketing deportivo, ticketing, patrocinios y transformación digital.</div>
+      <div class="eco-link" data-i18n="home.eco.c2.link">Visitar →</div>
     </a>
     <a href="https://draftday.es" target="_blank" rel="noopener" class="eco-card r d3">
       <div class="eco-domain">draftday.es</div>
-      <div class="eco-name">Draft Day</div>
-      <div class="eco-desc">Comunidad y plataforma de contenidos para profesionales del sport business en España y Latam.</div>
-      <div class="eco-link">Visitar →</div>
+      <div class="eco-name" data-i18n="home.eco.c3.name">Draft Day</div>
+      <div class="eco-desc" data-i18n="home.eco.c3.desc">Comunidad y plataforma de contenidos para profesionales del sport business en España y Latam.</div>
+      <div class="eco-link" data-i18n="home.eco.c3.link">Visitar →</div>
     </a>
   </div>
 </section>
@@ -704,11 +703,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <a href="/" aria-label="Palferia.me — Inicio">
         <img src="/assets/img/logo-fondooscuro1.png" alt="Palferia.me" class="pf-footer-logo-img">
       </a>
-      <div class="pf-footer-tagline">IA para el sport business · Valencia, España · 2026</div>
+      <div class="pf-footer-tagline" data-i18n="footer.tagline">IA para el sport business · Valencia, España · 2026</div>
     </div>
     <div class="pf-footer-cols">
       <div class="pf-footer-col">
-        <h5>Agentes IA</h5>
+        <h5 data-i18n="footer.col1.title">Agentes IA</h5>
         <ul>
           <li><a href="/verticales/vertical-academias.html">Academia Agent</a></li>
           <li><a href="/verticales/vertical-clubes.html">Club Agent</a></li>
@@ -719,19 +718,19 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         </ul>
       </div>
       <div class="pf-footer-col">
-        <h5>Empresa</h5>
+        <h5 data-i18n="footer.col2.title">Empresa</h5>
         <ul>
-          <li><a href="/about.html">Sobre mí</a></li>
-          <li><a href="/blog.html">Blog</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="/about.html" data-i18n="footer.col2.about">Sobre mí</a></li>
+          <li><a href="/blog.html" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="#contacto" data-i18n="footer.col2.contact">Contacto</a></li>
         </ul>
       </div>
       <div class="pf-footer-col">
-        <h5>Legal</h5>
+        <h5 data-i18n="footer.col3.title">Legal</h5>
         <ul>
-          <li><a href="/politica-privacidad.html">Política de privacidad</a></li>
-          <li><a href="/aviso-legal.html">Aviso legal</a></li>
-          <li><a href="/politica-cookies.html">Política de cookies</a></li>
+          <li><a href="/politica-privacidad.html" data-i18n="footer.col3.privacy">Política de privacidad</a></li>
+          <li><a href="/aviso-legal.html" data-i18n="footer.col3.legal">Aviso legal</a></li>
+          <li><a href="/politica-cookies.html" data-i18n="footer.col3.cookies">Política de cookies</a></li>
         </ul>
       </div>
     </div>
