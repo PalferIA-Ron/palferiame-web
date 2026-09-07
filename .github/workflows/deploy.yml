@@ -11,13 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Inject Supabase anon key
-        env:
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: |
-          find . -name "*.html" -not -path "./node_modules/*" \
-            -exec sed -i "s|TU_SUPABASE_ANON_KEY|${SUPABASE_ANON_KEY}|g" {} +
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
