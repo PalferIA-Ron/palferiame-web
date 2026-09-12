@@ -266,12 +266,13 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
 <nav id="nav">
   <a href="home-onepage.html" class="logo-link" aria-label="Palferia.me"><img src="https://plum-yak-655063.hostingersite.com/wp-content/uploads/2026/06/Palferia_logo02-scaled.png" alt="Palferia.me" style="height:36px;width:auto;display:block"></a>
   <ul class="nav-links">
-    <li><a href="home-onepage.html#agentes">Agentes</a></li>
-    <li><a href="home-onepage.html#como-funciona">Cómo funciona</a></li>
-    <li><a href="blog.html" class="active">Blog</a></li>
-    <li><a href="home-onepage.html#contacto">Contacto</a></li>
+    <li><a href="home-onepage.html#agentes" data-i18n="blog.nav.agentes">Agentes</a></li>
+    <li><a href="home-onepage.html#como-funciona" data-i18n="blog.nav.como">Cómo funciona</a></li>
+    <li><a href="blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
+    <li><a href="home-onepage.html#contacto" data-i18n="footer.col2.contact">Contacto</a></li>
   </ul>
-  <a href="home-onepage.html#contacto" class="nav-cta">Quiero mi agente →</a>
+  <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
+  <a href="home-onepage.html#contacto" class="nav-cta" data-i18n="blog.nav.cta">Quiero mi agente →</a>
 </nav>
 
 <!-- HERO -->
@@ -281,23 +282,23 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
   <div class="blog-hero-inner">
     <div class="blog-eyebrow">
       <div class="blog-dot"></div>
-      <span class="blog-eyebrow-text">Conocimiento · IA Deportiva</span>
+      <span class="blog-eyebrow-text" data-i18n="blog.hero.eyebrow">Conocimiento · IA Deportiva</span>
     </div>
-    <h1 class="blog-h1">EL <span class="hl">CAMPO</span><br>DE IDEAS</h1>
-    <p class="blog-sub">No escribimos sobre tendencias. Escribimos sobre lo que ya funciona en clubes, academias y eventos. Casos reales, estrategia aplicada, sin ruido.</p>
+    <h1 class="blog-h1" data-i18n="blog.hero.h1">EL <span class="hl">CAMPO</span><br>DE IDEAS</h1>
+    <p class="blog-sub" data-i18n="blog.hero.sub">No escribimos sobre tendencias. Escribimos sobre lo que ya funciona en clubes, academias y eventos. Casos reales, estrategia aplicada, sin ruido.</p>
   </div>
 </section>
 
 <!-- FILTERS -->
 <div class="filter-bar" id="filter-bar" role="navigation" aria-label="Filtros">
-  <span class="filter-label">Tema:</span>
-  <button class="filter-btn active" data-filter="all">Todos</button>
-  <button class="filter-btn" data-filter="ia-deportiva">IA Deportiva</button>
-  <button class="filter-btn" data-filter="automatizacion">Automatización</button>
-  <button class="filter-btn" data-filter="sport-business">Sport Business</button>
-  <button class="filter-btn" data-filter="casos-de-uso">Casos de uso</button>
+  <span class="filter-label" data-i18n="blog.filter.tema">Tema:</span>
+  <button class="filter-btn active" data-filter="all" data-i18n="blog.filter.todos">Todos</button>
+  <button class="filter-btn" data-filter="ia-deportiva" data-i18n="blog.filter.ia">IA Deportiva</button>
+  <button class="filter-btn" data-filter="automatizacion" data-i18n="blog.filter.auto">Automatización</button>
+  <button class="filter-btn" data-filter="sport-business" data-i18n="blog.filter.sport">Sport Business</button>
+  <button class="filter-btn" data-filter="casos-de-uso" data-i18n="blog.filter.casos">Casos de uso</button>
   <div class="filter-sep"></div>
-  <span class="filter-label">Fuente:</span>
+  <span class="filter-label" data-i18n="blog.filter.fuente">Fuente:</span>
   <button class="source-btn s-me" data-source="palferia-me">palferia.me</button>
   <button class="source-btn s-com" data-source="palferia-com">palferia.com</button>
   <button class="source-btn s-draft" data-source="draftday">draftday.es</button>
@@ -320,12 +321,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="ahc-content">
           <div class="ahc-meta">
-            <span class="ahc-cat">Caso de uso</span>
+            <span class="ahc-cat" data-i18n="blog.cat.caso">Caso de uso</span>
             <span class="ahc-date">Mayo 2026</span>
           </div>
-          <h2 class="ahc-title">Una academia de pádel con 3 sedes cerró 47 nuevos socios en 30 días. Sin llamar a nadie.</h2>
-          <p class="ahc-excerpt">Así funciona el Academia Agent cuando se activa correctamente: califica leads por WhatsApp, agenda visitas automáticas y recupera los que no contestaron.</p>
-          <span class="ahc-read">Leer en palferia.me →</span>
+          <h2 class="ahc-title" data-i18n="blog.featured.title">Una academia de pádel con 3 sedes cerró 47 nuevos socios en 30 días. Sin llamar a nadie.</h2>
+          <p class="ahc-excerpt" data-i18n="blog.featured.excerpt">Así funciona el Academia Agent cuando se activa correctamente: califica leads por WhatsApp, agenda visitas automáticas y recupera los que no contestaron.</p>
+          <span class="ahc-read" data-i18n="blog.read.me">Leer en palferia.me →</span>
         </div>
       </a>
     </div>
@@ -342,12 +343,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">IA Deportiva</span>
+            <span class="art-cat" data-i18n="blog.art1.cat">IA Deportiva</span>
             <span class="art-date">Abr 2026</span>
           </div>
-          <h3 class="art-title">Por qué los clubes deportivos españoles van a perder socios si no adoptan IA en 2026</h3>
-          <p class="art-excerpt">El mercado ya se movió. Los clubes que no automatizan van a ceder cuota a los que sí lo hacen, y el gap se amplía cada trimestre.</p>
-          <span class="art-cta">Leer en palferia.com →</span>
+          <h3 class="art-title" data-i18n="blog.art1.title">Por qué los clubes deportivos españoles van a perder socios si no adoptan IA en 2026</h3>
+          <p class="art-excerpt" data-i18n="blog.art1.excerpt">El mercado ya se movió. Los clubes que no automatizan van a ceder cuota a los que sí lo hacen, y el gap se amplía cada trimestre.</p>
+          <span class="art-cta" data-i18n="blog.read.com">Leer en palferia.com →</span>
         </div>
       </a>
 
@@ -360,12 +361,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">Sport Business</span>
+            <span class="art-cat" data-i18n="blog.art2.cat">Sport Business</span>
             <span class="art-date">Abr 2026</span>
           </div>
-          <h3 class="art-title">Cómo los inversores están leyendo la automatización en sport business para 2026-2027</h3>
-          <p class="art-excerpt">Desde Draft Day analizamos los movimientos de capital y lo que implica para clubs, academias y federaciones en España.</p>
-          <span class="art-cta">Leer en draftday.es →</span>
+          <h3 class="art-title" data-i18n="blog.art2.title">Cómo los inversores están leyendo la automatización en sport business para 2026-2027</h3>
+          <p class="art-excerpt" data-i18n="blog.art2.excerpt">Desde Draft Day analizamos los movimientos de capital y lo que implica para clubs, academias y federaciones en España.</p>
+          <span class="art-cta" data-i18n="blog.read.draft">Leer en draftday.es →</span>
         </div>
       </a>
 
@@ -378,12 +379,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">Automatización</span>
+            <span class="art-cat" data-i18n="blog.art3.cat">Automatización</span>
             <span class="art-date">Mar 2026</span>
           </div>
-          <h3 class="art-title">WhatsApp como canal de captación: cómo tu agente responde leads a las 2 de la mañana</h3>
-          <p class="art-excerpt">Los padres preguntan cuando pueden. Si tu club responde en horas, ya perdiste al lead. Aquí explicamos cómo el agente cambia esto.</p>
-          <span class="art-cta">Leer en palferia.me →</span>
+          <h3 class="art-title" data-i18n="blog.art3.title">WhatsApp como canal de captación: cómo tu agente responde leads a las 2 de la mañana</h3>
+          <p class="art-excerpt" data-i18n="blog.art3.excerpt">Los padres preguntan cuando pueden. Si tu club responde en horas, ya perdiste al lead. Aquí explicamos cómo el agente cambia esto.</p>
+          <span class="art-cta" data-i18n="blog.read.me">Leer en palferia.me →</span>
         </div>
       </a>
 
@@ -396,12 +397,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">Automatización</span>
+            <span class="art-cat" data-i18n="blog.art4.cat">Automatización</span>
             <span class="art-date">Mar 2026</span>
           </div>
-          <h3 class="art-title">Evento con 1.200 inscritos, cero emails manuales enviados: el caso Event Agent</h3>
-          <p class="art-excerpt">SportMadness gestiona la inscripción. El agente hace el resto: confirmaciones, recordatorios, upsell de dorsal y recuperación de abandonos.</p>
-          <span class="art-cta">Leer en palferia.com →</span>
+          <h3 class="art-title" data-i18n="blog.art4.title">Evento con 1.200 inscritos, cero emails manuales enviados: el caso Event Agent</h3>
+          <p class="art-excerpt" data-i18n="blog.art4.excerpt">SportMadness gestiona la inscripción. El agente hace el resto: confirmaciones, recordatorios, upsell de dorsal y recuperación de abandonos.</p>
+          <span class="art-cta" data-i18n="blog.read.com">Leer en palferia.com →</span>
         </div>
       </a>
 
@@ -414,12 +415,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">Sport Business</span>
+            <span class="art-cat" data-i18n="blog.art5.cat">Sport Business</span>
             <span class="art-date">Feb 2026</span>
           </div>
-          <h3 class="art-title">Por qué los patrocinadores piden datos de retorno y cómo el Sponsor Agent los entrega solos</h3>
-          <p class="art-excerpt">El patrocinador ya no firma por fe. Firma cuando ve ROI claro. Aquí explicamos el sistema de reporting automático que cierra renovaciones.</p>
-          <span class="art-cta">Leer en draftday.es →</span>
+          <h3 class="art-title" data-i18n="blog.art5.title">Por qué los patrocinadores piden datos de retorno y cómo el Sponsor Agent los entrega solos</h3>
+          <p class="art-excerpt" data-i18n="blog.art5.excerpt">El patrocinador ya no firma por fe. Firma cuando ve ROI claro. Aquí explicamos el sistema de reporting automático que cierra renovaciones.</p>
+          <span class="art-cta" data-i18n="blog.read.draft">Leer en draftday.es →</span>
         </div>
       </a>
 
@@ -432,12 +433,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">Casos de uso</span>
+            <span class="art-cat" data-i18n="blog.art6.cat">Casos de uso</span>
             <span class="art-date">Feb 2026</span>
           </div>
-          <h3 class="art-title">Una federación autonómica redujo las consultas de licencias un 68% sin contratar a nadie</h3>
-          <p class="art-excerpt">El Fed Agent atiende 24/7, tramita en tiempo real y escala solo lo que necesita intervención humana. Así quedó después de 90 días.</p>
-          <span class="art-cta">Leer en palferia.me →</span>
+          <h3 class="art-title" data-i18n="blog.art6.title">Una federación autonómica redujo las consultas de licencias un 68% sin contratar a nadie</h3>
+          <p class="art-excerpt" data-i18n="blog.art6.excerpt">El Fed Agent atiende 24/7, tramita en tiempo real y escala solo lo que necesita intervención humana. Así quedó después de 90 días.</p>
+          <span class="art-cta" data-i18n="blog.read.me">Leer en palferia.me →</span>
         </div>
       </a>
 
@@ -450,12 +451,12 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">IA Deportiva</span>
+            <span class="art-cat" data-i18n="blog.art7.cat">IA Deportiva</span>
             <span class="art-date">Ene 2026</span>
           </div>
-          <h3 class="art-title">Cómo un alojamiento de trail running pasó de 70% OTA a 55% reserva directa en 4 meses</h3>
-          <p class="art-excerpt">El Stay Sport Agent captura el email antes de que el viajero llegue a Booking. De ahí, todo el proceso es automático y sin comisión.</p>
-          <span class="art-cta">Leer en palferia.com →</span>
+          <h3 class="art-title" data-i18n="blog.art7.title">Cómo un alojamiento de trail running pasó de 70% OTA a 55% reserva directa en 4 meses</h3>
+          <p class="art-excerpt" data-i18n="blog.art7.excerpt">El Stay Sport Agent captura el email antes de que el viajero llegue a Booking. De ahí, todo el proceso es automático y sin comisión.</p>
+          <span class="art-cta" data-i18n="blog.read.com">Leer en palferia.com →</span>
         </div>
       </a>
 
@@ -468,19 +469,19 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
         </div>
         <div class="art-body">
           <div class="art-meta">
-            <span class="art-cat">Sport Business</span>
+            <span class="art-cat" data-i18n="blog.art8.cat">Sport Business</span>
             <span class="art-date">Ene 2026</span>
           </div>
-          <h3 class="art-title">Tu software de gestión ya hace lo que hacía. La IA hace lo que tú no puedes.</h3>
-          <p class="art-excerpt">No son competidores. Clupik, SportMadness y Mindbody organizan datos. El agente convierte, retiene y reporta. El análisis completo.</p>
-          <span class="art-cta">Leer en draftday.es →</span>
+          <h3 class="art-title" data-i18n="blog.art8.title">Tu software de gestión ya hace lo que hacía. La IA hace lo que tú no puedes.</h3>
+          <p class="art-excerpt" data-i18n="blog.art8.excerpt">No son competidores. Clupik, SportMadness y Mindbody organizan datos. El agente convierte, retiene y reporta. El análisis completo.</p>
+          <span class="art-cta" data-i18n="blog.read.draft">Leer en draftday.es →</span>
         </div>
       </a>
 
     </div><!-- /articles-grid -->
 
     <div class="load-more-bar">
-      <button class="btn-g" id="load-more-btn">Cargar más artículos</button>
+      <button class="btn-g" id="load-more-btn" data-i18n="blog.loadmore">Cargar más artículos</button>
     </div>
 
   </div><!-- /articles-col -->
@@ -490,32 +491,32 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
 
     <!-- ECOSISTEMA -->
     <div class="sidebar-block r">
-      <div class="sb-title">Nuestros proyectos</div>
+      <div class="sb-title" data-i18n="blog.sb.projects.title">Nuestros proyectos</div>
       <a href="https://palferia.me" target="_blank" rel="noopener" class="eco-card">
         <div class="eco-logo">PALFE<span>RI</span>A.ME</div>
-        <div class="eco-desc">Agencia de IA para sport business. Aquí construimos y activamos los agentes.</div>
-        <div class="eco-tag">→ Casos reales</div>
+        <div class="eco-desc" data-i18n="blog.sb.me.desc">Agencia de IA para sport business. Aquí construimos y activamos los agentes.</div>
+        <div class="eco-tag" data-i18n="blog.sb.me.tag">→ Casos reales</div>
       </a>
       <a href="https://palferia.com" target="_blank" rel="noopener" class="eco-card">
         <div class="eco-logo">PALFE<span>RI</span>A.COM</div>
-        <div class="eco-desc">Estrategia, análisis y recursos de sport business digital.</div>
-        <div class="eco-tag">→ Estrategia y análisis</div>
+        <div class="eco-desc" data-i18n="blog.sb.com.desc">Estrategia, análisis y recursos de sport business digital.</div>
+        <div class="eco-tag" data-i18n="blog.sb.com.tag">→ Estrategia y análisis</div>
       </a>
       <a href="https://draftday.es" target="_blank" rel="noopener" class="eco-card">
         <div class="eco-logo">DRAFT<span>DAY</span>.ES</div>
-        <div class="eco-desc">El lado del negocio del deporte. Inversión, mercado y tendencias.</div>
-        <div class="eco-tag">→ Sport Business</div>
+        <div class="eco-desc" data-i18n="blog.sb.draft.desc">El lado del negocio del deporte. Inversión, mercado y tendencias.</div>
+        <div class="eco-tag" data-i18n="blog.sb.draft.tag">→ Sport Business</div>
       </a>
     </div>
 
     <!-- TEMAS -->
     <div class="sidebar-block r d1">
-      <div class="sb-title">Temas</div>
+      <div class="sb-title" data-i18n="blog.sb.topics.title">Temas</div>
       <div class="tag-cloud">
-        <button class="tc-tag" data-filter="ia-deportiva">IA Deportiva</button>
-        <button class="tc-tag" data-filter="automatizacion">Automatización</button>
-        <button class="tc-tag" data-filter="sport-business">Sport Business</button>
-        <button class="tc-tag" data-filter="casos-de-uso">Casos de uso</button>
+        <button class="tc-tag" data-filter="ia-deportiva" data-i18n="blog.filter.ia">IA Deportiva</button>
+        <button class="tc-tag" data-filter="automatizacion" data-i18n="blog.filter.auto">Automatización</button>
+        <button class="tc-tag" data-filter="sport-business" data-i18n="blog.filter.sport">Sport Business</button>
+        <button class="tc-tag" data-filter="casos-de-uso" data-i18n="blog.filter.casos">Casos de uso</button>
         <button class="tc-tag" data-source="palferia-me">palferia.me</button>
         <button class="tc-tag" data-source="palferia-com">palferia.com</button>
         <button class="tc-tag" data-source="draftday">draftday.es</button>
@@ -524,7 +525,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
 
     <!-- AGENTES DIRECTOS -->
     <div class="sidebar-block r d2">
-      <div class="sb-title">Agentes disponibles</div>
+      <div class="sb-title" data-i18n="blog.sb.agents.title">Agentes disponibles</div>
       <div style="display:flex;flex-direction:column;gap:.5rem">
         <a href="verticales/vertical-academias.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Academia Agent <span style="color:var(--accent)">→</span></a>
         <a href="verticales/vertical-clubes.html" style="font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.6rem .85rem;border:1px solid var(--border);border-radius:2px;transition:all .2s;display:flex;justify-content:space-between;align-items:center" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Club Agent <span style="color:var(--accent)">→</span></a>
@@ -537,11 +538,11 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
 
     <!-- NEWSLETTER -->
     <div class="sidebar-block r d3">
-      <div class="sb-title">Recibe los mejores artículos</div>
-      <p style="font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem">Seleccionamos los artículos más relevantes de los tres proyectos. Sin ruido, sin spam.</p>
+      <div class="sb-title" data-i18n="blog.sb.nl.title">Recibe los mejores artículos</div>
+      <p style="font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem" data-i18n="blog.sb.nl.sub">Seleccionamos los artículos más relevantes de los tres proyectos. Sin ruido, sin spam.</p>
       <div class="nl-form" id="nl-form">
-        <input type="email" class="nl-input" placeholder="tu@email.com" id="nl-email" required>
-        <button class="nl-btn" type="button" id="nl-submit">Suscribirme →</button>
+        <input type="email" class="nl-input" placeholder="tu@email.com" id="nl-email" data-i18n="blog.sb.nl.ph" required>
+        <button class="nl-btn" type="button" id="nl-submit" data-i18n="blog.sb.nl.btn">Suscribirme →</button>
         <p class="nl-note" id="nl-msg" style="display:none"></p>
       </div>
     </div>
@@ -552,30 +553,30 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
 
 <!-- ECOSISTEMA BANNER -->
 <section class="eco-sec">
-  <div class="sec-label r">El ecosistema Palferia</div>
-  <h2 class="sec-h2 r d1">TRES PROYECTOS.<br><span class="hl">UNA MISIÓN.</span></h2>
-  <p class="sec-p r d2">Cada proyecto tiene su audiencia y su ángulo. Juntos cubren el ciclo completo: conocimiento estratégico, ejecución técnica y visión de negocio.</p>
+  <div class="sec-label r" data-i18n="blog.eco.label">El ecosistema Palferia</div>
+  <h2 class="sec-h2 r d1" data-i18n="blog.eco.h2">TRES PROYECTOS.<br><span class="hl">UNA MISIÓN.</span></h2>
+  <p class="sec-p r d2" data-i18n="blog.eco.sub">Cada proyecto tiene su audiencia y su ángulo. Juntos cubren el ciclo completo: conocimiento estratégico, ejecución técnica y visión de negocio.</p>
   <div class="eco-grid">
     <div class="eco-panel r">
       <div class="eco-panel-num">01</div>
       <div class="eco-panel-source ep-me">● palferia.me</div>
       <div class="eco-panel-logo">PALFE<span class="hl-me">RI</span>A.ME</div>
-      <p class="eco-panel-desc">La agencia. Donde se construyen y activan los agentes de IA para clubes, academias, eventos, federaciones, alojamientos y patrocinios deportivos. Casos reales, resultados medibles.</p>
-      <a href="https://palferia.me" target="_blank" rel="noopener" class="eco-panel-link ep-link-me">Ir a palferia.me →</a>
+      <p class="eco-panel-desc" data-i18n="blog.eco.p1.desc">La agencia. Donde se construyen y activan los agentes de IA para clubes, academias, eventos, federaciones, alojamientos y patrocinios deportivos. Casos reales, resultados medibles.</p>
+      <a href="https://palferia.me" target="_blank" rel="noopener" class="eco-panel-link ep-link-me" data-i18n="blog.eco.p1.link">Ir a palferia.me →</a>
     </div>
     <div class="eco-panel r d1">
       <div class="eco-panel-num">02</div>
       <div class="eco-panel-source ep-com">● palferia.com</div>
       <div class="eco-panel-logo">PALFE<span class="hl-com">RI</span>A.COM</div>
-      <p class="eco-panel-desc">El hub estratégico. Análisis, metodologías y recursos de sport business digital. Para los que quieren entender antes de decidir. Sin vender humo, con datos.</p>
-      <a href="https://palferia.com" target="_blank" rel="noopener" class="eco-panel-link ep-link-com">Ir a palferia.com →</a>
+      <p class="eco-panel-desc" data-i18n="blog.eco.p2.desc">El hub estratégico. Análisis, metodologías y recursos de sport business digital. Para los que quieren entender antes de decidir. Sin vender humo, con datos.</p>
+      <a href="https://palferia.com" target="_blank" rel="noopener" class="eco-panel-link ep-link-com" data-i18n="blog.eco.p2.link">Ir a palferia.com →</a>
     </div>
     <div class="eco-panel r d2">
       <div class="eco-panel-num">03</div>
       <div class="eco-panel-source ep-draft">● draftday.es</div>
       <div class="eco-panel-logo">DRAFT<span class="hl-draft">DAY</span>.ES</div>
-      <p class="eco-panel-desc">El lado del dinero. Inversión, mercados, tendencias y negocio deportivo en España y Europa. Para directivos, inversores y gestores que miran más allá del partido.</p>
-      <a href="https://draftday.es" target="_blank" rel="noopener" class="eco-panel-link ep-link-draft">Ir a draftday.es →</a>
+      <p class="eco-panel-desc" data-i18n="blog.eco.p3.desc">El lado del dinero. Inversión, mercados, tendencias y negocio deportivo en España y Europa. Para directivos, inversores y gestores que miran más allá del partido.</p>
+      <a href="https://draftday.es" target="_blank" rel="noopener" class="eco-panel-link ep-link-draft" data-i18n="blog.eco.p3.link">Ir a draftday.es →</a>
     </div>
   </div>
 </section>
@@ -585,10 +586,10 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="home-onepage.html" class="logo-link" aria-label="Palferia.me"><img src="https://plum-yak-655063.hostingersite.com/wp-content/uploads/2026/06/Palferia_logo02-scaled.png" alt="Palferia.me" style="height:36px;width:auto;display:block"></a>
-      <p>Agencia de IA especializada en sport business. Automatizamos lo que te quita tiempo y te roba socios.</p>
+      <p data-i18n="blog.footer.brand.desc">Agencia de IA especializada en sport business. Automatizamos lo que te quita tiempo y te roba socios.</p>
     </div>
     <div>
-      <div class="footer-col-title">Agentes</div>
+      <div class="footer-col-title" data-i18n="blog.footer.col1.title">Agentes</div>
       <ul class="footer-links">
         <li><a href="verticales/vertical-academias.html">Academia Agent</a></li>
         <li><a href="verticales/vertical-clubes.html">Club Agent</a></li>
@@ -599,7 +600,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Proyectos</div>
+      <div class="footer-col-title" data-i18n="blog.footer.col2.title">Proyectos</div>
       <ul class="footer-links">
         <li><a href="https://palferia.me" target="_blank" rel="noopener">palferia.me</a></li>
         <li><a href="https://palferia.com" target="_blank" rel="noopener">palferia.com</a></li>
@@ -607,19 +608,19 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 4r
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Contacto</div>
+      <div class="footer-col-title" data-i18n="blog.footer.col3.title">Contacto</div>
       <ul class="footer-links">
-        <li><a href="home-onepage.html#contacto">Hablar con nosotros</a></li>
-        <li><a href="remarketing.html">¿Por qué Palferia?</a></li>
-        <li><a href="home-onepage.html#como-funciona">Cómo funciona</a></li>
+        <li><a href="home-onepage.html#contacto" data-i18n="blog.footer.contact1">Hablar con nosotros</a></li>
+        <li><a href="remarketing.html" data-i18n="blog.footer.contact2">¿Por qué Palferia?</a></li>
+        <li><a href="home-onepage.html#como-funciona" data-i18n="blog.footer.contact3">Cómo funciona</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Palferia.me · Todos los derechos reservados</span>
+    <span class="footer-copy" data-i18n="blog.footer.rights">© 2026 Palferia.me · Todos los derechos reservados</span>
     <div class="footer-legal">
-      <a href="#">Privacidad</a>
-      <a href="#">Aviso legal</a>
+      <a href="#" data-i18n="blog.footer.privacy">Privacidad</a>
+      <a href="#" data-i18n="blog.footer.legal">Aviso legal</a>
     </div>
   </div>
 </footer>

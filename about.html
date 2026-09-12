@@ -275,15 +275,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <img src="/assets/img/logo-fondooscuro1.png" alt="Palferia.me" class="pf-logo-img">
   </a>
   <ul class="pf-nav-links" id="pf-nav-links">
-    <li><a href="/#agentes" onclick="closeMobileMenu()">Agentes</a></li>
-    <li><a href="/#como-funciona" onclick="closeMobileMenu()">Cómo funciona</a></li>
-    <li><a href="/blog" onclick="closeMobileMenu()">Blog</a></li>
-    <li><a href="#contacto" onclick="closeMobileMenu()">Contacto</a></li>
-    <li><a href="#contacto" class="pf-nav-cta" style="display:inline-block;margin-top:1rem" onclick="closeMobileMenu()">Hablemos →</a></li>
+    <li><a href="/#agentes" onclick="closeMobileMenu()" data-i18n="nav.agentes">Agentes</a></li>
+    <li><a href="/#como-funciona" onclick="closeMobileMenu()" data-i18n="nav.como">Cómo funciona</a></li>
+    <li><a href="/blog" onclick="closeMobileMenu()" data-i18n="nav.blog">Blog</a></li>
+    <li><a href="#contacto" onclick="closeMobileMenu()" data-i18n="footer.col2.contact">Contacto</a></li>
+    <li><a href="#contacto" class="pf-nav-cta" style="display:inline-block;margin-top:1rem" onclick="closeMobileMenu()" data-i18n="nav.cta">Hablemos →</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
     <div class="lang-switcher" aria-label="Seleccionar idioma"></div>
-    <a href="#contacto" class="pf-nav-cta">Hablemos →</a>
+    <a href="#contacto" class="pf-nav-cta" data-i18n="nav.cta">Hablemos →</a>
     <button class="pf-burger" id="pf-burger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -300,14 +300,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="hero-left">
     <div class="hero-eyebrow">
       <div class="hero-dot"></div>
-      <span class="hero-eyebrow-text">Fundador · Palferia.me · Valencia</span>
+      <span class="hero-eyebrow-text" data-i18n="about.hero.eyebrow">Fundador · Palferia.me · Valencia</span>
     </div>
 
     <h1 class="hero-name">RON<span class="stroke">ALD</span><br>PALMA</h1>
 
-    <p class="hero-role">Sport Business · <span class="hl">Agentes IA</span> · Patrocinios</p>
+    <p class="hero-role" data-i18n="about.hero.role">Sport Business · <span class="hl">Agentes IA</span> · Patrocinios</p>
 
-    <p class="hero-manifesto">
+    <p class="hero-manifesto" data-i18n="about.hero.manifesto">
       Empecé a correr en 2016 sin saber que eso me iba a cambiar
       la forma de ver los negocios.<br><br>
       Desde entonces, <strong>el deporte es mi mecanismo</strong> —
@@ -316,16 +316,16 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </p>
 
     <div class="hero-links">
-      <a href="#contacto" class="hl-btn hl-btn-p">Hablemos →</a>
+      <a href="#contacto" class="hl-btn hl-btn-p" data-i18n="about.hero.cta1">Hablemos →</a>
       <a href="https://www.linkedin.com/in/ronald-palma-sport-management-ticketing-marketing-digital" target="_blank" rel="noopener" class="hl-btn hl-btn-g">LinkedIn ↗</a>
     </div>
 
     <div class="hero-tags">
-      <span class="hero-tag">Running desde 2016</span>
-      <span class="hero-tag">Clásico RCN · Caribe</span>
-      <span class="hero-tag">CONMEBOL</span>
-      <span class="hero-tag">UPV Valencia</span>
-      <span class="hero-tag">Fundador Palferia.me</span>
+      <span class="hero-tag" data-i18n="about.hero.tag1">Running desde 2016</span>
+      <span class="hero-tag" data-i18n="about.hero.tag2">Clásico RCN · Caribe</span>
+      <span class="hero-tag" data-i18n="about.hero.tag3">CONMEBOL</span>
+      <span class="hero-tag" data-i18n="about.hero.tag4">UPV Valencia</span>
+      <span class="hero-tag" data-i18n="about.hero.tag5">Fundador Palferia.me</span>
     </div>
   </div>
 
@@ -338,7 +338,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="photo-placeholder-icon">📸</span>
         <span class="photo-placeholder-text">Foto principal<br>Ronald Palma</span>
       </div>
-      <span class="photo-tag">Fundador · Palferia.me</span>
+      <span class="photo-tag" data-i18n="about.hero.photo.tag">Fundador · Palferia.me</span>
     </div>
     <div class="photo-grid">
       <div class="photo-small">
@@ -363,27 +363,27 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <section class="manifesto-sec" id="sobre-mi">
   <div class="manifesto-bg" aria-hidden="true">SPORT</div>
   <div class="manifesto-inner">
-    <div class="sec-label r">Por qué hago esto</div>
+    <div class="sec-label r" data-i18n="about.manifesto.label">Por qué hago esto</div>
 
-    <h2 class="manifesto-quote r d1">
+    <h2 class="manifesto-quote r d1" data-i18n="about.manifesto.h2">
       No busco vender software.<br>
       Busco que la gente del deporte<br>
       <span class="hl">recupere su tiempo.</span>
     </h2>
 
     <div class="manifesto-body r d2">
-      <p>
+      <p data-i18n="about.manifesto.p1">
         Empecé a correr en 2016. No para competir — para despejarme.
         Y en cada carrera empecé a fijarme en algo que antes no veía:
         la cantidad de gente trabajando para que tú puedas simplemente correr.
       </p>
-      <p>
+      <p data-i18n="about.manifesto.p2">
         El que organiza el avituallamiento. El que negocia con el patrocinador.
         El que gestiona inscripciones a las 11 de la noche porque durante el día
         no tuvo tiempo. <strong>Personas apasionadas por el deporte, gastando
         su energía en tareas que no tienen nada que ver con el deporte.</strong>
       </p>
-      <p>
+      <p data-i18n="about.manifesto.p3">
         Lo vi más de cerca cuando desarrollé el negocio del ciclismo vendiendo
         el Clásico RCN en la región Caribe. Aprendí lo que significa construir
         valor para un patrocinador cuando el deporte es el producto.
@@ -391,13 +391,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         no para coleccionar certificados, sino para entender la relación
         entre el deporte y las marcas desde adentro.
       </p>
-      <p>
+      <p data-i18n="about.manifesto.p4">
         <strong>Soy desarrollador de negocios por naturaleza. El deporte fue mi escuela.</strong>
         Palferia.me es la síntesis de todo eso: experiencia real en sport business
         + IA que hace el trabajo repetitivo para que el equipo humano
         haga lo que solo los humanos hacen bien.
       </p>
-      <p>
+      <p data-i18n="about.manifesto.p5">
         La IA no va a amar el deporte por ti. Pero sí puede responder
         el WhatsApp de las 2 de la madrugada para que tú puedas
         estar en el entrenamiento de tu equipo al día siguiente.
@@ -425,24 +425,24 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      MILESTONES (lo real, sin exagerar)
 ══════════════════════════════════════════ -->
 <section class="sec sec-alt">
-  <div class="sec-label r">Momentos clave</div>
-  <h2 class="sec-h2 r d1">Lo que me<br><span class="hl">construyó</span></h2>
+  <div class="sec-label r" data-i18n="about.ms.label">Momentos clave</div>
+  <h2 class="sec-h2 r d1" data-i18n="about.ms.h2">Lo que me<br><span class="hl">construyó</span></h2>
 
   <div class="milestone-grid r d2">
     <div class="milestone">
       <div class="ms-year">2016</div>
-      <div class="ms-title">Empiezo a correr</div>
-      <div class="ms-desc">Aficionado. Sin medallas. Con la perspectiva de quien vive el deporte desde adentro y ve lo que otros no ven.</div>
+      <div class="ms-title" data-i18n="about.ms1.title">Empiezo a correr</div>
+      <div class="ms-desc" data-i18n="about.ms1.desc">Aficionado. Sin medallas. Con la perspectiva de quien vive el deporte desde adentro y ve lo que otros no ven.</div>
     </div>
     <div class="milestone">
       <div class="ms-year">RCN</div>
-      <div class="ms-title">Clásico RCN · Caribe</div>
-      <div class="ms-desc">Desarrollo de negocio en ciclismo. Venta del Clásico RCN en la región Caribe — aprendí que el deporte es un producto, y hay que saber venderlo.</div>
+      <div class="ms-title" data-i18n="about.ms2.title">Clásico RCN · Caribe</div>
+      <div class="ms-desc" data-i18n="about.ms2.desc">Desarrollo de negocio en ciclismo. Venta del Clásico RCN en la región Caribe — aprendí que el deporte es un producto, y hay que saber venderlo.</div>
     </div>
     <div class="milestone">
       <div class="ms-year">CON</div>
-      <div class="ms-title">CONMEBOL · Patrocinio</div>
-      <div class="ms-desc">Curso de optimización de patrocinios deportivos. Para entender la relación entre marcas y deporte desde la teoría más sólida disponible.</div>
+      <div class="ms-title" data-i18n="about.ms3.title">CONMEBOL · Patrocinio</div>
+      <div class="ms-desc" data-i18n="about.ms3.desc">Curso de optimización de patrocinios deportivos. Para entender la relación entre marcas y deporte desde la teoría más sólida disponible.</div>
     </div>
   </div>
 </section>
@@ -451,61 +451,61 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      EXPERIENCIA
 ══════════════════════════════════════════ -->
 <section class="sec" id="experiencia">
-  <div class="sec-label r">Trayectoria</div>
-  <h2 class="sec-h2 r d1">EXPERI<span class="hl">ENCIA</span></h2>
-  <p class="sec-p r d2">De Barranquilla a Valencia. Marketing, medios y sport business.</p>
+  <div class="sec-label r" data-i18n="about.exp.label">Trayectoria</div>
+  <h2 class="sec-h2 r d1" data-i18n="about.exp.h2">EXPERI<span class="hl">ENCIA</span></h2>
+  <p class="sec-p r d2" data-i18n="about.exp.sub">De Barranquilla a Valencia. Marketing, medios y sport business.</p>
 
   <div class="timeline r d3">
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-period">Jun 2025 — Presente</div>
-      <div class="tl-role">Fundador</div>
-      <div class="tl-company">Palferia.me · Valencia, España</div>
-      <div class="tl-desc">Agencia de IA especializada en sport business. Diseño, construcción y activación de agentes para academias, clubes, eventos, federaciones y alojamientos deportivos.</div>
+      <div class="tl-period" data-i18n="about.tl1.period">Jun 2025 — Presente</div>
+      <div class="tl-role" data-i18n="about.tl1.role">Fundador</div>
+      <div class="tl-company" data-i18n="about.tl1.company">Palferia.me · Valencia, España</div>
+      <div class="tl-desc" data-i18n="about.tl1.desc">Agencia de IA especializada en sport business. Diseño, construcción y activación de agentes para academias, clubes, eventos, federaciones y alojamientos deportivos.</div>
       <ul class="tl-achiev">
-        <li>6 agentes verticales activos: Academia, Club, Event, Fed, Stay Sport, Sponsor Agent</li>
-        <li>Primer caso en producción: Grupo La Cueva — 90% reducción de procesos manuales</li>
-        <li>Candidato al programa Lanzadera 2026</li>
+        <li data-i18n="about.tl1.li1">6 agentes verticales activos: Academia, Club, Event, Fed, Stay Sport, Sponsor Agent</li>
+        <li data-i18n="about.tl1.li2">Primer caso en producción: Grupo La Cueva — 90% reducción de procesos manuales</li>
+        <li data-i18n="about.tl1.li3">Candidato al programa Lanzadera 2026</li>
       </ul>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-period">Jun 2025 — Presente</div>
-      <div class="tl-role">Partnership Developer</div>
-      <div class="tl-company">Freestyle Trampoline Association · Valencia</div>
-      <div class="tl-desc">Gestión de patrocinios en España y Latam. Contacto con marcas objetivo, negociación y cierre de acuerdos.</div>
+      <div class="tl-period" data-i18n="about.tl2.period">Jun 2025 — Presente</div>
+      <div class="tl-role" data-i18n="about.tl2.role">Partnership Developer</div>
+      <div class="tl-company" data-i18n="about.tl2.company">Freestyle Trampoline Association · Valencia</div>
+      <div class="tl-desc" data-i18n="about.tl2.desc">Gestión de patrocinios en España y Latam. Contacto con marcas objetivo, negociación y cierre de acuerdos.</div>
     </div>
     <div class="tl-item dim">
       <div class="tl-dot"></div>
-      <div class="tl-period">Nov 2025 — Abr 2026</div>
-      <div class="tl-role">Desarrollo Comercial · Patrocinios</div>
-      <div class="tl-company">SixLes Sport Digital · Valencia</div>
-      <div class="tl-desc">Prospección, negociación y cierre de contratos de patrocinio deportivo. Propuestas comerciales personalizadas.</div>
+      <div class="tl-period" data-i18n="about.tl3.period">Nov 2025 — Abr 2026</div>
+      <div class="tl-role" data-i18n="about.tl3.role">Desarrollo Comercial · Patrocinios</div>
+      <div class="tl-company" data-i18n="about.tl3.company">SixLes Sport Digital · Valencia</div>
+      <div class="tl-desc" data-i18n="about.tl3.desc">Prospección, negociación y cierre de contratos de patrocinio deportivo. Propuestas comerciales personalizadas.</div>
     </div>
     <div class="tl-item dim">
       <div class="tl-dot"></div>
-      <div class="tl-period">Mar 2022 — Ene 2025</div>
-      <div class="tl-role">Director de Marketing Digital</div>
-      <div class="tl-company">RCN Radio · Barranquilla, Colombia</div>
-      <div class="tl-desc">Dirección del proceso de venta de activos digitales. Liderazgo del equipo. Gestión de relaciones cliente-medio-agencia.</div>
+      <div class="tl-period" data-i18n="about.tl4.period">Mar 2022 — Ene 2025</div>
+      <div class="tl-role" data-i18n="about.tl4.role">Director de Marketing Digital</div>
+      <div class="tl-company" data-i18n="about.tl4.company">RCN Radio · Barranquilla, Colombia</div>
+      <div class="tl-desc" data-i18n="about.tl4.desc">Dirección del proceso de venta de activos digitales. Liderazgo del equipo. Gestión de relaciones cliente-medio-agencia.</div>
       <ul class="tl-achiev">
-        <li>Podcast "Marea Rosa": 2M usuarios únicos, 2 temporadas, patrocinio nacional</li>
-        <li>Cierre Q4 al 102% del presupuesto — crecimiento del 48% vs año anterior</li>
+        <li data-i18n="about.tl4.li1">Podcast "Marea Rosa": 2M usuarios únicos, 2 temporadas, patrocinio nacional</li>
+        <li data-i18n="about.tl4.li2">Cierre Q4 al 102% del presupuesto — crecimiento del 48% vs año anterior</li>
       </ul>
     </div>
     <div class="tl-item dim">
       <div class="tl-dot"></div>
-      <div class="tl-period">Ene 2018 — Ene 2022</div>
-      <div class="tl-role">Responsable de Marketing Regional</div>
-      <div class="tl-company">RCN Radio · Barranquilla, Colombia</div>
-      <div class="tl-desc">Investigación de mercado, propuestas B2B multicanal, coordinación del equipo de ventas regional.</div>
+      <div class="tl-period" data-i18n="about.tl5.period">Ene 2018 — Ene 2022</div>
+      <div class="tl-role" data-i18n="about.tl5.role">Responsable de Marketing Regional</div>
+      <div class="tl-company" data-i18n="about.tl5.company">RCN Radio · Barranquilla, Colombia</div>
+      <div class="tl-desc" data-i18n="about.tl5.desc">Investigación de mercado, propuestas B2B multicanal, coordinación del equipo de ventas regional.</div>
     </div>
     <div class="tl-item dim">
       <div class="tl-dot"></div>
-      <div class="tl-period">2013 — 2017</div>
-      <div class="tl-role">Coordinador de Marketing / Planner Creativo</div>
-      <div class="tl-company">Corporación Universitaria Americana · Barranquilla</div>
-      <div class="tl-desc">Gestión del equipo creativo, campañas ATL/BTL/digital. Cumplimiento del 100% de matrículas por semestre.</div>
+      <div class="tl-period" data-i18n="about.tl6.period">2013 — 2017</div>
+      <div class="tl-role" data-i18n="about.tl6.role">Coordinador de Marketing / Planner Creativo</div>
+      <div class="tl-company" data-i18n="about.tl6.company">Corporación Universitaria Americana · Barranquilla</div>
+      <div class="tl-desc" data-i18n="about.tl6.desc">Gestión del equipo creativo, campañas ATL/BTL/digital. Cumplimiento del 100% de matrículas por semestre.</div>
     </div>
   </div>
 </section>
@@ -514,43 +514,43 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      EDUCACIÓN
 ══════════════════════════════════════════ -->
 <section class="sec sec-alt" id="educacion">
-  <div class="sec-label r">Formación</div>
-  <h2 class="sec-h2 r d1">EDU<span class="hl">CACIÓN</span></h2>
+  <div class="sec-label r" data-i18n="about.edu.label">Formación</div>
+  <h2 class="sec-h2 r d1" data-i18n="about.edu.h2">EDU<span class="hl">CACIÓN</span></h2>
 
   <div class="edu-grid">
     <div class="edu-card r d1">
       <div class="edu-badge">2024–25</div>
       <div class="edu-year">UPV</div>
-      <div class="edu-title">Máster en Gestión de Entidades Deportivas</div>
-      <div class="edu-inst">Universitat Politècnica de València</div>
+      <div class="edu-title" data-i18n="about.edu1.title">Máster en Gestión de Entidades Deportivas</div>
+      <div class="edu-inst" data-i18n="about.edu1.inst">Universitat Politècnica de València</div>
     </div>
     <div class="edu-card r d2">
       <div class="edu-badge">2025</div>
       <div class="edu-year">UPV</div>
-      <div class="edu-title">Máster en Gestión en Turismo Deportivo & Activo</div>
-      <div class="edu-inst">Universitat Politècnica de València · ETSID</div>
+      <div class="edu-title" data-i18n="about.edu2.title">Máster en Gestión en Turismo Deportivo & Activo</div>
+      <div class="edu-inst" data-i18n="about.edu2.inst">Universitat Politècnica de València · ETSID</div>
     </div>
     <div class="edu-card r d3">
       <div class="edu-badge">2021–22</div>
       <div class="edu-year">UNIR</div>
-      <div class="edu-title">MBA · Dirección y Administración de Empresas</div>
-      <div class="edu-inst">UNIR — La Universidad en Internet</div>
+      <div class="edu-title" data-i18n="about.edu3.title">MBA · Dirección y Administración de Empresas</div>
+      <div class="edu-inst" data-i18n="about.edu3.inst">UNIR — La Universidad en Internet</div>
     </div>
     <div class="edu-card r d1">
       <div class="edu-badge">Oct 2024</div>
       <div class="edu-year">CONMEBOL</div>
-      <div class="edu-title">Optimización de Patrocinios Deportivos</div>
-      <div class="edu-inst">+Evolution Conmebol · Sport Marketing</div>
+      <div class="edu-title" data-i18n="about.edu4.title">Optimización de Patrocinios Deportivos</div>
+      <div class="edu-inst" data-i18n="about.edu4.inst">+Evolution Conmebol · Sport Marketing</div>
     </div>
     <div class="edu-card r d2">
       <div class="edu-badge">2013–17</div>
       <div class="edu-year">PCA</div>
-      <div class="edu-title">Profesional en Administración de Mercadeo</div>
-      <div class="edu-inst">Politécnico Costa Atlántica · Marketing</div>
+      <div class="edu-title" data-i18n="about.edu5.title">Profesional en Administración de Mercadeo</div>
+      <div class="edu-inst" data-i18n="about.edu5.inst">Politécnico Costa Atlántica · Marketing</div>
     </div>
     <div class="edu-card r d3" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:rgba(177,247,39,.03);border-style:dashed">
       <div style="font-size:2rem;margin-bottom:.75rem;opacity:.4">📚</div>
-      <div class="edu-title" style="font-size:.85rem">Aprendizaje continuo en IA, automatización y sport business</div>
+      <div class="edu-title" style="font-size:.85rem" data-i18n="about.edu6.text">Aprendizaje continuo en IA, automatización y sport business</div>
     </div>
   </div>
 </section>
@@ -559,9 +559,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      CONTACTO
 ══════════════════════════════════════════ -->
 <section class="sec" id="contacto">
-  <div class="sec-label r">Contacto</div>
-  <h2 class="sec-h2 r d1">HABLA<span class="hl">MOS</span></h2>
-  <p class="sec-p r d2">¿Tienes un proyecto de deporte, automatización o patrocinios? Cuéntame. Respondo en menos de 24 horas.</p>
+  <div class="sec-label r" data-i18n="about.contact.label">Contacto</div>
+  <h2 class="sec-h2 r d1" data-i18n="about.contact.h2">HABLA<span class="hl">MOS</span></h2>
+  <p class="sec-p r d2" data-i18n="about.contact.sub">¿Tienes un proyecto de deporte, automatización o patrocinios? Cuéntame. Respondo en menos de 24 horas.</p>
 
   <div class="contact-wrap r d2">
     <div>
@@ -575,72 +575,72 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="ci-item">
         <span class="ci-icon">📱</span>
         <div>
-          <div class="ci-label">WhatsApp / Teléfono</div>
+          <div class="ci-label" data-i18n="about.contact.ci.wa.label">WhatsApp / Teléfono</div>
           <a href="tel:+34643469239" class="ci-value">+34 643 469 239</a>
         </div>
       </div>
       <div class="ci-item">
         <span class="ci-icon">📍</span>
         <div>
-          <div class="ci-label">Ubicación</div>
+          <div class="ci-label" data-i18n="about.contact.ci.loc.label">Ubicación</div>
           <span class="ci-value">Valencia, España</span>
         </div>
       </div>
       <div class="ci-item">
         <span class="ci-icon">🔗</span>
         <div>
-          <div class="ci-label">LinkedIn</div>
-          <a href="https://www.linkedin.com/in/ronald-palma-sport-management-ticketing-marketing-digital" target="_blank" rel="noopener" class="ci-value">Ver perfil →</a>
+          <div class="ci-label" data-i18n="about.contact.ci.li.label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/ronald-palma-sport-management-ticketing-marketing-digital" target="_blank" rel="noopener" class="ci-value" data-i18n="about.contact.ci.li.val">Ver perfil →</a>
         </div>
       </div>
-      <a href="https://wa.me/34643469239?text=Hola%20Ronald%2C%20te%20escribo%20desde%20palferia.me%2Fabout" target="_blank" rel="noopener" class="wa-btn-lg">
+      <a href="https://wa.me/34643469239?text=Hola%20Ronald%2C%20te%20escribo%20desde%20palferia.me%2Fabout" target="_blank" rel="noopener" class="wa-btn-lg" data-i18n="about.contact.wa.btn">
         💬 &nbsp;Escribir por WhatsApp
       </a>
     </div>
 
     <div class="form-block">
-      <div class="form-title">Envíame un mensaje</div>
-      <p class="form-sub">Cuéntame tu proyecto y te doy mi opinión honesta.</p>
+      <div class="form-title" data-i18n="about.contact.form.title">Envíame un mensaje</div>
+      <p class="form-sub" data-i18n="about.contact.form.sub">Cuéntame tu proyecto y te doy mi opinión honesta.</p>
       <div id="contact-form">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="cf-nombre">Nombre *</label>
-            <input type="text" class="form-input" id="cf-nombre" placeholder="Tu nombre" required>
+            <label class="form-label" for="cf-nombre" data-i18n="about.contact.lbl.nombre">Nombre *</label>
+            <input type="text" class="form-input" id="cf-nombre" placeholder="Tu nombre" data-i18n="about.contact.ph.nombre" required>
           </div>
           <div class="form-group">
-            <label class="form-label" for="cf-email">Email *</label>
-            <input type="email" class="form-input" id="cf-email" placeholder="tu@email.com" required>
+            <label class="form-label" for="cf-email" data-i18n="about.contact.lbl.email">Email *</label>
+            <input type="email" class="form-input" id="cf-email" placeholder="tu@email.com" data-i18n="about.contact.ph.email" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="cf-telefono">WhatsApp / Teléfono</label>
-            <input type="tel" class="form-input" id="cf-telefono" placeholder="+34 ...">
+            <label class="form-label" for="cf-telefono" data-i18n="about.contact.lbl.wa">WhatsApp / Teléfono</label>
+            <input type="tel" class="form-input" id="cf-telefono" placeholder="+34 ..." data-i18n="about.contact.ph.wa">
           </div>
           <div class="form-group">
-            <label class="form-label" for="cf-motivo">Motivo</label>
+            <label class="form-label" for="cf-motivo" data-i18n="about.contact.lbl.motivo">Motivo</label>
             <select class="form-select" id="cf-motivo">
-              <option value="">Selecciona...</option>
-              <option>Agente IA para mi organización deportiva</option>
-              <option>Patrocinios deportivos</option>
-              <option>Desarrollo de negocio en deporte</option>
-              <option>Colaboración / Partnership</option>
-              <option>Inversión / Lanzadera</option>
-              <option>Otro</option>
+              <option value="" data-i18n="about.contact.opt0">Selecciona...</option>
+              <option data-i18n="about.contact.opt1">Agente IA para mi organización deportiva</option>
+              <option data-i18n="about.contact.opt2">Patrocinios deportivos</option>
+              <option data-i18n="about.contact.opt3">Desarrollo de negocio en deporte</option>
+              <option data-i18n="about.contact.opt4">Colaboración / Partnership</option>
+              <option data-i18n="about.contact.opt5">Inversión / Lanzadera</option>
+              <option data-i18n="about.contact.opt6">Otro</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="cf-mensaje">Cuéntame *</label>
-          <textarea class="form-textarea" id="cf-mensaje" placeholder="Tu deporte, tu entidad, qué te gustaría mejorar..." required></textarea>
+          <label class="form-label" for="cf-mensaje" data-i18n="about.contact.lbl.mensaje">Cuéntame *</label>
+          <textarea class="form-textarea" id="cf-mensaje" placeholder="Tu deporte, tu entidad, qué te gustaría mejorar..." data-i18n="about.contact.ph.mensaje" required></textarea>
         </div>
-        <button class="form-submit" id="cf-submit" type="button">Enviar mensaje →</button>
-        <div class="form-error" id="cf-error">Hubo un problema. Escríbeme a <a href="mailto:ri@palferia.com" style="color:var(--accent)">ri@palferia.com</a></div>
+        <button class="form-submit" id="cf-submit" type="button" data-i18n="about.contact.submit">Enviar mensaje →</button>
+        <div class="form-error" id="cf-error" data-i18n="about.contact.error">Hubo un problema. Escríbeme a <a href="mailto:ri@palferia.com" style="color:var(--accent)">ri@palferia.com</a></div>
       </div>
       <div class="form-success" id="cf-success">
         <div class="form-success-icon">✅</div>
-        <div class="form-success-title">Mensaje recibido</div>
-        <p class="form-success-text">Te respondo antes de 24 horas.<br>Si tienes urgencia, escríbeme por WhatsApp.</p>
+        <div class="form-success-title" data-i18n="about.contact.success.title">Mensaje recibido</div>
+        <p class="form-success-text" data-i18n="about.contact.success.text">Te respondo antes de 24 horas.<br>Si tienes urgencia, escríbeme por WhatsApp.</p>
       </div>
     </div>
   </div>
@@ -654,11 +654,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <img src="/assets/img/logo-fondooscuro1.png"
              alt="Palferia.me" class="pf-footer-logo-img">
       </a>
-      <div class="pf-footer-tagline">IA para el sport business · Valencia, España · 2026</div>
+      <div class="pf-footer-tagline" data-i18n="footer.tagline">IA para el sport business · Valencia, España · 2026</div>
     </div>
     <div class="pf-footer-cols">
       <div class="pf-footer-col">
-        <h5>Agentes IA</h5>
+        <h5 data-i18n="footer.col1.title">Agentes IA</h5>
         <ul>
           <li><a href="/verticales/vertical-academias.html">Academia Agent</a></li>
           <li><a href="/verticales/vertical-clubes.html">Club Agent</a></li>
@@ -669,20 +669,20 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         </ul>
       </div>
       <div class="pf-footer-col">
-        <h5>Empresa</h5>
+        <h5 data-i18n="footer.col2.title">Empresa</h5>
         <ul>
           <li><a href="/servicios">Servicios</a></li>
           <li><a href="/planes">Planes</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="#contacto" data-i18n="footer.col2.contact">Contacto</a></li>
         </ul>
       </div>
       <div class="pf-footer-col">
-        <h5>Legal</h5>
+        <h5 data-i18n="footer.col3.title">Legal</h5>
         <ul>
-          <li><a href="/politica-privacidad.html">Política de privacidad</a></li>
-          <li><a href="/aviso-legal.html">Aviso legal</a></li>
-          <li><a href="/politica-cookies.html">Política de cookies</a></li>
+          <li><a href="/politica-privacidad.html" data-i18n="footer.col3.privacy">Política de privacidad</a></li>
+          <li><a href="/aviso-legal.html" data-i18n="footer.col3.legal">Aviso legal</a></li>
+          <li><a href="/politica-cookies.html" data-i18n="footer.col3.cookies">Política de cookies</a></li>
         </ul>
       </div>
     </div>
