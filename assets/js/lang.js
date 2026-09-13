@@ -365,6 +365,14 @@ const pages = {
   'lp.form.note'           : { es:'Sin compromiso. Sin costes hasta tener toda la información sobre la mesa.', en:'No commitment. No costs until all information is on the table.', va:'Sense compromís. Sense costos fins a tenir tota la informació sobre la taula.' },
   'lp.form.success.title'  : { es:'¡Recibido!',          en:'Received!',          va:'Rebut!'              },
   'lp.form.success.text'   : { es:'Nos ponemos en contacto para coordinar la reunión. Si prefieres más rapidez, escríbenos por <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.', en:'We\'ll be in touch to coordinate the meeting. If you\'d prefer faster response, write to us on <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.', va:'Ens posem en contacte per a coordinar la reunió. Si prefereixes més rapidesa, escriu-nos per <a href="https://wa.me/34643469239" style="color:var(--accent)">WhatsApp</a>.' },
+  /* ── ALIAS — claves usadas en clubes, eventos, patrocinios ── */
+  'lp.form.lbl.whatsapp'   : { es:'WhatsApp (opcional)', en:'WhatsApp (optional)', va:'WhatsApp (opcional)' },
+  'lp.form.ph.whatsapp'    : { es:'+34 600 000 000',     en:'+34 600 000 000',    va:'+34 600 000 000'     },
+  'lp.form.ph.sector'      : { es:'Selecciona tu tipo de entidad', en:'Select your entity type', va:'Selecciona el teu tipus d\'entitat' },
+  'lp.form.lbl.msg'        : { es:'¿Qué quieres automatizar?', en:'What do you want to automate?', va:'Què vols automatitzar?' },
+  'lp.contact.phone.label' : { es:'WhatsApp / Teléfono', en:'WhatsApp / Phone',   va:'WhatsApp / Telèfon'  },
+  'lp.contact.phone.sub'   : { es:'Ronald Palma · Fundador', en:'Ronald Palma · Founder', va:'Ronald Palma · Fundador' },
+
   'lp.contact.wa.btn'      : { es:'WhatsApp directo',    en:'Direct WhatsApp',    va:'WhatsApp directe'    },
   'lp.contact.email.label' : { es:'Email',               en:'Email',              va:'Email'               },
   'lp.contact.email.sub'   : { es:'Respondemos en horario laboral', en:'We respond during business hours', va:'Responem en horari laboral' },
